@@ -7,13 +7,15 @@ import java.util.ArrayList;
  */
 
 public class Kraj {
-    private ArrayList<Rodina> rodiny;
+    private ArrayList<Rodina> rodiny = new ArrayList<Rodina>();
     private boolean otvoreny = true;
     private EStavKraja stav;
     private boolean lokalneObmedzenia;
+    private String nazov;
     
-    public Kraj(){
+    public Kraj(/*String nazovKraja*/){
         this.stav = EStavKraja.ZELENY;
+      //  this.nazov = nazovKraja;
     };
 
     public ArrayList<Rodina> getRodiny() {
@@ -52,4 +54,9 @@ public class Kraj {
     {
         this.rodiny.add(rodina);
     }   
+
+    public String getNazov() {
+        return nazov;
+    }
+    
 }

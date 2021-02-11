@@ -5,6 +5,9 @@
  */
 package Hra_GUI;
 
+import Subory.Nacitavac;
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author Zuzana Žillová
@@ -12,6 +15,7 @@ package Hra_GUI;
 public class Main {
     public static void main(String[] args)
     {
-        HraciPanel hra = new HraciPanel();
+        //HraciPanel hra = new HraciPanel();
+        Nacitavac nacitavac = new Nacitavac();
     }
 }
