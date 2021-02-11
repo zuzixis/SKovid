@@ -7,18 +7,32 @@ package Hra_Opatrenia;
 
 /**
  *
- * @author Zuzana Žillová
+ * @author Erik Malina
  */
-public class RuskaOdstup{
-    private int rusko = 5;
+public class RuskaOdstup implements Opatrenie {
 
-    public RuskaOdstup() {
+    private boolean zapnute;
+
+    public boolean isZapnute() {
+        return zapnute;
     }
 
-    public int getRusko() {
-        return rusko;
+    @Override
+    public void zapnutie() {
+        zapnute = true;
     }
-    
-    
-    
+
+    @Override
+    public void vypnutie() {
+        zapnute = false;
+    }
+
+    @Override
+    public double getIndex() {
+        if (zapnute) {
+            return 0.15;
+        }
+        return 0.9;
+    }
+
 }

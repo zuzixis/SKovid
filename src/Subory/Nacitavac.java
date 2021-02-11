@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Erik
+ * @author Erik Malina
  */
 public class Nacitavac {
 

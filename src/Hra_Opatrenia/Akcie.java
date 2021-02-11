@@ -36,15 +36,15 @@ public class Akcie implements Opatrenie {
     public double getIndex() {
         if(zapnute){
             switch(povolenyPocetLudi){
-                case 10: return 0; //zmeniť index
-                case 50: return 0;
-                case 100: return 0;
-                case 1000: return 0;
+                case 10: return 0.42; 
+                case 50: return 0.38;
+                case 100: return 0.34;
+                case 1000: return 0.23;
                 default: return 0;
             }
         }else
         {
-            return 0;//treba doplniť index ked bude neobmedzené
+            return 0.15;
         }
     }
     
