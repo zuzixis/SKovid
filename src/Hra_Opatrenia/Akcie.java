@@ -10,5 +10,8 @@ package Hra_Opatrenia;
  * @author Zuzana Žillová
  */
 public class Akcie  {
-   
+   public static void main()
+   {
+       
+   }
 }
