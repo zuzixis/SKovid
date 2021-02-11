@@ -10,5 +10,15 @@ package Hra_Opatrenia;
  * @author Zuzana Žillová
  */
 public class RuskaOdstup{
+    private int rusko = 5;
+
+    public RuskaOdstup() {
+    }
+
+    public int getRusko() {
+        return rusko;
+    }
+    
+    
     
 }
