@@ -15,4 +15,8 @@ public class Akcie  {
     public Akcie() {
     }
          
+   public static void main()
+   {
+       
+   }
 }
