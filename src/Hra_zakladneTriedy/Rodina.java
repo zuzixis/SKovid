@@ -12,10 +12,10 @@ import java.util.Random;
  */
 
 public class Rodina {
-    ArrayList<Clovek> clenoviaRodiny;
-    boolean maRodinaCovid = false;
-    int pocetNakazenychClenov = 0;
-    public static final double INDEX_NAKAZENOSTI = 0.5; //treba zmeniť v skutočy údaj
+    private ArrayList<Clovek> clenoviaRodiny;
+    private boolean maRodinaCovid = false;
+    private int pocetNakazenychClenov = 0;
+    private static final double INDEX_NAKAZENOSTI = 0.5; //treba zmeniť v skutočy údaj
     
 
     public Rodina() {
