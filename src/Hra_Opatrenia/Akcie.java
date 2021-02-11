@@ -10,5 +10,9 @@ package Hra_Opatrenia;
  * @author Zuzana Žillová
  */
 public class Akcie  {
-    private boolean akcia= true;
+    private boolean akcia= true; 
+
+    public Akcie() {
+    }
+         
 }
