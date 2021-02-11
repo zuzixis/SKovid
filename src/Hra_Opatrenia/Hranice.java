@@ -15,9 +15,6 @@ public class Hranice implements Opatrenie{
 
      private boolean zapnute;
     
-
-  
-
     public boolean isZapnute() {
         return zapnute;
     }

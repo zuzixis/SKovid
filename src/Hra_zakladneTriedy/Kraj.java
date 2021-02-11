@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 
 public class Kraj {
-    ArrayList<Rodina> rodiny;
-    boolean otvoreny = true;
-    EStavKraja stav;
-    boolean lokalneObmedzenia;
+    private ArrayList<Rodina> rodiny;
+    private boolean otvoreny = true;
+    private EStavKraja stav;
+    private boolean lokalneObmedzenia;
     
     public Kraj(){
         this.stav = EStavKraja.ZELENY;

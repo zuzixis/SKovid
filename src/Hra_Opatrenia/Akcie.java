@@ -47,5 +47,4 @@ public class Akcie implements Opatrenie {
             return 0.15;
         }
     }
-    
 }

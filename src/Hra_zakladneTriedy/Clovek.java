@@ -7,13 +7,13 @@ package Hra_zakladneTriedy;
  * @author Zuzana Žillová
  */
 public class Clovek {
-    int vek;
-    int zdravotnyStav;
-    int pocetDniOdPrekonania;
-    int pocetDniStravenychVChorobe;
-    boolean maCovid;
-    boolean karantena;
-    boolean zaockovany;
+    private int vek;
+    private int zdravotnyStav;
+    private int pocetDniOdPrekonania;
+    private int pocetDniStravenychVChorobe;
+    private boolean maCovid;
+    private boolean karantena;
+    private boolean zaockovany;
     
     public Clovek(int vek)
     {

@@ -9,14 +9,14 @@ import java.util.ArrayList;
  */
 
 public class Slovensko {
-    ArrayList<Kraj> kraje;
-    int spokojnost;
-    int vytazenostNemocnic;
-    Opatrenia opatrenia;
-    int pocetNakazenych;
-    int pocetUmrti;
-    int pocetImunnych;
-    int pocetVsetkychZaockovanych;
+    private ArrayList<Kraj> kraje;
+    private int spokojnost;
+    private int vytazenostNemocnic;
+    private Opatrenia opatrenia;
+    private int pocetNakazenych;
+    private int pocetUmrti;
+    private int pocetImunnych;
+    private int pocetVsetkychZaockovanych;
 
     public ArrayList<Kraj> getKraje() {
         return kraje;

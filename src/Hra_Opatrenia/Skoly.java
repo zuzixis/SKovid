@@ -13,6 +13,7 @@ public class Skoly implements Opatrenie{
      private boolean zapnute;
      
      // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak?
+     // Môže byť :D :D 
     public boolean isZapnute() {
         return zapnute;
     }

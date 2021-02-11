@@ -6,6 +6,11 @@
 package Hra_GUI;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +22,10 @@ public class HraciPanel extends javax.swing.JFrame {
      * Creates new form HraciPanel
      */
     public HraciPanel() {
+        ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\logo.jpg");
+        this.setIconImage(frameIcon.getImage());
+
+        
         setPreferredSize( new Dimension( 1400,750 ) );
         initComponents();
         setSize( 1,1 );
@@ -57,7 +66,7 @@ public class HraciPanel extends javax.swing.JFrame {
         hlavnyPanelLayout.setVerticalGroup(
             hlavnyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hlavnyPanelLayout.createSequentialGroup()
-                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
