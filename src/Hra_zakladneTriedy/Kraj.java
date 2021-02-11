@@ -13,9 +13,9 @@ public class Kraj {
     private boolean lokalneObmedzenia;
     private String nazov;
     
-    public Kraj(/*String nazovKraja*/){
+    public Kraj(String nazovKraja){
         this.stav = EStavKraja.ZELENY;
-      //  this.nazov = nazovKraja;
+        this.nazov = nazovKraja;
     };
 
     public ArrayList<Rodina> getRodiny() {

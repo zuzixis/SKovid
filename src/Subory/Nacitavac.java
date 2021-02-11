@@ -1,5 +1,7 @@
 /*
- *Nacitavame zo suboru rodiny
+ * Nacitavame zo suboru rodiny
+ * Vygenerovanie veku obyvateľstva
+ * Vytvorenie Krajov
  */
 package Subory;
 
@@ -54,8 +56,7 @@ public class Nacitavac {
                 this.kraje.get(index).pridajRodinu(r);
             }
             else{
-                //String nazov = citac.next(riadok);
-                Kraj k = new Kraj(/*nazov*/);
+                Kraj k = new Kraj(riadok);
                 this.kraje.add(k);
                 index++;
             }
@@ -77,4 +78,9 @@ public class Nacitavac {
         }
         return true;
     }
+
+    public ArrayList<Kraj> getKraje() {
+        return kraje;
+    }
+    
 }
