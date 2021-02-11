@@ -15,7 +15,8 @@ public class Rodina {
     private ArrayList<Clovek> clenoviaRodiny;
     private boolean maRodinaCovid = false;
     private int pocetNakazenychClenov = 0;
-    private static final double INDEX_NAKAZENOSTI = 0.5; //treba zmeniť v skutočy údaj
+    private static final double INDEX_NAKAZENOSTI = 0.8; 
+                     //dal som 0.8, lebo bez rusok je 0.9 ale predpokladam ze ak sa mu ludia vyhybaju je o nieco nizsia ale dost vysoka ci?
     
 
     public Rodina() {
