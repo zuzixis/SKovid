@@ -5,6 +5,8 @@
  */
 package Hra_GUI;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Zuzana Žillová
@@ -15,8 +17,14 @@ public class HraciPanel extends javax.swing.JFrame {
      * Creates new form HraciPanel
      */
     public HraciPanel() {
+        setPreferredSize( new Dimension( 1400,750 ) );
         initComponents();
+        setSize( 1,1 );
         setVisible(true);
+        setDefaultCloseOperation( EXIT_ON_CLOSE );
+        setTitle( "SKovid" );
+        pack();
+        
     }
 
     /**
@@ -28,46 +36,42 @@ public class HraciPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        Rusko_Odstupy = new javax.swing.JLabel();
-        Hranice = new javax.swing.JLabel();
-        Skoly = new javax.swing.JLabel();
-        Vysoke_skoly = new javax.swing.JLabel();
-        Zakaz_vychadzania = new javax.swing.JLabel();
+        hlavnyPanel = new javax.swing.JPanel();
+        pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1400, 750));
 
-        jPanel1.setLayout(null);
+        hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
 
-        Rusko_Odstupy.setText("Rúško/Odstupy");
-        jPanel1.add(Rusko_Odstupy);
-        Rusko_Odstupy.setBounds(820, 20, 130, 40);
+        pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie.jpg"))); // NOI18N
 
-        Hranice.setText("Hranice");
-        jPanel1.add(Hranice);
-        Hranice.setBounds(820, 70, 110, 40);
-
-        Skoly.setText("Školy");
-        jPanel1.add(Skoly);
-        Skoly.setBounds(820, 120, 120, 40);
-
-        Vysoke_skoly.setText("Vysoke školy");
-        jPanel1.add(Vysoke_skoly);
-        Vysoke_skoly.setBounds(820, 170, 120, 40);
-
-        Zakaz_vychadzania.setText("Zákaz vychádzania");
-        jPanel1.add(Zakaz_vychadzania);
-        Zakaz_vychadzania.setBounds(820, 230, 130, 40);
+        javax.swing.GroupLayout hlavnyPanelLayout = new javax.swing.GroupLayout(hlavnyPanel);
+        hlavnyPanel.setLayout(hlavnyPanelLayout);
+        hlavnyPanelLayout.setHorizontalGroup(
+            hlavnyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hlavnyPanelLayout.createSequentialGroup()
+                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 1400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        hlavnyPanelLayout.setVerticalGroup(
+            hlavnyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hlavnyPanelLayout.createSequentialGroup()
+                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(hlavnyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+            .addComponent(hlavnyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -75,11 +79,7 @@ public class HraciPanel extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Hranice;
-    private javax.swing.JLabel Rusko_Odstupy;
-    private javax.swing.JLabel Skoly;
-    private javax.swing.JLabel Vysoke_skoly;
-    private javax.swing.JLabel Zakaz_vychadzania;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel hlavnyPanel;
+    private javax.swing.JLabel pozadie;
     // End of variables declaration//GEN-END:variables
 }
