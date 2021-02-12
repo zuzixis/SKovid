@@ -46,29 +46,53 @@ public class HraciPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
+        BTNI_Rusko = new javax.swing.JLabel();
+        BTNI_Hranice = new javax.swing.JLabel();
+        BTNI_Skoly = new javax.swing.JLabel();
+        BTNI_Sluzby = new javax.swing.JLabel();
+        BTNI_Akcie = new javax.swing.JLabel();
+        BTNI_ZakazVych = new javax.swing.JLabel();
+        TITLE_ZakazVychadzania = new javax.swing.JLabel();
         pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1400, 750));
 
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
+        hlavnyPanel.setLayout(null);
+
+        BTNI_Rusko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_Rusko);
+        BTNI_Rusko.setBounds(920, 50, 130, 40);
+
+        BTNI_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_Hranice);
+        BTNI_Hranice.setBounds(1070, 50, 130, 40);
+
+        BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_Skoly);
+        BTNI_Skoly.setBounds(920, 120, 390, 40);
+
+        BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_Sluzby);
+        BTNI_Sluzby.setBounds(920, 180, 390, 40);
+
+        BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_Akcie);
+        BTNI_Akcie.setBounds(920, 240, 390, 40);
+
+        BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/dicasne.png"))); // NOI18N
+        hlavnyPanel.add(BTNI_ZakazVych);
+        BTNI_ZakazVych.setBounds(1110, 300, 50, 40);
+
+        TITLE_ZakazVychadzania.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TITLE_ZakazVychadzania.setForeground(new java.awt.Color(102, 255, 102));
+        TITLE_ZakazVychadzania.setText("Zákaz vychádzania");
+        hlavnyPanel.add(TITLE_ZakazVychadzania);
+        TITLE_ZakazVychadzania.setBounds(970, 300, 140, 40);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout hlavnyPanelLayout = new javax.swing.GroupLayout(hlavnyPanel);
-        hlavnyPanel.setLayout(hlavnyPanelLayout);
-        hlavnyPanelLayout.setHorizontalGroup(
-            hlavnyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hlavnyPanelLayout.createSequentialGroup()
-                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 1400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        hlavnyPanelLayout.setVerticalGroup(
-            hlavnyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hlavnyPanelLayout.createSequentialGroup()
-                .addComponent(pozadie, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        hlavnyPanel.add(pozadie);
+        pozadie.setBounds(0, 0, 1400, 715);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +112,13 @@ public class HraciPanel extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BTNI_Akcie;
+    private javax.swing.JLabel BTNI_Hranice;
+    private javax.swing.JLabel BTNI_Rusko;
+    private javax.swing.JLabel BTNI_Skoly;
+    private javax.swing.JLabel BTNI_Sluzby;
+    private javax.swing.JLabel BTNI_ZakazVych;
+    private javax.swing.JLabel TITLE_ZakazVychadzania;
     private javax.swing.JPanel hlavnyPanel;
     private javax.swing.JLabel pozadie;
     // End of variables declaration//GEN-END:variables
