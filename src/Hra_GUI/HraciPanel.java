@@ -89,7 +89,7 @@ public class HraciPanel extends javax.swing.JFrame {
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
-        T_Opatrenia.setBounds(760, 20, 220, 50);
+        T_Opatrenia.setBounds(820, 20, 220, 50);
 
         K_ZavKraje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,7 +97,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_ZavKraje);
-        K_ZavKraje.setBounds(1150, 430, 50, 20);
+        K_ZavKraje.setBounds(1210, 320, 50, 20);
 
         K_Rusko.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,7 +105,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_Rusko);
-        K_Rusko.setBounds(920, 70, 150, 40);
+        K_Rusko.setBounds(980, 70, 150, 40);
 
         K_Hranice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -113,7 +113,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_Hranice);
-        K_Hranice.setBounds(1070, 70, 140, 40);
+        K_Hranice.setBounds(1130, 70, 140, 40);
 
         K_ZakazVych.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +121,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_ZakazVych);
-        K_ZakazVych.setBounds(1140, 330, 60, 20);
+        K_ZakazVych.setBounds(1200, 420, 60, 20);
 
         K_CeloTest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,11 +129,11 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_CeloTest);
-        K_CeloTest.setBounds(1140, 380, 60, 20);
+        K_CeloTest.setBounds(1200, 370, 60, 20);
 
         T_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/akcieLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Akcie);
-        T_Akcie.setBounds(730, 260, 190, 40);
+        T_Akcie.setBounds(790, 260, 190, 40);
 
         K_A_Neobmedzene.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,7 +141,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_A_Neobmedzene);
-        K_A_Neobmedzene.setBounds(920, 260, 130, 40);
+        K_A_Neobmedzene.setBounds(980, 260, 130, 40);
 
         K_A_Max10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,7 +149,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_A_Max10);
-        K_A_Max10.setBounds(1060, 260, 70, 40);
+        K_A_Max10.setBounds(1120, 260, 70, 40);
 
         K_A_Max100.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,7 +157,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_A_Max100);
-        K_A_Max100.setBounds(1130, 260, 80, 40);
+        K_A_Max100.setBounds(1190, 260, 80, 40);
 
         K_A_Max1000.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,11 +165,11 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_A_Max1000);
-        K_A_Max1000.setBounds(1220, 260, 80, 40);
+        K_A_Max1000.setBounds(1280, 260, 80, 40);
 
         T_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/SkolyLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Skoly);
-        T_Skoly.setBounds(730, 140, 190, 40);
+        T_Skoly.setBounds(790, 140, 190, 40);
 
         K_SK_Neobmedzene.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,7 +177,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_SK_Neobmedzene);
-        K_SK_Neobmedzene.setBounds(920, 140, 140, 40);
+        K_SK_Neobmedzene.setBounds(980, 140, 140, 40);
 
         K_SK_ZavreteVS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,7 +185,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_SK_ZavreteVS);
-        K_SK_ZavreteVS.setBounds(1060, 140, 120, 40);
+        K_SK_ZavreteVS.setBounds(1120, 140, 120, 40);
 
         K_SK_ZavreteVsetky.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,11 +193,11 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_SK_ZavreteVsetky);
-        K_SK_ZavreteVsetky.setBounds(1180, 140, 120, 40);
+        K_SK_ZavreteVsetky.setBounds(1240, 140, 120, 40);
 
         T_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/SluzbyLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Sluzby);
-        T_Sluzby.setBounds(730, 200, 190, 40);
+        T_Sluzby.setBounds(790, 200, 190, 40);
 
         K_S_Otvorene.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -205,7 +205,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_S_Otvorene);
-        K_S_Otvorene.setBounds(920, 200, 110, 40);
+        K_S_Otvorene.setBounds(980, 200, 110, 40);
 
         K_S_ZavreteRizikove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -213,7 +213,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_S_ZavreteRizikove);
-        K_S_ZavreteRizikove.setBounds(1030, 200, 140, 40);
+        K_S_ZavreteRizikove.setBounds(1090, 200, 140, 40);
 
         K_S_Zakladne.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -221,36 +221,36 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_S_Zakladne);
-        K_S_Zakladne.setBounds(1180, 200, 120, 40);
+        K_S_Zakladne.setBounds(1240, 200, 120, 40);
 
         BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png"))); // NOI18N
         BTNI_Rusko_Hranice.setPreferredSize(new java.awt.Dimension(60, 146));
         hlavnyPanel.add(BTNI_Rusko_Hranice);
-        BTNI_Rusko_Hranice.setBounds(920, 70, 300, 40);
+        BTNI_Rusko_Hranice.setBounds(980, 70, 300, 40);
 
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png"))); // NOI18N
         hlavnyPanel.add(BTNI_Skoly);
-        BTNI_Skoly.setBounds(920, 140, 390, 40);
+        BTNI_Skoly.setBounds(980, 140, 390, 40);
 
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png"))); // NOI18N
         hlavnyPanel.add(BTNI_Sluzby);
-        BTNI_Sluzby.setBounds(920, 200, 390, 40);
+        BTNI_Sluzby.setBounds(980, 200, 390, 40);
 
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacitaNeobmedzena.png"))); // NOI18N
         hlavnyPanel.add(BTNI_Akcie);
-        BTNI_Akcie.setBounds(920, 260, 390, 40);
+        BTNI_Akcie.setBounds(980, 260, 390, 40);
 
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_ZakazVych);
-        BTNI_ZakazVych.setBounds(920, 320, 300, 40);
+        BTNI_ZakazVych.setBounds(980, 410, 300, 40);
 
         BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_CeloTest);
-        BTNI_CeloTest.setBounds(920, 370, 300, 40);
+        BTNI_CeloTest.setBounds(980, 360, 300, 40);
 
         BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_ZavKraje);
-        BTNI_ZavKraje.setBounds(920, 420, 300, 40);
+        BTNI_ZavKraje.setBounds(980, 310, 300, 40);
 
         BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoritvsetko.png"))); // NOI18N
         BTNI_OtvorVsetko.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,7 +259,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(BTNI_OtvorVsetko);
-        BTNI_OtvorVsetko.setBounds(920, 470, 200, 50);
+        BTNI_OtvorVsetko.setBounds(980, 460, 200, 40);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie.png"))); // NOI18N
         hlavnyPanel.add(pozadie);
@@ -322,9 +322,11 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_ZakazVychMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_ZakazVychMouseClicked
         if (!zakazVychadzania) {
             zakazVychadzania = true;
+            zavriVsetko();
             BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_active.png")));
         }else{
             zakazVychadzania = false;
+            otvorVsetko();
             BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png")));
         }
     }//GEN-LAST:event_K_ZakazVychMouseClicked
@@ -400,6 +402,29 @@ public class HraciPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_K_SK_ZavreteVsetkyMouseClicked
 
     private void BTNI_OtvorVsetkoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTNI_OtvorVsetkoMouseClicked
+       otvorVsetko();        
+    }//GEN-LAST:event_BTNI_OtvorVsetkoMouseClicked
+
+    private void zavriVsetko(){
+        rusko = true;
+        hranice = true;
+        zakazVychadzania = true;
+        celoplosneTestovanie = true;
+        uzavretieKrajov = true;
+        akcie = 10;
+        sluzby = "len zakladne";
+        skoly = "zavrete vsetky";
+        
+        BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_active.png")));
+        BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_active.png")));
+        BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_active.png")));
+        BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_active.png")));
+        BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita10.png")));
+        BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
+        BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
+    }
+    
+    private void otvorVsetko(){
         rusko = false;
         hranice = false;
         zakazVychadzania = false;
@@ -416,9 +441,7 @@ public class HraciPanel extends javax.swing.JFrame {
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacitaNeobmedzena.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
-        
-    }//GEN-LAST:event_BTNI_OtvorVsetkoMouseClicked
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BTNI_Akcie;
