@@ -9,7 +9,7 @@ package Hra_Opatrenia;
  *
  * @author Erik Malina
  */
-public class RuskaOdstup implements Opatrenie {
+public class RuskaOdstup implements IOpatrenie {
 
     private boolean zapnute;
 

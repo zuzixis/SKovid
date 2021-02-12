@@ -9,17 +9,17 @@ package Hra_Opatrenia;
  *
  * @author Zuzana Žillová
  */
-public class VysokeSkoly implements IOpatrenie{
+public class CeloplosneTestovanie implements IOpatrenie{
          private boolean zapnute;
      
-     // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak? môže byť :D že je akoby zapnuté opatrenie
-    public boolean isZapnute() {
+      public boolean isZapnute() {
         return zapnute;
     }
 
     @Override
     public void zapnutie() {
         zapnute = true;
+        //treba zapnut vsetky opatrenia este
     }
 
     @Override
@@ -30,8 +30,11 @@ public class VysokeSkoly implements IOpatrenie{
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.17;
+            return 0; //Trebe doplniť !!!
         }
         return 0;
     }
-}
+
+   
+}  
+

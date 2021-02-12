@@ -11,7 +11,7 @@ package Hra_Opatrenia;
  *
  * @author Erik Malina
  */
-public class Hranice implements Opatrenie{
+public class Hranice implements IOpatrenie{
 
      private boolean zapnute;
     
@@ -33,8 +33,7 @@ public class Hranice implements Opatrenie{
     public double getIndex() {
         if(zapnute){
             return 0; //doplnit index 
-        }
-            
+        } 
         return 1;//doplnit index 
         
     }

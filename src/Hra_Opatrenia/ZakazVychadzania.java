@@ -9,7 +9,7 @@ package Hra_Opatrenia;
  *
  * @author Zuzana Žillová
  */
-public class ZakazVychadzania implements Opatrenie{
+public class ZakazVychadzania implements IOpatrenie{
          private boolean zapnute;
      
       public boolean isZapnute() {

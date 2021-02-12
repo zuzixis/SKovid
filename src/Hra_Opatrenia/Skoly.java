@@ -9,7 +9,7 @@ package Hra_Opatrenia;
  *
  * @author Zuzana Žillová
  */
-public class Skoly implements Opatrenie{
+public class Skoly implements IOpatrenie{
      private boolean zapnute;
      
      // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak?

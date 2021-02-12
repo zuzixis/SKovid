@@ -9,7 +9,7 @@ package Hra_Opatrenia;
  *
  * @author Zuzana Žillová
  */
-public class Akcie implements Opatrenie {
+public class Akcie implements IOpatrenie {
 
     private boolean zapnute;
     private int povolenyPocetLudi;
@@ -37,7 +37,6 @@ public class Akcie implements Opatrenie {
         if(zapnute){
             switch(povolenyPocetLudi){
                 case 10: return 0.42; 
-                case 50: return 0.38;
                 case 100: return 0.34;
                 case 1000: return 0.23;
                 default: return 0;

@@ -9,7 +9,7 @@ package Hra_Opatrenia;
  *
  * @author Zuzana Žillová
  */
-public class Sluzby implements Opatrenie {
+public class Sluzby implements IOpatrenie {
 
     private boolean zapnute;
     private int povolenyPocetLudi;
@@ -37,7 +37,6 @@ public class Sluzby implements Opatrenie {
         if(zapnute){
             switch(povolenyPocetLudi){
                 case 10: return 0; //zmeniť index
-                case 50: return 0;
                 case 100: return 0;
                 case 1000: return 0;
                 default: return 0;

@@ -5,6 +5,7 @@
  */
 package Hra_GUI;
 
+import Hra_Opatrenia.Opatrenia;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -24,11 +25,14 @@ public class HraciPanel extends javax.swing.JFrame {
     private boolean celoplosneTestovanie = false;
     private boolean uzavretieKrajov = false;
     private int akcie = 0;
-    private String sluzby = "otvorene";
-    private String skoly = "otvorene";
+    private ESluzby sluzby = ESluzby.OTVORENE ;
+    private ESkoly skoly = ESkoly.OTVORENE;
+    private boolean zapnutieOpatreni = false;
+    
+    private Opatrenia opatrenia;
     
     
-    public HraciPanel() {
+    public HraciPanel(Opatrenia opatrenia) {
         ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\logo.jpg");
         this.setIconImage(frameIcon.getImage());
 
@@ -41,6 +45,7 @@ public class HraciPanel extends javax.swing.JFrame {
         setTitle( "SKovid" );
         pack();
         
+        this.opatrenia = opatrenia;
     }
 
     /**
@@ -53,6 +58,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
+        pozadie = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -80,12 +86,17 @@ public class HraciPanel extends javax.swing.JFrame {
         BTNI_CeloTest = new javax.swing.JLabel();
         BTNI_ZavKraje = new javax.swing.JLabel();
         BTNI_OtvorVsetko = new javax.swing.JLabel();
-        pozadie = new javax.swing.JLabel();
+        Kraje = new javax.swing.JLabel();
+        Main = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
         hlavnyPanel.setLayout(null);
+
+        pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/pozadicko.png"))); // NOI18N
+        hlavnyPanel.add(pozadie);
+        pozadie.setBounds(0, 0, 1400, 715);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -121,7 +132,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_ZakazVych);
-        K_ZakazVych.setBounds(1240, 420, 60, 20);
+        K_ZakazVych.setBounds(1240, 370, 60, 20);
 
         K_CeloTest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,7 +140,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(K_CeloTest);
-        K_CeloTest.setBounds(1240, 370, 60, 20);
+        K_CeloTest.setBounds(1240, 420, 60, 20);
 
         T_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/akcieLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Akcie);
@@ -242,28 +253,32 @@ public class HraciPanel extends javax.swing.JFrame {
 
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_ZakazVych);
-        BTNI_ZakazVych.setBounds(1020, 410, 300, 40);
+        BTNI_ZakazVych.setBounds(1020, 360, 300, 40);
 
         BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_CeloTest);
-        BTNI_CeloTest.setBounds(1020, 360, 300, 40);
+        BTNI_CeloTest.setBounds(1020, 410, 300, 40);
 
         BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_inactive.png"))); // NOI18N
         hlavnyPanel.add(BTNI_ZavKraje);
         BTNI_ZavKraje.setBounds(1020, 310, 300, 40);
 
-        BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoritvsetko.png"))); // NOI18N
+        BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vypnute.png"))); // NOI18N
         BTNI_OtvorVsetko.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BTNI_OtvorVsetkoMouseClicked(evt);
             }
         });
         hlavnyPanel.add(BTNI_OtvorVsetko);
-        BTNI_OtvorVsetko.setBounds(1020, 460, 200, 40);
+        BTNI_OtvorVsetko.setBounds(1220, 40, 50, 30);
 
-        pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie.png"))); // NOI18N
-        hlavnyPanel.add(pozadie);
-        pozadie.setBounds(0, 0, 1400, 715);
+        Kraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje.png"))); // NOI18N
+        hlavnyPanel.add(Kraje);
+        Kraje.setBounds(30, 430, 950, 290);
+
+        Main.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/main.png"))); // NOI18N
+        hlavnyPanel.add(Main);
+        Main.setBounds(60, 20, 860, 430);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,13 +299,16 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
         if (!rusko) {
             rusko = true;
+            this.opatrenia.getRuskaOdstup().zapnutie();
             if (!hranice) {
+                
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Lactive.png")));
             }else{
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_active.png")));
             }
         }else{
             rusko = false;
+            this.opatrenia.getRuskaOdstup().vypnutie();
             if (!hranice) {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png")));
             }else{
@@ -303,6 +321,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_HraniceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_HraniceMouseClicked
         if (!hranice) {
             hranice = true;
+            this.opatrenia.getHranice().zapnutie();
             if (!rusko) {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Ractive.png")));
             }else{
@@ -310,6 +329,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         }else{
             hranice = false;
+            this.opatrenia.getHranice().vypnutie();
             if (!rusko) {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png")));
             }else{
@@ -322,10 +342,12 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_ZakazVychMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_ZakazVychMouseClicked
         if (!zakazVychadzania) {
             zakazVychadzania = true;
+            this.opatrenia.getZakazVychadzania().zapnutie();
             zavriVsetko();
             BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_active.png")));
         }else{
             zakazVychadzania = false;
+            this.opatrenia.getZakazVychadzania().vypnutie();
             otvorVsetko();
             BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png")));
         }
@@ -334,9 +356,11 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_CeloTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_CeloTestMouseClicked
         if (!celoplosneTestovanie) {
             celoplosneTestovanie = true;
+            this.opatrenia.getCeloplosneTestovanie().zapnutie();
             BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_active.png")));
         }else{
             celoplosneTestovanie = false;
+            this.opatrenia.getCeloplosneTestovanie().vypnutie();
             BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_inactive.png")));
         }
     }//GEN-LAST:event_K_CeloTestMouseClicked
@@ -344,81 +368,107 @@ public class HraciPanel extends javax.swing.JFrame {
     private void K_A_NeobmedzeneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_A_NeobmedzeneMouseClicked
         akcie = 0;
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacitaNeobmedzena.png")));
+        this.opatrenia.getAkcie().setPovolenyPocetLudi(akcie);
+        this.opatrenia.getAkcie().vypnutie();
     }//GEN-LAST:event_K_A_NeobmedzeneMouseClicked
 
     private void K_A_Max10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_A_Max10MouseClicked
         akcie = 10;
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita10.png")));
+        this.opatrenia.getAkcie().setPovolenyPocetLudi(akcie);
+        this.opatrenia.getAkcie().zapnutie();
     }//GEN-LAST:event_K_A_Max10MouseClicked
 
     private void K_A_Max100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_A_Max100MouseClicked
         akcie = 100;
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita100.png")));
+        this.opatrenia.getAkcie().setPovolenyPocetLudi(akcie);
+        this.opatrenia.getAkcie().zapnutie();
     }//GEN-LAST:event_K_A_Max100MouseClicked
 
     private void K_A_Max1000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_A_Max1000MouseClicked
         akcie = 1000;
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita1000.png")));
+        this.opatrenia.getAkcie().setPovolenyPocetLudi(akcie);
+        this.opatrenia.getAkcie().zapnutie();
     }//GEN-LAST:event_K_A_Max1000MouseClicked
 
     private void K_ZavKrajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_ZavKrajeMouseClicked
         if (!uzavretieKrajov) {
             uzavretieKrajov = true;
+            this.opatrenia.getZatvorenieKrajov().zapnutie();
             BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_active.png")));
         }else{
             uzavretieKrajov = false;
+            this.opatrenia.getZatvorenieKrajov().vypnutie();
             BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_inactive.png")));
         }
     }//GEN-LAST:event_K_ZavKrajeMouseClicked
 
     private void K_S_OtvoreneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_S_OtvoreneMouseClicked
-        sluzby = "otvorene";
+        sluzby = ESluzby.OTVORENE;
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
+        this.opatrenia.getSluzby().vypnutie();
     }//GEN-LAST:event_K_S_OtvoreneMouseClicked
 
     private void K_S_ZavreteRizikoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_S_ZavreteRizikoveMouseClicked
-        sluzby = "zavrete rizikove";
+        sluzby = ESluzby.ZAVRETE_RIZIKOVE;
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/rizikove.png")));
+        this.opatrenia.getSluzby().zapnutie();
+        //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZavreteRizikoveMouseClicked
 
     private void K_S_ZakladneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_S_ZakladneMouseClicked
-        sluzby = "len zakladne";
+        sluzby = ESluzby.OTVORENE_LEN_ZAKLADNE;
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
+        this.opatrenia.getSluzby().zapnutie();
+        //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZakladneMouseClicked
 
     private void K_SK_NeobmedzeneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_SK_NeobmedzeneMouseClicked
-        skoly = "otvorene";
+        skoly = ESkoly.OTVORENE;
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
     }//GEN-LAST:event_K_SK_NeobmedzeneMouseClicked
 
     private void K_SK_ZavreteVSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_SK_ZavreteVSMouseClicked
-        skoly = "zavrete VS";
+        skoly = ESkoly.ZAVRETE_VYSOKE_SKOLY;
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyVysoke.png")));
     }//GEN-LAST:event_K_SK_ZavreteVSMouseClicked
 
     private void K_SK_ZavreteVsetkyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_SK_ZavreteVsetkyMouseClicked
-        skoly = "zavrete vsetky";
+        skoly = ESkoly.VSETKY_ZAVRETE;
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
     }//GEN-LAST:event_K_SK_ZavreteVsetkyMouseClicked
 
     private void BTNI_OtvorVsetkoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTNI_OtvorVsetkoMouseClicked
-       otvorVsetko();        
+        if (zapnutieOpatreni) {
+            otvorVsetko();  
+            BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vypnute.png")));
+            BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_inactive.png")));
+            celoplosneTestovanie = false;
+            zapnutieOpatreni = false;
+            
+        }else{
+            zavriVsetko();
+            celoplosneTestovanie = true;
+            zapnutieOpatreni = true;
+            BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));
+        }
+              
     }//GEN-LAST:event_BTNI_OtvorVsetkoMouseClicked
 
     private void zavriVsetko(){
         rusko = true;
         hranice = true;
         zakazVychadzania = true;
-        celoplosneTestovanie = true;
         uzavretieKrajov = true;
         akcie = 10;
-        sluzby = "len zakladne";
-        skoly = "zavrete vsetky";
+        sluzby = ESluzby.OTVORENE_LEN_ZAKLADNE;
+        skoly = ESkoly.VSETKY_ZAVRETE;
         
         BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_active.png")));
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_active.png")));
         BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_active.png")));
-        BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_active.png")));
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita10.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
@@ -431,8 +481,8 @@ public class HraciPanel extends javax.swing.JFrame {
         celoplosneTestovanie = false;
         uzavretieKrajov = false;
         akcie = 0;
-        sluzby = "otvorene";
-        skoly = "otvorene";
+        sluzby = ESluzby.OTVORENE;
+        skoly = ESkoly.OTVORENE;
         
         BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png")));
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png")));
@@ -467,6 +517,8 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel K_S_ZavreteRizikove;
     private javax.swing.JLabel K_ZakazVych;
     private javax.swing.JLabel K_ZavKraje;
+    private javax.swing.JLabel Kraje;
+    private javax.swing.JLabel Main;
     private javax.swing.JLabel T_Akcie;
     private javax.swing.JLabel T_Opatrenia;
     private javax.swing.JLabel T_Skoly;
@@ -474,4 +526,15 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JPanel hlavnyPanel;
     private javax.swing.JLabel pozadie;
     // End of variables declaration//GEN-END:variables
+}
+enum ESluzby {
+  OTVORENE,
+  ZAVRETE_RIZIKOVE,
+  OTVORENE_LEN_ZAKLADNE;
+}
+
+enum ESkoly {
+    OTVORENE,
+    ZAVRETE_VYSOKE_SKOLY,
+    VSETKY_ZAVRETE
 }
