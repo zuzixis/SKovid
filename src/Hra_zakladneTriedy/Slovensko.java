@@ -18,6 +18,22 @@ public class Slovensko {
     private int pocetImunnych;
     private int pocetVsetkychZaockovanych;
 
+    public int dajPocetVsetkychZaockovanych(){
+        int pocet = 0;
+        for (int i = 0; kraje.size() < 10; i++) {
+            pocet+=kraje.get(i).dajPocetZaockovanychVKraji();
+        }
+        return pocet;
+    }
+    
+    public int dajPocetVsetkychNakazenych(){
+        int pocet = 0;
+        for (int i = 0; i < kraje.size(); i++) {
+            pocet+=kraje.get(i).dajPocetNakazenychVkraji();
+        }
+        return pocet;
+    }
+    
     public ArrayList<Kraj> getKraje() {
         return kraje;
     }

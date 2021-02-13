@@ -65,6 +65,15 @@ public class Rodina {
         }
     }
     
+    public int getPocetZaockovanychVrodine(){
+        int pocetZaockovanych = 0;
+        for (int i = 0; this.clenoviaRodiny.size() < 10; i++) {
+            if(this.clenoviaRodiny.get(i).isZaockovany())
+                pocetZaockovanych ++;
+        }
+        return pocetZaockovanych;
+    }
+    
     /**
      * vygenerovanie, či další člen domácnosti dostal kovid alebo nie 
      */

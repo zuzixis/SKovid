@@ -20,6 +20,8 @@ public class Hra {
     
     
     
+    
+    
     public Hra(){
         opatrenia = new Opatrenia();
         HP = new HraciPanel(opatrenia);

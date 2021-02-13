@@ -59,4 +59,24 @@ public class Kraj {
         return nazov;
     }
     
+    public int dajPocetNakazenychVkraji(){
+        int pocet = 0;
+        for (int i = 0; i < this.rodiny.size(); i++) {
+            if(this.rodiny.get(i).getMaRodinaCovid())
+            {
+                pocet += this.rodiny.get(i).getPocetNakazenychClenov();             
+            }
+            
+        }
+        return pocet;
+    }
+    
+    public int dajPocetZaockovanychVKraji(){
+        int pocet = 0;
+        for (int i = 0; i < this.rodiny.size(); i++) {
+            pocet += this.rodiny.get(i).getPocetZaockovanychVrodine();            
+        }
+        return pocet;
+    }
+    
 }
