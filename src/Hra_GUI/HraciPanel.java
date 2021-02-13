@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
  */
 public class HraciPanel extends javax.swing.JFrame {
 
+    private Hra hra;
     private boolean rusko = false;
     private boolean hranice = false;
     private boolean zakazVychadzania = false;
@@ -34,20 +35,10 @@ public class HraciPanel extends javax.swing.JFrame {
     
     private String aktualnyDatum ="2020-01-01";
     
-    public HraciPanel(Opatrenia opatrenia) {
-        ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\logo.jpg");
-        this.setIconImage(frameIcon.getImage());
-
-        
-        setPreferredSize( new Dimension( 1400,750 ) );
-        initComponents();
-        setSize( 1,1 );
-        setVisible(true);
-        //setDefaultCloseOperation( EXIT_ON_CLOSE );
-        setTitle( "SKovid" );
-        pack();
-        
+    public HraciPanel(Opatrenia opatrenia, Hra hra) {
+        this.nadtsaveniaJFrame();
         this.opatrenia = opatrenia;
+        this.hra = hra;
     }
     
     @SuppressWarnings("unchecked")
@@ -365,14 +356,16 @@ public class HraciPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    /*private void vypisDatum() throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar c = Calendar.getInstance();
-        c.setTime(sdf.parse(aktualnyDatum));
-        c.add(Calendar.DATE, 1);  // number of days to add
-        aktualnyDatum = sdf.format(c.getTime());  // dt is now the new date
-        zmenDatum(aktualnyDatum);
-    }*/ //bolo to len na skusku!
+    private void nadtsaveniaJFrame(){
+        ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\logo.jpg");
+        this.setIconImage(frameIcon.getImage());
+        setPreferredSize( new Dimension( 1400,750 ) );
+        initComponents();
+        setVisible(true);
+        setDefaultCloseOperation( EXIT_ON_CLOSE );
+        setTitle( "SKovid" );
+        pack();
+    }
     
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
         if (!rusko) {
@@ -606,6 +599,8 @@ public class HraciPanel extends javax.swing.JFrame {
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);
+        this.hra.setHranie(true);
+        this.hra.zacniHru();
     }//GEN-LAST:event_startMouseClicked
 
     private void zavriVsetko(){

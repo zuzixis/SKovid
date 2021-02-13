@@ -19,21 +19,18 @@ public class Hra {
     private Slovensko SR;
     private Opatrenia opatrenia;
     private Cas cas;
+    private boolean hranie = false;
     
     
     public Hra(){
+        cas = new Cas(this);
         opatrenia = new Opatrenia();
-        HP = new HraciPanel(opatrenia);
+        HP = new HraciPanel(opatrenia, this);
         nacitavac = new Nacitavac();
         SR = new Slovensko();
         SR.setKraje(nacitavac.getKraje());
-        cas = new Cas(this);
         
-        for (int i = 0; i < 10; i++) {
-            cas.dalsiDen(1);
-        }
         
-        this.vypisVsetkyInformacieOSlovensku();
     }
     
     private void vypisVsetkyInformacieOSlovensku(){
@@ -49,5 +46,21 @@ public class Hra {
         return HP;
     }
     
+    public void zacniHru(){
+        while(hranie){
+            //cas.dalsiDen(1);
+            //this.vypisVsetkyInformacieOSlovensku();
+            System.out.print(45);
+        }
+    }
+
+    public void setHranie(boolean hranie) {
+        this.hranie = hranie;
+    }
+
+    public boolean isHranie() {
+        return hranie;
+    }
     
 }
+    
