@@ -1,39 +1,40 @@
-
 package Hra_zakladneTriedy;
 
 import Hra_Opatrenia.Opatrenia;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Zuzana Žillová
  */
-
 public class Slovensko {
+
     private ArrayList<Kraj> kraje;
     private int spokojnost;
     private int vytazenostNemocnic;
     private Opatrenia opatrenia;
-    private int pocetNakazenych;
     private int pocetUmrti;
     private int pocetImunnych;
     private int pocetVsetkychZaockovanych;
+    private ArrayList<Clovek> infekcny = new ArrayList<>();
+    private int prirastok = 0;
 
-    public int dajPocetVsetkychZaockovanych(){
+    public int dajPocetVsetkychZaockovanych() {
         int pocet = 0;
         for (int i = 0; i < kraje.size(); i++) {
-            pocet+=kraje.get(i).dajPocetZaockovanychVKraji();
+            pocet += kraje.get(i).dajPocetZaockovanychVKraji();
         }
         return pocet;
     }
-    
-    public int dajPocetVsetkychNakazenych(){
+
+    /*public int dajPocetVsetkychNakazenych(){
         int pocet = 0;
         for (int i = 0; i < kraje.size(); i++) {
             pocet+=kraje.get(i).dajPocetNakazenychVkraji();
         }
+        System.out.println(pocet);
         return pocet;
-    }
-    
+    }*/
     public ArrayList<Kraj> getKraje() {
         return kraje;
     }
@@ -48,10 +49,6 @@ public class Slovensko {
 
     public Opatrenia getOpatrenia() {
         return opatrenia;
-    }
-
-    public int getPocetNakazenych() {
-        return pocetNakazenych;
     }
 
     public int getPocetUmrti() {
@@ -82,10 +79,6 @@ public class Slovensko {
         this.opatrenia = opatrenia;
     }
 
-    public void setPocetNakazenych(int pocetNakazenych) {
-        this.pocetNakazenych = pocetNakazenych;
-    }
-
     public void setPocetUmrti(int pocetUmrti) {
         this.pocetUmrti = pocetUmrti;
     }
@@ -97,9 +90,96 @@ public class Slovensko {
     public void setPocetVsetkychZaockovanych(int pocetVsetkychZaockovanych) {
         this.pocetVsetkychZaockovanych = pocetVsetkychZaockovanych;
     }
-    
-    public void pridajKraj(Kraj kraj)
-    {
+
+    public void pridajKraj(Kraj kraj) {
         this.kraje.add(kraj);
+    }
+
+    //vygenerovanie nahodneho 1 cloveka ktorý bude mať kovid
+    public void vygenerujNakazenehoClovek() {
+        Random rand = new Random();
+        int vygenerovanyKraj = rand.nextInt(8);
+        int vygenerovanieRodiny = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().size());
+        int vygenerovanyClen = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().size());
+        Clovek vygenerovany = this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
+
+        vygenerovany.setMaCovid();
+        infekcny.add(vygenerovany);
+    }
+
+    //odratavanie do ohhalenia ze ma kovid
+    public void nakazDalsich() {
+        Random rand = new Random();
+
+        for (int i = 0; i < infekcny.size(); i++) {
+            double sanca = rand.nextDouble();
+            if (sanca <= 0.6) {
+                if (rand.nextDouble() < 0.9)//opatrit ci su otvorene kraje
+                {
+                    vygenerujNakazenehoClovekVKraji(infekcny.get(i).getKraj());
+                } else {
+                    vygenerujNakazenehoClovek();
+                }
+            }
+        }
+
+    }
+
+    public void vygenerujNakazenehoClovekVKraji(Kraj k) {
+        Random rand = new Random();
+        int vygenerovanieRodiny = rand.nextInt(k.getRodiny().size());
+        int vygenerovanyClen = rand.nextInt(k.getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().size());
+        Clovek vygenerovany = k.getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
+        vygenerovany.setMaCovid();
+        infekcny.add(vygenerovany);
+    }
+
+    public void spravDen() {
+        prirastok = 0;
+        for (int i = 0; i < this.kraje.size(); i++) {
+            for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
+                for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
+                    Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
+                    c.spravSiDen();
+                }
+            }
+        }
+
+        boolean vymaz = false;
+        do {
+            if (!this.infekcny.isEmpty()) {
+                vymaz = true;
+                if (infekcny.get(0).getDniDoOdhalenia() == 0) {
+                    this.infekcny.remove(0);
+                    prirastok++;
+                } else {
+                    vymaz = false;
+                }
+            }
+        } while (vymaz);
+        System.out.println("Po while: ");
+
+        nakazDalsich();
+        System.out.println("Po nakazeni: ");
+        System.out.println();
+    }
+
+    public int getPocetNakazenych() {
+        int pocet = 0;
+        for (int i = 0; i < this.kraje.size(); i++) {
+            for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
+                for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
+                    Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
+                    if (c.isMaCovid()) {
+                        pocet++;
+                    }
+                }
+            }
+        }
+        return pocet;
+    }
+
+    public int getPrirastok() {
+        return prirastok;
     }
 }

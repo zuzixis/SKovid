@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class Cas {
     private Hra hra;
-    private String aktualnyDatum = "2020-01-01";
+    private String aktualnyDatum = "2020-03-06";
     
     public Cas(Hra hra)
     {

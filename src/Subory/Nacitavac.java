@@ -50,7 +50,7 @@ public class Nacitavac {
                 
                 for (int i = 0; i < pocetClenov; i++) {
                     int vek = VygenerujVek();
-                    Clovek c = new Clovek(vek);
+                    Clovek c = new Clovek(vek,r,kraje.get(index));
                     r.pridajClenaRodiny(c);
                 }
                 this.kraje.get(index).pridajRodinu(r);

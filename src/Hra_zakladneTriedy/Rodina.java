@@ -60,7 +60,7 @@ public class Rodina {
     public void nadstavChorobu(){
         for (int i = 0; i < this.clenoviaRodiny.size(); i++) {
             if (nakazenieDalsiehoClenaRodiny(this.pocetNakazenychClenov*INDEX_NAKAZENOSTI)){
-               this.clenoviaRodiny.get(i).setMaCovid(true);
+               this.clenoviaRodiny.get(i).setMaCovid();
                this.pocetNakazenychClenov++;
             }
         }
@@ -87,6 +87,10 @@ public class Rodina {
             return true;
         }else 
             return false;
+    }
+
+    public ArrayList<Clovek> getClenoviaRodiny() {
+        return clenoviaRodiny;
     }
     
 }

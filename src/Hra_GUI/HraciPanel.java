@@ -2,16 +2,6 @@ package Hra_GUI;
 
 import Hra_Opatrenia.Opatrenia;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,7 +9,7 @@ import javax.swing.ImageIcon;
  */
 public class HraciPanel extends javax.swing.JFrame {
 
-    private Hra hra;
+    private final Hra hra;
     private boolean rusko = false;
     private boolean hranice = false;
     private boolean zakazVychadzania = false;
@@ -40,7 +30,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.opatrenia = opatrenia;
         this.hra = hra;
         
-        //this.pozadieUvod.setVisible(false);
+        this.pozadieUvod.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -602,7 +592,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);
         this.hra.setHranie(true);
-        //this.hra.zacniHru();
+        this.hra.zacniHru();
     }//GEN-LAST:event_startMouseClicked
 
     private void zavriVsetko(){

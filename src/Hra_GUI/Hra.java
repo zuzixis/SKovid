@@ -25,21 +25,20 @@ public class Hra {
     public Hra(){
         cas = new Cas(this);
         opatrenia = new Opatrenia();
-        HP = new HraciPanel(opatrenia, this);
         nacitavac = new Nacitavac();
         SR = new Slovensko();
         SR.setKraje(nacitavac.getKraje());
-        
-        this.hranie = true;
+        HP = new HraciPanel(opatrenia, this);
+       this.hranie = true;
         this.zacniHru();
         
         
     }
     
     private void vypisVsetkyInformacieOSlovensku(){
-        HP.napisVsetciNakazeni(SR.dajPocetVsetkychNakazenych());
+        HP.napisVsetciNakazeni(SR.getPocetNakazenych());
         HP.napisZaockovanych(SR.dajPocetVsetkychZaockovanych());
-        HP.napisNakazenychNaDen(5);
+        HP.napisNakazenychNaDen(SR.getPrirastok());
         HP.napisPocetUmrti(5);
         HP.napisStavNemocnic(5);
         HP.napisSpolocenskuStabilitu(5); //vsetky doplnene su len na skusku :D 
@@ -52,11 +51,13 @@ public class Hra {
     //tu by sa mohla cykliť hra až kym hrac neprehá (obnova opatreni, pocitanie indexov, pribudanie novych a podobne :D )
     public void zacniHru(){
         int i = 0;
-        /*while(hranie){
+        SR.vygenerujNakazenehoClovek();
+        while(hranie){
             cas.dalsiDen(1);
             this.vypisVsetkyInformacieOSlovensku();
-            
-        }*/
+            SR.spravDen();
+            //System.out.println(SR.dajPocetVsetkychNakazenych());
+        }
     }
 
     public void setHranie(boolean hranie) {
