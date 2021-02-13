@@ -11,13 +11,14 @@ public class Clovek {
     private int zdravotnyStav;
     private int pocetDniOdPrekonania;
     private int pocetDniStravenychVChorobe;
-    private boolean maCovid;
-    private boolean karantena;
-    private boolean zaockovany;
+    private boolean maCovid = false;
+    private boolean karantena = false;
+    private boolean zaockovany = false;
     
     public Clovek(int vek)
     {
         this.vek = vek;
+        this.zaockovany = false;
     }
     
     //Gettery a Settery

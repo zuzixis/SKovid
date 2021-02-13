@@ -20,7 +20,7 @@ public class Slovensko {
 
     public int dajPocetVsetkychZaockovanych(){
         int pocet = 0;
-        for (int i = 0; kraje.size() < 10; i++) {
+        for (int i = 0; i < kraje.size(); i++) {
             pocet+=kraje.get(i).dajPocetZaockovanychVKraji();
         }
         return pocet;

@@ -14,13 +14,14 @@ import java.util.Random;
 public class Rodina {
     private ArrayList<Clovek> clenoviaRodiny;
     private boolean maRodinaCovid = false;
-    private int pocetNakazenychClenov = 0;
+    private int pocetNakazenychClenov;
     private static final double INDEX_NAKAZENOSTI = 0.8; 
                      //dal som 0.8, lebo bez rusok je 0.9 ale predpokladam ze ak sa mu ludia vyhybaju je o nieco nizsia ale dost vysoka ci?
     
 
     public Rodina() {
         clenoviaRodiny = new ArrayList<>();
+        pocetNakazenychClenov = 0;
     }
     
     public void pridajClenaRodiny(Clovek clovek)
@@ -67,7 +68,7 @@ public class Rodina {
     
     public int getPocetZaockovanychVrodine(){
         int pocetZaockovanych = 0;
-        for (int i = 0; this.clenoviaRodiny.size() < 10; i++) {
+        for (int i = 0; i<this.clenoviaRodiny.size(); i++) {
             if(this.clenoviaRodiny.get(i).isZaockovany())
                 pocetZaockovanych ++;
         }
