@@ -39,6 +39,8 @@ public class HraciPanel extends javax.swing.JFrame {
         this.nadtsaveniaJFrame();
         this.opatrenia = opatrenia;
         this.hra = hra;
+        
+        //this.pozadieUvod.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -600,7 +602,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);
         this.hra.setHranie(true);
-        this.hra.zacniHru();
+        //this.hra.zacniHru();
     }//GEN-LAST:event_startMouseClicked
 
     private void zavriVsetko(){

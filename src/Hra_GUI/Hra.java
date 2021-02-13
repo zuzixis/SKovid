@@ -30,6 +30,9 @@ public class Hra {
         SR = new Slovensko();
         SR.setKraje(nacitavac.getKraje());
         
+        this.hranie = true;
+        this.zacniHru();
+        
         
     }
     
@@ -46,12 +49,14 @@ public class Hra {
         return HP;
     }
     
+    //tu by sa mohla cykliť hra až kym hrac neprehá (obnova opatreni, pocitanie indexov, pribudanie novych a podobne :D )
     public void zacniHru(){
-        while(hranie){
-            //cas.dalsiDen(1);
-            //this.vypisVsetkyInformacieOSlovensku();
-            System.out.print(45);
-        }
+        int i = 0;
+        /*while(hranie){
+            cas.dalsiDen(1);
+            this.vypisVsetkyInformacieOSlovensku();
+            
+        }*/
     }
 
     public void setHranie(boolean hranie) {
