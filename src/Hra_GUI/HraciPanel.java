@@ -55,6 +55,8 @@ public class HraciPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
+        start = new javax.swing.JLabel();
+        pozadieUvod = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -95,6 +97,18 @@ public class HraciPanel extends javax.swing.JFrame {
 
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
         hlavnyPanel.setLayout(null);
+
+        start.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                startMouseClicked(evt);
+            }
+        });
+        hlavnyPanel.add(start);
+        start.setBounds(950, 610, 60, 50);
+
+        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
+        hlavnyPanel.add(pozadieUvod);
+        pozadieUvod.setBounds(0, 0, 1400, 720);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -590,6 +604,10 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Notifikacie.png")));
     }//GEN-LAST:event_M_NotifikacieMouseClicked
 
+    private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
+        this.pozadieUvod.setVisible(false);
+    }//GEN-LAST:event_startMouseClicked
+
     private void zavriVsetko(){
         rusko = true;
         hranice = true;
@@ -698,6 +716,8 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel T_Opatrenia;
     private javax.swing.JPanel hlavnyPanel;
     private javax.swing.JLabel pozadie;
+    private javax.swing.JLabel pozadieUvod;
+    private javax.swing.JLabel start;
     // End of variables declaration//GEN-END:variables
 }
 enum ESluzby {
