@@ -79,8 +79,4 @@ public class Clovek {
     public void setZaockovany(boolean zaockovany) {
         this.zaockovany = zaockovany;
     }
-    
-        
-    
-    
 }
