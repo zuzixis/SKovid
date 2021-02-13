@@ -4,6 +4,7 @@
 
 package Hra_GUI;
 
+import HRA_Cas.Cas;
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.Slovensko;
 import Subory.Nacitavac;
@@ -17,6 +18,7 @@ public class Hra {
     private Nacitavac nacitavac;
     private Slovensko SR;
     private Opatrenia opatrenia;
+    private Cas cas;
     
     
     public Hra(){
@@ -25,6 +27,11 @@ public class Hra {
         nacitavac = new Nacitavac();
         SR = new Slovensko();
         SR.setKraje(nacitavac.getKraje());
+        cas = new Cas(this);
+        
+        for (int i = 0; i < 10; i++) {
+            cas.dalsiDen(1);
+        }
         
         this.vypisVsetkyInformacieOSlovensku();
     }
@@ -37,5 +44,10 @@ public class Hra {
         HP.napisStavNemocnic(5);
         HP.napisSpolocenskuStabilitu(5); //vsetky doplnene su len na skusku :D 
     }
+
+    public HraciPanel getHP() {
+        return HP;
+    }
+    
     
 }
