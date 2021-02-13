@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
- *
  * @author Zuzana Žillová
  */
 public class HraciPanel extends javax.swing.JFrame {
@@ -58,7 +57,6 @@ public class HraciPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
-        pozadie = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -86,6 +84,13 @@ public class HraciPanel extends javax.swing.JFrame {
         BTNI_CeloTest = new javax.swing.JLabel();
         BTNI_ZavKraje = new javax.swing.JLabel();
         BTNI_OtvorVsetko = new javax.swing.JLabel();
+        P_vsetciNakazeni = new javax.swing.JLabel();
+        P_nakazeniZaDen = new javax.swing.JLabel();
+        P_pocetUmrti = new javax.swing.JLabel();
+        P_pocetZaockovanych = new javax.swing.JLabel();
+        P_nstavNemocnice = new javax.swing.JLabel();
+        P_spoocenskaStabilita = new javax.swing.JLabel();
+        pozadie = new javax.swing.JLabel();
         Kraje = new javax.swing.JLabel();
         Main = new javax.swing.JLabel();
 
@@ -93,10 +98,6 @@ public class HraciPanel extends javax.swing.JFrame {
 
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
         hlavnyPanel.setLayout(null);
-
-        pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/pozadicko.png"))); // NOI18N
-        hlavnyPanel.add(pozadie);
-        pozadie.setBounds(0, 0, 1400, 715);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -271,6 +272,52 @@ public class HraciPanel extends javax.swing.JFrame {
         });
         hlavnyPanel.add(BTNI_OtvorVsetko);
         BTNI_OtvorVsetko.setBounds(1220, 40, 50, 30);
+
+        P_vsetciNakazeni.setBackground(new java.awt.Color(255, 255, 255));
+        P_vsetciNakazeni.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_vsetciNakazeni.setForeground(new java.awt.Color(255, 255, 255));
+        P_vsetciNakazeni.setText("0");
+        hlavnyPanel.add(P_vsetciNakazeni);
+        P_vsetciNakazeni.setBounds(130, 290, 60, 30);
+
+        P_nakazeniZaDen.setBackground(new java.awt.Color(255, 255, 255));
+        P_nakazeniZaDen.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_nakazeniZaDen.setForeground(new java.awt.Color(255, 255, 255));
+        P_nakazeniZaDen.setText("0");
+        hlavnyPanel.add(P_nakazeniZaDen);
+        P_nakazeniZaDen.setBounds(130, 330, 60, 30);
+
+        P_pocetUmrti.setBackground(new java.awt.Color(255, 255, 255));
+        P_pocetUmrti.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_pocetUmrti.setForeground(new java.awt.Color(255, 255, 255));
+        P_pocetUmrti.setText("0");
+        hlavnyPanel.add(P_pocetUmrti);
+        P_pocetUmrti.setBounds(130, 370, 60, 30);
+
+        P_pocetZaockovanych.setBackground(new java.awt.Color(255, 255, 255));
+        P_pocetZaockovanych.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_pocetZaockovanych.setForeground(new java.awt.Color(255, 255, 255));
+        P_pocetZaockovanych.setText("0");
+        hlavnyPanel.add(P_pocetZaockovanych);
+        P_pocetZaockovanych.setBounds(130, 410, 60, 30);
+
+        P_nstavNemocnice.setBackground(new java.awt.Color(255, 255, 255));
+        P_nstavNemocnice.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_nstavNemocnice.setForeground(new java.awt.Color(255, 255, 255));
+        P_nstavNemocnice.setText("0");
+        hlavnyPanel.add(P_nstavNemocnice);
+        P_nstavNemocnice.setBounds(130, 450, 60, 30);
+
+        P_spoocenskaStabilita.setBackground(new java.awt.Color(255, 255, 255));
+        P_spoocenskaStabilita.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        P_spoocenskaStabilita.setForeground(new java.awt.Color(255, 255, 255));
+        P_spoocenskaStabilita.setText("0");
+        hlavnyPanel.add(P_spoocenskaStabilita);
+        P_spoocenskaStabilita.setBounds(130, 500, 60, 30);
+
+        pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie1.png"))); // NOI18N
+        hlavnyPanel.add(pozadie);
+        pozadie.setBounds(0, 0, 1400, 715);
 
         Kraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje.png"))); // NOI18N
         hlavnyPanel.add(Kraje);
@@ -492,6 +539,36 @@ public class HraciPanel extends javax.swing.JFrame {
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
     }
+    
+    public void napisVsetciNakazeni(int pocet)
+    {
+        this.P_vsetciNakazeni.setText(""+pocet);
+    }
+    
+    public void napisNakazenychNaDen(int pocet)
+    {
+        this.P_nakazeniZaDen.setText(""+pocet);
+    }
+    
+    public void napisPocetUmrti(int pocet)
+    {
+        this.P_pocetUmrti.setText(""+pocet);
+    }
+    
+    public void napisZaockovanych(int pocet)
+    {
+        this.P_pocetZaockovanych.setText(""+pocet);
+    }
+    
+    public void napisStavNemocnic(int pocet)
+    {
+        this.P_nstavNemocnice.setText(""+pocet);
+    }
+    
+    public void napisSpolocenskuStabilitu(int pocet)
+    {
+        this.P_spoocenskaStabilita.setText(""+pocet);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BTNI_Akcie;
@@ -519,6 +596,12 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel K_ZavKraje;
     private javax.swing.JLabel Kraje;
     private javax.swing.JLabel Main;
+    private javax.swing.JLabel P_nakazeniZaDen;
+    private javax.swing.JLabel P_nstavNemocnice;
+    private javax.swing.JLabel P_pocetUmrti;
+    private javax.swing.JLabel P_pocetZaockovanych;
+    private javax.swing.JLabel P_spoocenskaStabilita;
+    private javax.swing.JLabel P_vsetciNakazeni;
     private javax.swing.JLabel T_Akcie;
     private javax.swing.JLabel T_Opatrenia;
     private javax.swing.JLabel T_Skoly;
