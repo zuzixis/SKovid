@@ -5,6 +5,7 @@
  */
 package Hra_zakladneTriedy;
 
+import Hra_GUI.Hra;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +27,10 @@ public class Nemocnica {
     }
 
     public void aktaulizuj() {
-
+        boolean oznam = false;
+        if (getPercentualneZaplnenie() < 90) {
+            oznam = true;
+        }
         boolean vymaz = false;
         do {
             vymaz = false;
@@ -40,7 +44,7 @@ public class Nemocnica {
                 }
             }
         } while (vymaz);
-        
+
         int pocet = pacienti.size();
         int pocetNaZive = 1;
         for (int i = 0; i < pocet; i++) {
@@ -48,11 +52,16 @@ public class Nemocnica {
             if (!this.pacienti.isEmpty()) {
                 if (pacienti.get(pacienti.size() - pocetNaZive).isMrtvi()) {
                     this.pacienti.remove(pacienti.size() - pocetNaZive);
-                }else{
+                } else {
                     pocetNaZive++;
                 }
             }
         }
+
+    }
+
+    public String getOznamenie() {
+        return (String) "Stav v nemocniciach je kriticky, prekrocili sme 90 percent kapacit.";
     }
 
     public int getPercentualneZaplnenie() {

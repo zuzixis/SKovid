@@ -28,15 +28,15 @@ public class Opatrenia {
     private ArrayList<IOpatrenie> opatrenia = new ArrayList<>();
     
     public Opatrenia(){
-        opatrenia.add(akcie);
-        opatrenia.add(hranice);
+        //opatrenia.add(akcie);
+        //opatrenia.add(hranice);
         opatrenia.add(ruskaOdstup);
-        opatrenia.add(skoly);
-        opatrenia.add(sluzby);
-        opatrenia.add(vysokeSkoly);
-        opatrenia.add(zakazVychadzania);
-        opatrenia.add(celoplosneTestovanie);
-        opatrenia.add(zatvorenieKrajov);
+       // opatrenia.add(skoly);
+        //opatrenia.add(sluzby);
+       // opatrenia.add(vysokeSkoly);
+       // opatrenia.add(zakazVychadzania);
+       // opatrenia.add(celoplosneTestovanie);
+       // opatrenia.add(zatvorenieKrajov);
     }
     
     public double getIndex() {

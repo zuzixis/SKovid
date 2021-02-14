@@ -468,6 +468,7 @@ public class HraciPanel extends javax.swing.JFrame{
         if (!rusko) {
             if (!zapnutieOpatreni) {
                 zapnutieOpatreni = true;
+                
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
             rusko = true;

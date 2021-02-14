@@ -32,7 +32,7 @@ public class RuskaOdstup implements IOpatrenie {
         if (zapnute) {
             return 0.15;
         }
-        return 0.9;
+        return 0;
     }
 
 }

@@ -13,6 +13,7 @@ public class Slovensko {
 
     private ArrayList<Kraj> kraje;
     private Nacitavac nacitavac;
+    private Hra hra;
     private int spokojnost;
     private int vytazenostNemocnic;
     private Opatrenia opatrenia;
@@ -22,13 +23,17 @@ public class Slovensko {
     private ArrayList<Clovek> infekcny = new ArrayList<>();
     private int prirastok = 0;
     private Nemocnica nemocnica;
+    private double koeficient =  0.7;
     
-    public Slovensko(){
+
+    public Slovensko(Hra hra) {
         nacitavac = new Nacitavac();
         setKraje(nacitavac.getKraje());
         nemocnica = new Nemocnica();
+        opatrenia = new Opatrenia();
+        this.hra = hra;
     }
-    
+
     public int dajPocetVsetkychZaockovanych() {
         int pocet = 0;
         for (int i = 0; i < kraje.size(); i++) {
@@ -69,8 +74,6 @@ public class Slovensko {
         this.opatrenia = opatrenia;
     }
 
- 
-    
     public void setPocetVsetkychZaockovanych(int pocetVsetkychZaockovanych) {
         this.pocetVsetkychZaockovanych = pocetVsetkychZaockovanych;
     }
@@ -86,26 +89,32 @@ public class Slovensko {
         int vygenerovanieRodiny = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().size());
         int vygenerovanyClen = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().size());
         Clovek vygenerovany = this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
-        
+
         vygenerovany.setMaCovid();
         infekcny.add(vygenerovany);
     }
 
     //odratavanie do ohhalenia ze ma kovid
     public void nakazDalsich() {
+         koeficient = 0.7;
         Random rand = new Random();
-        
-        double koeficient = 0.7;
-        if(infekcny.size() > 100000)
+        System.out.println(opatrenia.getIndex());
+       koeficient = koeficient*(1-opatrenia.getIndex());
+        if (infekcny.size() > 100000) {
             koeficient = 0.3;
-        if(infekcny.size() > 200000)
+        }
+        if (infekcny.size() > 200000) {
             koeficient = 0.1;
-        if(infekcny.size() > 500000)
+        }
+        if (infekcny.size() > 500000) {
             koeficient = 0.05;
-        if(infekcny.size() > 800000)
+        }
+        if (infekcny.size() > 800000) {
             koeficient = 0.02;
-        if(getPocetImunnych() > 750000)
-            koeficient-=0.019;
+        }
+        if (getPocetImunnych() > 750000) {
+            koeficient -= 0.019;
+        }
         for (int i = 0; i < infekcny.size(); i++) {
             double sanca = rand.nextDouble();
             if (sanca <= koeficient) {
@@ -129,24 +138,34 @@ public class Slovensko {
     }
 
     public void spravDen() {
-        
+        boolean upozornenie = false;
+        if (getStavNemocnic() < 90) {
+            upozornenie = true;
+        }
         for (int i = 0; i < this.kraje.size(); i++) {
             for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
                 for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
                     Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
                     c.spravSiDen();
-                    if(c.isKritickyStav()){
+                    if (c.isKritickyStav()) {
                         nemocnica.pridajLudi(c);
                     }
                 }
             }
         }
+        
+        //Nemocnice
         nemocnica.aktaulizuj();
+
+        if (upozornenie && getStavNemocnic() >= 90) {
+            hra.pridajOznamenie(nemocnica.getOznamenie());
+        }
+
         boolean vymaz = false;
         do {
             vymaz = false;
             if (!this.infekcny.isEmpty()) {
-                
+
                 if (infekcny.get(0).getDniDoOdhalenia() == 0) {
                     this.infekcny.remove(0);
                     prirastok++;
@@ -159,9 +178,10 @@ public class Slovensko {
         //System.out.println(prirastok);
 
         nakazDalsich();
-        if(infekcny.isEmpty())
+        if (infekcny.isEmpty()) {
             vygenerujNakazenehoClovek();
-       // System.out.println("Po nakazeni: ");
+        }
+        // System.out.println("Po nakazeni: ");
         //System.out.println();
     }
 
@@ -194,14 +214,14 @@ public class Slovensko {
         }
         return pocet;
     }
-    
+
     public int getPrirastok() {
         int pocet = 0;
         for (int i = 0; i < this.kraje.size(); i++) {
             for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
                 for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
                     Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
-                    if (c.getDniDoOdhalenia()==0) {
+                    if (c.getDniDoOdhalenia() == 0) {
                         pocet++;
                         c.setDniDoOdhalenia(-1);
                     }
@@ -210,10 +230,11 @@ public class Slovensko {
         }
         return pocet;
     }
-    public int getStavNemocnic(){
+
+    public int getStavNemocnic() {
         return nemocnica.getPercentualneZaplnenie();
     }
-    
+
     public int getPocetUmrti() {
         int pocet = 0;
         for (int i = 0; i < this.kraje.size(); i++) {
@@ -222,11 +243,15 @@ public class Slovensko {
                     Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
                     if (c.isMrtvi()) {
                         pocet++;
-                        
+
                     }
                 }
             }
         }
         return pocet;
+    }
+
+    public void upravKoeficient(double cislo){
+        koeficient +=cislo;
     }
 }
