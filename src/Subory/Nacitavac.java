@@ -23,7 +23,7 @@ public class Nacitavac {
     private int index = -1;
     private Random rand = new Random();
     //private String nazovSuboru = "C:\\Users\\erik5\\Documents\\NetBeansProjects\\SKovid\\src\\Subory\\obyvatelstvo.txt";
-    private String nazovSuboru = "C:\\Users\\erik5\\Documents\\NetBeansProjects\\SKovid\\src\\Subory\\obyvatelstvo.txt";
+    private String nazovSuboru = "C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\Subory\\obyvatelstvo.txt";
 //mozno dat do metody, neveim ako budeme kraje vytvarat ;)
     public Nacitavac(){
         try

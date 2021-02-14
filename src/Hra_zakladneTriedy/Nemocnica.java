@@ -40,16 +40,18 @@ public class Nemocnica {
                 }
             }
         } while (vymaz);
+        
         int pocet = pacienti.size();
+        int pocetNaZive = 1;
         for (int i = 0; i < pocet; i++) {
 
             if (!this.pacienti.isEmpty()) {
-                if (pacienti.get(pacienti.size() - 1).isMrtvi()) {
-                    this.pacienti.remove(pacienti.size() - 1);
-
+                if (pacienti.get(pacienti.size() - pocetNaZive).isMrtvi()) {
+                    this.pacienti.remove(pacienti.size() - pocetNaZive);
+                }else{
+                    pocetNaZive++;
                 }
             }
-
         }
     }
 
