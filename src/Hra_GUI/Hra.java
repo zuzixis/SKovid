@@ -29,8 +29,9 @@ public class Hra {
         SR = new Slovensko();
         SR.setKraje(nacitavac.getKraje());
         HP = new HraciPanel(opatrenia, this);
-       this.hranie = true;
-        this.zacniHru();
+       //this.hranie = true;
+       cas.oddialStart(15);
+       this.zacniHru();
         
         
     }
@@ -67,6 +68,7 @@ public class Hra {
     public boolean isHranie() {
         return hranie;
     }
+    
     
 }
     

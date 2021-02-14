@@ -2,6 +2,7 @@ package Hra_GUI;
 
 import Hra_Opatrenia.Opatrenia;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 
 /**
@@ -29,8 +30,8 @@ public class HraciPanel extends javax.swing.JFrame {
         this.nadtsaveniaJFrame();
         this.opatrenia = opatrenia;
         this.hra = hra;
+        //this.pozadieUvod.setVisible(false);
         
-        this.pozadieUvod.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -590,9 +591,9 @@ public class HraciPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_M_NotifikacieMouseClicked
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
-        this.pozadieUvod.setVisible(false);
+        this.pozadieUvod.setVisible(false);  
         this.hra.setHranie(true);
-        this.hra.zacniHru();
+        //this.hra.zacniHru();
     }//GEN-LAST:event_startMouseClicked
 
     private void zavriVsetko(){

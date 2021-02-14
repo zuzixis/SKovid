@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class Cas {
     private Hra hra;
-    private String aktualnyDatum = "2020-03-06";
+    private String aktualnyDatum = "2020-03-03";
     
     public Cas(Hra hra)
     {
@@ -46,5 +46,13 @@ public class Cas {
         c.add(Calendar.DATE, 1);  // number of days to add
         aktualnyDatum = sdf.format(c.getTime());  // dt is now the new date
         this.hra.getHP().zmenDatum(aktualnyDatum);
+    }
+    
+    public void oddialStart(int sekundy){
+        try {
+            TimeUnit.SECONDS.sleep(sekundy);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Cas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
