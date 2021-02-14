@@ -3,12 +3,14 @@ package Hra_GUI;
 import Hra_Opatrenia.Opatrenia;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 
 /**
  * @author Zuzana Žillová
  */
-public class HraciPanel extends javax.swing.JFrame {
+public class HraciPanel extends javax.swing.JFrame{
 
     private final Hra hra;
     private boolean rusko = false;
@@ -75,6 +77,14 @@ public class HraciPanel extends javax.swing.JFrame {
         M_Notifikacie = new javax.swing.JLabel();
         M_Prehlad = new javax.swing.JLabel();
         BTNI_Menu = new javax.swing.JLabel();
+        KR_Bratislavsky = new javax.swing.JLabel();
+        KR_Trnavsky = new javax.swing.JLabel();
+        KR_Trenciansky = new javax.swing.JLabel();
+        KR_Nitriansky = new javax.swing.JLabel();
+        KR_Zilinsky = new javax.swing.JLabel();
+        KR_BanskoBystricky = new javax.swing.JLabel();
+        KR_Presovsky = new javax.swing.JLabel();
+        KR_Kosicky = new javax.swing.JLabel();
         pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,7 +102,7 @@ public class HraciPanel extends javax.swing.JFrame {
 
         pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
         hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(0, 0, 1400, 720);
+        pozadieUvod.setBounds(-1360, 570, 1400, 720);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -245,42 +255,42 @@ public class HraciPanel extends javax.swing.JFrame {
         P_vsetciNakazeni.setForeground(new java.awt.Color(255, 255, 255));
         P_vsetciNakazeni.setText("0");
         hlavnyPanel.add(P_vsetciNakazeni);
-        P_vsetciNakazeni.setBounds(130, 290, 60, 30);
+        P_vsetciNakazeni.setBounds(130, 290, 130, 30);
 
         P_nakazeniZaDen.setBackground(new java.awt.Color(255, 255, 255));
         P_nakazeniZaDen.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         P_nakazeniZaDen.setForeground(new java.awt.Color(255, 255, 255));
         P_nakazeniZaDen.setText("0");
         hlavnyPanel.add(P_nakazeniZaDen);
-        P_nakazeniZaDen.setBounds(130, 330, 60, 30);
+        P_nakazeniZaDen.setBounds(130, 330, 130, 30);
 
         P_pocetUmrti.setBackground(new java.awt.Color(255, 255, 255));
         P_pocetUmrti.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         P_pocetUmrti.setForeground(new java.awt.Color(255, 255, 255));
         P_pocetUmrti.setText("0");
         hlavnyPanel.add(P_pocetUmrti);
-        P_pocetUmrti.setBounds(130, 370, 60, 30);
+        P_pocetUmrti.setBounds(130, 370, 130, 30);
 
         P_pocetZaockovanych.setBackground(new java.awt.Color(255, 255, 255));
         P_pocetZaockovanych.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         P_pocetZaockovanych.setForeground(new java.awt.Color(255, 255, 255));
         P_pocetZaockovanych.setText("0");
         hlavnyPanel.add(P_pocetZaockovanych);
-        P_pocetZaockovanych.setBounds(130, 410, 60, 30);
+        P_pocetZaockovanych.setBounds(130, 410, 130, 30);
 
         P_nstavNemocnice.setBackground(new java.awt.Color(255, 255, 255));
         P_nstavNemocnice.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         P_nstavNemocnice.setForeground(new java.awt.Color(255, 255, 255));
         P_nstavNemocnice.setText("0");
         hlavnyPanel.add(P_nstavNemocnice);
-        P_nstavNemocnice.setBounds(130, 450, 60, 30);
+        P_nstavNemocnice.setBounds(130, 450, 130, 30);
 
         P_spoocenskaStabilita.setBackground(new java.awt.Color(255, 255, 255));
         P_spoocenskaStabilita.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         P_spoocenskaStabilita.setForeground(new java.awt.Color(255, 255, 255));
         P_spoocenskaStabilita.setText("0");
         hlavnyPanel.add(P_spoocenskaStabilita);
-        P_spoocenskaStabilita.setBounds(130, 500, 60, 30);
+        P_spoocenskaStabilita.setBounds(130, 500, 130, 30);
 
         Datum.setBackground(new java.awt.Color(255, 255, 255));
         Datum.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -328,6 +338,46 @@ public class HraciPanel extends javax.swing.JFrame {
         });
         hlavnyPanel.add(BTNI_Menu);
         BTNI_Menu.setBounds(71, 86, 194, 185);
+
+        KR_Bratislavsky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Bratislavsky.setText("0");
+        hlavnyPanel.add(KR_Bratislavsky);
+        KR_Bratislavsky.setBounds(1020, 650, 41, 16);
+
+        KR_Trnavsky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Trnavsky.setText("0");
+        hlavnyPanel.add(KR_Trnavsky);
+        KR_Trnavsky.setBounds(1050, 680, 41, 16);
+
+        KR_Trenciansky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Trenciansky.setText("0");
+        hlavnyPanel.add(KR_Trenciansky);
+        KR_Trenciansky.setBounds(1080, 600, 50, 16);
+
+        KR_Nitriansky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Nitriansky.setText("0");
+        hlavnyPanel.add(KR_Nitriansky);
+        KR_Nitriansky.setBounds(1100, 660, 40, 16);
+
+        KR_Zilinsky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Zilinsky.setText("0");
+        hlavnyPanel.add(KR_Zilinsky);
+        KR_Zilinsky.setBounds(1160, 560, 60, 16);
+
+        KR_BanskoBystricky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_BanskoBystricky.setText("0");
+        hlavnyPanel.add(KR_BanskoBystricky);
+        KR_BanskoBystricky.setBounds(1190, 620, 60, 16);
+
+        KR_Presovsky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Presovsky.setText("0");
+        hlavnyPanel.add(KR_Presovsky);
+        KR_Presovsky.setBounds(1300, 550, 50, 16);
+
+        KR_Kosicky.setForeground(new java.awt.Color(0, 0, 0));
+        KR_Kosicky.setText("0");
+        hlavnyPanel.add(KR_Kosicky);
+        KR_Kosicky.setBounds(1300, 590, 41, 16);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie1.png"))); // NOI18N
         hlavnyPanel.add(pozadie);
@@ -592,7 +642,7 @@ public class HraciPanel extends javax.swing.JFrame {
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);  
-        this.hra.setHranie(true);
+        //this.hra.setHranie(true);
         //this.hra.zacniHru();
     }//GEN-LAST:event_startMouseClicked
 
@@ -666,6 +716,7 @@ public class HraciPanel extends javax.swing.JFrame {
     {
         this.Datum.setText(datum);
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BTNI_Akcie;
@@ -678,6 +729,14 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel BTNI_ZakazVych;
     private javax.swing.JLabel BTNI_ZavKraje;
     private javax.swing.JLabel Datum;
+    private javax.swing.JLabel KR_BanskoBystricky;
+    private javax.swing.JLabel KR_Bratislavsky;
+    private javax.swing.JLabel KR_Kosicky;
+    private javax.swing.JLabel KR_Nitriansky;
+    private javax.swing.JLabel KR_Presovsky;
+    private javax.swing.JLabel KR_Trenciansky;
+    private javax.swing.JLabel KR_Trnavsky;
+    private javax.swing.JLabel KR_Zilinsky;
     private javax.swing.JLabel K_A_Max10;
     private javax.swing.JLabel K_A_Max100;
     private javax.swing.JLabel K_A_Max1000;
@@ -707,7 +766,44 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel pozadieUvod;
     private javax.swing.JLabel start;
     // End of variables declaration//GEN-END:variables
+
+    public Hra getHra() {
+        return hra;
+    }
+    
+    public void BratislavskyPocet(int pocet){
+        this.KR_Bratislavsky.setText(""+pocet);
+    }
+    
+    public void TrnavskyPocet(int pocet){
+        this.KR_Trnavsky.setText(""+pocet);
+    }
+    
+    public void TrencianskyPocet(int pocet){
+        this.KR_Trenciansky.setText(""+pocet);
+    }
+    
+    public void NitrianskyPocet(int pocet){
+        this.KR_Nitriansky.setText(""+pocet);
+    }
+    
+    public void ZilinskyPocet(int pocet){
+        this.KR_Zilinsky.setText(""+pocet);
+    }
+    
+    public void BanskobystrickyPocet(int pocet){
+        this.KR_BanskoBystricky.setText(""+pocet);
+    }
+    
+    public void PresovskyPocet(int pocet){
+        this.KR_Presovsky.setText(""+pocet);
+    }
+    
+    public void KosickykyPocet(int pocet){
+        this.KR_Kosicky.setText(""+pocet);
+    }
 }
+
 enum ESluzby {
     OTVORENE,
     ZAVRETE_RIZIKOVE,

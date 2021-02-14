@@ -62,11 +62,11 @@ public class Kraj {
     public int dajPocetNakazenychVkraji(){
         int pocet = 0;
         for (int i = 0; i < this.rodiny.size(); i++) {
-            if(this.rodiny.get(i).getMaRodinaCovid())
-            {
-                pocet += this.rodiny.get(i).getPocetNakazenychClenov();             
+            for (int j = 0; j < this.rodiny.get(i).getClenoviaRodiny().size(); j++) {
+                if (this.rodiny.get(i).getClenoviaRodiny().get(j).isMaCovid()) {
+                    pocet++;
+                }
             }
-            
         }
         return pocet;
     }

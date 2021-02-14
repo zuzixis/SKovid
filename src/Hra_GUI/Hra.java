@@ -15,20 +15,21 @@ import Subory.Nacitavac;
  */
 public class Hra {
     private HraciPanel HP;
-    private Nacitavac nacitavac;
     private Slovensko SR;
     private Opatrenia opatrenia;
     private Cas cas;
+    private VypisOkrajoch infoKraje;
     private boolean hranie = false;
     
     
     public Hra(){
         cas = new Cas(this);
         opatrenia = new Opatrenia();
-        nacitavac = new Nacitavac();
         SR = new Slovensko();
-        SR.setKraje(nacitavac.getKraje());
-        HP = new HraciPanel(opatrenia, this);
+        HP = new HraciPanel(opatrenia, this); 
+        infoKraje = new VypisOkrajoch(HP);
+        
+        
       // this.hranie = true;
        cas.oddialStart(1);
        this.zacniHru();
@@ -40,13 +41,19 @@ public class Hra {
         HP.napisVsetciNakazeni(SR.getPocetNakazenych());
         HP.napisZaockovanych(SR.getPocetImunnych());
         HP.napisNakazenychNaDen(SR.getPrirastok());
-        HP.napisPocetUmrti(5);
-        HP.napisStavNemocnic(5);
-        HP.napisSpolocenskuStabilitu(5); //vsetky doplnene su len na skusku :D 
+        HP.napisPocetUmrti(0);
+        HP.napisStavNemocnic(0);
+        HP.napisSpolocenskuStabilitu(0); //vsetky doplnene su len na skusku :D 
+        
+        infoKraje.stavVkrajoch();
     }
 
     public HraciPanel getHP() {
         return HP;
+    }
+    
+    public Slovensko getSlovensko(){
+        return SR;
     }
     
     //tu by sa mohla cykliť hra až kym hrac neprehá (obnova opatreni, pocitanie indexov, pribudanie novych a podobne :D )

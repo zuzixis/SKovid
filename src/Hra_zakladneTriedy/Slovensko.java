@@ -1,6 +1,8 @@
 package Hra_zakladneTriedy;
 
+import Hra_GUI.Hra;
 import Hra_Opatrenia.Opatrenia;
+import Subory.Nacitavac;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,6 +12,7 @@ import java.util.Random;
 public class Slovensko {
 
     private ArrayList<Kraj> kraje;
+    private Nacitavac nacitavac;
     private int spokojnost;
     private int vytazenostNemocnic;
     private Opatrenia opatrenia;
@@ -18,7 +21,12 @@ public class Slovensko {
     private int pocetVsetkychZaockovanych;
     private ArrayList<Clovek> infekcny = new ArrayList<>();
     private int prirastok = 0;
-
+    
+    public Slovensko(){
+        nacitavac = new Nacitavac();
+        setKraje(nacitavac.getKraje());
+    }
+    
     public int dajPocetVsetkychZaockovanych() {
         int pocet = 0;
         for (int i = 0; i < kraje.size(); i++) {
@@ -27,14 +35,6 @@ public class Slovensko {
         return pocet;
     }
 
-    /*public int dajPocetVsetkychNakazenych(){
-        int pocet = 0;
-        for (int i = 0; i < kraje.size(); i++) {
-            pocet+=kraje.get(i).dajPocetNakazenychVkraji();
-        }
-        System.out.println(pocet);
-        return pocet;
-    }*/
     public ArrayList<Kraj> getKraje() {
         return kraje;
     }
@@ -54,8 +54,6 @@ public class Slovensko {
     public int getPocetUmrti() {
         return pocetUmrti;
     }
-
-    
 
     public int getPocetVsetkychZaockovanych() {
         return pocetVsetkychZaockovanych;
@@ -80,9 +78,7 @@ public class Slovensko {
     public void setPocetUmrti(int pocetUmrti) {
         this.pocetUmrti = pocetUmrti;
     }
-
-
-
+    
     public void setPocetVsetkychZaockovanych(int pocetVsetkychZaockovanych) {
         this.pocetVsetkychZaockovanych = pocetVsetkychZaockovanych;
     }
@@ -201,9 +197,7 @@ public class Slovensko {
         return pocet;
     }
     
-    
     public int getPrirastok() {
-       
         int pocet = 0;
         for (int i = 0; i < this.kraje.size(); i++) {
             for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
@@ -217,6 +211,5 @@ public class Slovensko {
             }
         }
         return pocet;
-    
     }
 }
