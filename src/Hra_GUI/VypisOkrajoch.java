@@ -5,6 +5,7 @@
  */
 package Hra_GUI;
 
+import Hra_zakladneTriedy.EStavKraja;
 import Hra_zakladneTriedy.Kraj;
 import java.util.ArrayList;
 
@@ -32,14 +33,14 @@ public class VypisOkrajoch {
         
         switch(kraj)
         {
-            case 0: this.HP.BratislavskyPocet(k.dajPocetNakazenychVkraji()); break;
-            case 1: this.HP.TrnavskyPocet(k.dajPocetNakazenychVkraji()); break;
-            case 2: this.HP.TrencianskyPocet(k.dajPocetNakazenychVkraji());break;
-            case 3: this.HP.NitrianskyPocet(k.dajPocetNakazenychVkraji());break;
-            case 4: this.HP.ZilinskyPocet(k.dajPocetNakazenychVkraji());break;
-            case 5: this.HP.BanskobystrickyPocet(k.dajPocetNakazenychVkraji());break;
-            case 6: this.HP.PresovskyPocet(k.dajPocetNakazenychVkraji());break;
-            case 7: this.HP.KosickykyPocet(k.dajPocetNakazenychVkraji());break;
+            case 0:this.HP.upravBratislavsky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 1:this.HP.upravTrnavsky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 2:this.HP.upravTrenciansky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 3:this.HP.upravNitriansky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 4:this.HP.upravZilinsky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 5:this.HP.upravBanskobystricky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 6:this.HP.upravPresovsky(k.dajPocetNakazenychVkraji(), k.getStav()); break;
+            case 7:this.HP.upravKosickyky(k.dajPocetNakazenychVkraji(), k.getStav());break;
         }
     }
    

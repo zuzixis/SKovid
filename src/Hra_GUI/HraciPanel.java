@@ -1,6 +1,7 @@
 package Hra_GUI;
 
 import Hra_Opatrenia.Opatrenia;
+import Hra_zakladneTriedy.EStavKraja;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
@@ -87,6 +88,17 @@ public class HraciPanel extends javax.swing.JFrame{
         KR_Kosicky = new javax.swing.JLabel();
         Hlasky = new javax.swing.JLabel();
         Oznam = new javax.swing.JLabel();
+        tien = new javax.swing.JLabel();
+        Mapa_hranice = new javax.swing.JLabel();
+        Mapa_kosicky = new javax.swing.JLabel();
+        Mapa_presovsky = new javax.swing.JLabel();
+        Mapa_banskobystricky = new javax.swing.JLabel();
+        Mapa_zilinsky = new javax.swing.JLabel();
+        Mapa_nitriansky = new javax.swing.JLabel();
+        Mapa_trenciansky = new javax.swing.JLabel();
+        Mapa_trnavsky = new javax.swing.JLabel();
+        Mapa_bratislavsky = new javax.swing.JLabel();
+        Mapa_pozadie = new javax.swing.JLabel();
         pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -344,42 +356,42 @@ public class HraciPanel extends javax.swing.JFrame{
         KR_Bratislavsky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Bratislavsky.setText("0");
         hlavnyPanel.add(KR_Bratislavsky);
-        KR_Bratislavsky.setBounds(1020, 650, 40, 20);
+        KR_Bratislavsky.setBounds(1040, 650, 40, 20);
 
         KR_Trnavsky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Trnavsky.setText("0");
         hlavnyPanel.add(KR_Trnavsky);
-        KR_Trnavsky.setBounds(1050, 680, 41, 16);
+        KR_Trnavsky.setBounds(1070, 680, 41, 16);
 
         KR_Trenciansky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Trenciansky.setText("0");
         hlavnyPanel.add(KR_Trenciansky);
-        KR_Trenciansky.setBounds(1080, 600, 50, 16);
+        KR_Trenciansky.setBounds(1090, 600, 50, 16);
 
         KR_Nitriansky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Nitriansky.setText("0");
         hlavnyPanel.add(KR_Nitriansky);
-        KR_Nitriansky.setBounds(1100, 660, 40, 16);
+        KR_Nitriansky.setBounds(1110, 660, 40, 16);
 
         KR_Zilinsky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Zilinsky.setText("0");
         hlavnyPanel.add(KR_Zilinsky);
-        KR_Zilinsky.setBounds(1160, 560, 60, 16);
+        KR_Zilinsky.setBounds(1160, 570, 60, 16);
 
         KR_BanskoBystricky.setForeground(new java.awt.Color(0, 0, 0));
         KR_BanskoBystricky.setText("0");
         hlavnyPanel.add(KR_BanskoBystricky);
-        KR_BanskoBystricky.setBounds(1190, 620, 60, 16);
+        KR_BanskoBystricky.setBounds(1180, 620, 60, 16);
 
         KR_Presovsky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Presovsky.setText("0");
         hlavnyPanel.add(KR_Presovsky);
-        KR_Presovsky.setBounds(1300, 550, 50, 16);
+        KR_Presovsky.setBounds(1290, 550, 70, 16);
 
         KR_Kosicky.setForeground(new java.awt.Color(0, 0, 0));
         KR_Kosicky.setText("0");
         hlavnyPanel.add(KR_Kosicky);
-        KR_Kosicky.setBounds(1300, 590, 41, 16);
+        KR_Kosicky.setBounds(1280, 590, 60, 16);
 
         Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/podmeNato.png"))); // NOI18N
         hlavnyPanel.add(Hlasky);
@@ -390,6 +402,34 @@ public class HraciPanel extends javax.swing.JFrame{
         Oznam.setText("Oznam ");
         hlavnyPanel.add(Oznam);
         Oznam.setBounds(270, 66, 460, 20);
+
+        tien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/spodok.png"))); // NOI18N
+        hlavnyPanel.add(tien);
+        tien.setBounds(950, 500, 430, 50);
+
+        Mapa_hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieHranica.png"))); // NOI18N
+        hlavnyPanel.add(Mapa_hranice);
+        Mapa_hranice.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_kosicky);
+        Mapa_kosicky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_presovsky);
+        Mapa_presovsky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_banskobystricky);
+        Mapa_banskobystricky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_zilinsky);
+        Mapa_zilinsky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_nitriansky);
+        Mapa_nitriansky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_trenciansky);
+        Mapa_trenciansky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_trnavsky);
+        Mapa_trnavsky.setBounds(1010, 510, 394, 219);
+        hlavnyPanel.add(Mapa_bratislavsky);
+        Mapa_bratislavsky.setBounds(1010, 510, 394, 219);
+
+        Mapa_pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieMapa1.png"))); // NOI18N
+        hlavnyPanel.add(Mapa_pozadie);
+        Mapa_pozadie.setBounds(1010, 510, 394, 219);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie1.png"))); // NOI18N
         hlavnyPanel.add(pozadie);
@@ -420,6 +460,8 @@ public class HraciPanel extends javax.swing.JFrame{
         setDefaultCloseOperation( EXIT_ON_CLOSE );
         setTitle( "SKovid" );
         pack();
+        
+        this.Mapa_hranice.setVisible(hranice);
     }
     
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
@@ -455,6 +497,7 @@ public class HraciPanel extends javax.swing.JFrame{
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
             hranice = true;
+            this.Mapa_hranice.setVisible(hranice);
             this.opatrenia.getHranice().zapnutie();
             if (!rusko) {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Ractive.png")));
@@ -463,6 +506,7 @@ public class HraciPanel extends javax.swing.JFrame{
             }
         }else{
             hranice = false;
+            this.Mapa_hranice.setVisible(hranice);
             this.opatrenia.getHranice().vypnutie();
             if (!rusko) {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png")));
@@ -673,6 +717,8 @@ public class HraciPanel extends javax.swing.JFrame{
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita10.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
+        
+        this.Mapa_hranice.setVisible(hranice);
     }
     
     private void otvorVsetko(){
@@ -692,6 +738,8 @@ public class HraciPanel extends javax.swing.JFrame{
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacitaNeobmedzena.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
+        
+        this.Mapa_hranice.setVisible(hranice);
     }
     
     public void napisVsetciNakazeni(int pocet)
@@ -767,6 +815,16 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel M_Prehlad;
     private javax.swing.JLabel M_Soc_siete;
     private javax.swing.JLabel M_Spravy;
+    private javax.swing.JLabel Mapa_banskobystricky;
+    private javax.swing.JLabel Mapa_bratislavsky;
+    private javax.swing.JLabel Mapa_hranice;
+    private javax.swing.JLabel Mapa_kosicky;
+    private javax.swing.JLabel Mapa_nitriansky;
+    private javax.swing.JLabel Mapa_pozadie;
+    private javax.swing.JLabel Mapa_presovsky;
+    private javax.swing.JLabel Mapa_trenciansky;
+    private javax.swing.JLabel Mapa_trnavsky;
+    private javax.swing.JLabel Mapa_zilinsky;
     private javax.swing.JLabel Oznam;
     private javax.swing.JLabel P_nakazeniZaDen;
     private javax.swing.JLabel P_nstavNemocnice;
@@ -779,42 +837,179 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel pozadie;
     private javax.swing.JLabel pozadieUvod;
     private javax.swing.JLabel start;
+    private javax.swing.JLabel tien;
     // End of variables declaration//GEN-END:variables
 
     public Hra getHra() {
         return hra;
     }
     
-    public void BratislavskyPocet(int pocet){
+    public void upravBratislavsky(int pocet,EStavKraja stav){
         this.KR_Bratislavsky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_bratislavsky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_bratislavsky.setVisible(true);
+                this.Mapa_bratislavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ba_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_bratislavsky.setVisible(true);
+                this.Mapa_bratislavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ba_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_bratislavsky.setVisible(true);
+                this.Mapa_bratislavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ba_3.png")));
+                break;
+        }
     }
     
-    public void TrnavskyPocet(int pocet){
+    public void upravTrnavsky(int pocet,EStavKraja stav){
         this.KR_Trnavsky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_trnavsky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_trnavsky.setVisible(true);
+                this.Mapa_trnavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tn_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_trnavsky.setVisible(true);
+                this.Mapa_trnavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tn_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_trnavsky.setVisible(true);
+                this.Mapa_trnavsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tn_3.png")));
+                break;
+        }
     }
     
-    public void TrencianskyPocet(int pocet){
+    public void upravTrenciansky(int pocet,EStavKraja stav){
         this.KR_Trenciansky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_trenciansky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_trenciansky.setVisible(true);
+                this.Mapa_trenciansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tr_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_trenciansky.setVisible(true);
+                this.Mapa_trenciansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tr_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_trenciansky.setVisible(true);
+                this.Mapa_trenciansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Tr_3.png")));
+                break;
+        }
     }
     
-    public void NitrianskyPocet(int pocet){
+    public void upravNitriansky(int pocet,EStavKraja stav){
         this.KR_Nitriansky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_nitriansky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_nitriansky.setVisible(true);
+                this.Mapa_nitriansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Nt_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_nitriansky.setVisible(true);
+                this.Mapa_nitriansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Nt_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_nitriansky.setVisible(true);
+                this.Mapa_nitriansky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Nt_3.png")));
+                break;
+        }
     }
     
-    public void ZilinskyPocet(int pocet){
+    public void upravZilinsky(int pocet,EStavKraja stav){
         this.KR_Zilinsky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_zilinsky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_zilinsky.setVisible(true);
+                this.Mapa_zilinsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Za_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_zilinsky.setVisible(true);
+                this.Mapa_zilinsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Za_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_zilinsky.setVisible(true);
+                this.Mapa_zilinsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Za_3.png")));
+                break;
+        }
     }
     
-    public void BanskobystrickyPocet(int pocet){
+    public void upravBanskobystricky(int pocet,EStavKraja stav){
         this.KR_BanskoBystricky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_banskobystricky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_banskobystricky.setVisible(true);
+                this.Mapa_banskobystricky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/BB_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_banskobystricky.setVisible(true);
+                this.Mapa_banskobystricky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/BB_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_banskobystricky.setVisible(true);
+                this.Mapa_banskobystricky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/BB_3.png")));
+                break;
+        }
     }
     
-    public void PresovskyPocet(int pocet){
+    public void upravPresovsky(int pocet,EStavKraja stav){
         this.KR_Presovsky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_presovsky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_presovsky.setVisible(true);
+                this.Mapa_presovsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Pr_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_presovsky.setVisible(true);
+                this.Mapa_presovsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Pr_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_presovsky.setVisible(true);
+                this.Mapa_presovsky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Pr_3.png")));
+                break;
+        }
     }
     
-    public void KosickykyPocet(int pocet){
+    public void upravKosickyky(int pocet,EStavKraja stav){
         this.KR_Kosicky.setText(""+pocet);
+        switch(stav){
+            case ZELENY:
+                this.Mapa_kosicky.setVisible(false);
+                break;
+            case ZLTY:
+                this.Mapa_kosicky.setVisible(true);
+                this.Mapa_kosicky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ke_1.png")));
+                break;
+            case ORANZOVY:
+                this.Mapa_kosicky.setVisible(true);
+                this.Mapa_kosicky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ke_2.png")));
+                break;
+            case CERVENY:
+                this.Mapa_kosicky.setVisible(true);
+                this.Mapa_kosicky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/Ke_3.png")));
+                break;
+        }
     }
     
     public void napisHlasku(String menoHlasky){

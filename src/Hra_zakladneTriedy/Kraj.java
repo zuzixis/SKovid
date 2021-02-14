@@ -5,18 +5,20 @@ import java.util.ArrayList;
 /**
  * @author Zuzana Žillová
  */
-
 public class Kraj {
+
     private ArrayList<Rodina> rodiny = new ArrayList<Rodina>();
     private boolean otvoreny = true;
     private EStavKraja stav;
     private boolean lokalneObmedzenia;
     private String nazov;
-    
-    public Kraj(String nazovKraja){
+
+    public Kraj(String nazovKraja) {
         this.stav = EStavKraja.ZELENY;
         this.nazov = nazovKraja;
-    };
+    }
+
+    ;
 
     public ArrayList<Rodina> getRodiny() {
         return rodiny;
@@ -27,7 +29,17 @@ public class Kraj {
     }
 
     public EStavKraja getStav() {
-        return stav;
+        int pocetNakazenych = this.dajPocetNakazenychVkraji();
+        if (pocetNakazenych <= 50) {
+            return EStavKraja.ZELENY;
+        } else if (pocetNakazenych <= 250) {
+            return EStavKraja.ZLTY;
+        } else if (pocetNakazenych <= 1500) {
+            return EStavKraja.ORANZOVY;
+        } else {
+            return EStavKraja.CERVENY;
+        }
+
     }
 
     public boolean isLokalneObmedzenia() {
@@ -49,17 +61,16 @@ public class Kraj {
     public void setLokalneObmedzenia(boolean lokalneObmedzenia) {
         this.lokalneObmedzenia = lokalneObmedzenia;
     }
-    
-    public void pridajRodinu(Rodina rodina)
-    {
+
+    public void pridajRodinu(Rodina rodina) {
         this.rodiny.add(rodina);
-    }   
+    }
 
     public String getNazov() {
         return nazov;
     }
-    
-    public int dajPocetNakazenychVkraji(){
+
+    public int dajPocetNakazenychVkraji() {
         int pocet = 0;
         for (int i = 0; i < this.rodiny.size(); i++) {
             for (int j = 0; j < this.rodiny.get(i).getClenoviaRodiny().size(); j++) {
@@ -70,13 +81,13 @@ public class Kraj {
         }
         return pocet;
     }
-    
-    public int dajPocetZaockovanychVKraji(){
+
+    public int dajPocetZaockovanychVKraji() {
         int pocet = 0;
         for (int i = 0; i < this.rodiny.size(); i++) {
-            pocet += this.rodiny.get(i).getPocetZaockovanychVrodine();            
+            pocet += this.rodiny.get(i).getPocetZaockovanychVrodine();
         }
         return pocet;
     }
-    
+
 }

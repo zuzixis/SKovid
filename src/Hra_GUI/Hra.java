@@ -77,7 +77,6 @@ public class Hra {
             this.vypisVsetkyInformacieOSlovensku();
             SR.spravDen();
             hlaska.vypisRandomHlasku(5);
-            
         }
     }
 
