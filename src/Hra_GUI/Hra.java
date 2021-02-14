@@ -20,6 +20,7 @@ public class Hra {
     private Cas cas;
     private VypisOkrajoch infoKraje;
     private Hlaska hlaska;
+    private Oznamenie oznam;
     
     private boolean hranie = false;
     
@@ -31,13 +32,19 @@ public class Hra {
         HP = new HraciPanel(opatrenia, this); 
         infoKraje = new VypisOkrajoch(HP);
         hlaska = new Hlaska(HP);
+        oznam = new Oznamenie(this);
         
-        
+        //skuska oznamení
+       oznam.pridajOznamenie("prve oznamenie");
+       oznam.pridajOznamenie("druhe oznamenie");
+       oznam.pridajOznamenie("3 oznamenie");
+       
+       
        this.hranie = true;
        cas.oddialStart(1);
        this.zacniHru();
         
-        
+       
     }
     
     private void vypisVsetkyInformacieOSlovensku(){
@@ -49,6 +56,7 @@ public class Hra {
         HP.napisSpolocenskuStabilitu(0); //vsetky doplnene su len na skusku :D 
         
         infoKraje.stavVkrajoch();
+        oznam.vypisOznamenie(3);
     }
 
     public HraciPanel getHP() {

@@ -86,7 +86,7 @@ public class HraciPanel extends javax.swing.JFrame{
         KR_Presovsky = new javax.swing.JLabel();
         KR_Kosicky = new javax.swing.JLabel();
         Hlasky = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        Oznam = new javax.swing.JLabel();
         pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -380,14 +380,16 @@ public class HraciPanel extends javax.swing.JFrame{
         KR_Kosicky.setText("0");
         hlavnyPanel.add(KR_Kosicky);
         KR_Kosicky.setBounds(1300, 590, 41, 16);
+
+        Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/podmeNato.png"))); // NOI18N
         hlavnyPanel.add(Hlasky);
         Hlasky.setBounds(220, 600, 330, 100);
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(229, 229, 229));
-        jLabel1.setText("jLabel1");
-        hlavnyPanel.add(jLabel1);
-        jLabel1.setBounds(270, 66, 460, 20);
+        Oznam.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        Oznam.setForeground(new java.awt.Color(229, 229, 229));
+        Oznam.setText("Oznam ");
+        hlavnyPanel.add(Oznam);
+        Oznam.setBounds(270, 66, 460, 20);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie1.png"))); // NOI18N
         hlavnyPanel.add(pozadie);
@@ -765,6 +767,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel M_Prehlad;
     private javax.swing.JLabel M_Soc_siete;
     private javax.swing.JLabel M_Spravy;
+    private javax.swing.JLabel Oznam;
     private javax.swing.JLabel P_nakazeniZaDen;
     private javax.swing.JLabel P_nstavNemocnice;
     private javax.swing.JLabel P_pocetUmrti;
@@ -773,7 +776,6 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel P_vsetciNakazeni;
     private javax.swing.JLabel T_Opatrenia;
     private javax.swing.JPanel hlavnyPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel pozadie;
     private javax.swing.JLabel pozadieUvod;
     private javax.swing.JLabel start;
@@ -817,6 +819,10 @@ public class HraciPanel extends javax.swing.JFrame{
     
     public void napisHlasku(String menoHlasky){
         this.Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/"+menoHlasky+".png")));
+    }
+    
+    public void napisOznam(String oznam){
+        this.Oznam.setText(oznam);
     }
 }
 

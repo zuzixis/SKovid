@@ -10,7 +10,7 @@ import java.util.Random;
 public class Hlaska {
     private ArrayList<String> hlasky = new ArrayList<>();
     private HraciPanel HP;
-    private int sekundy = 0;
+    private int sekundy = 10;
     
     public Hlaska(HraciPanel HP){
       this.HP = HP;
