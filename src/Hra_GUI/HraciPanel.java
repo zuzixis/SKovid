@@ -716,7 +716,7 @@ public class HraciPanel extends javax.swing.JFrame{
     
     public void napisStavNemocnic(int pocet)
     {
-        this.P_nstavNemocnice.setText(""+pocet);
+        this.P_nstavNemocnice.setText(""+pocet+" %");
     }
     
     public void napisSpolocenskuStabilitu(int pocet)

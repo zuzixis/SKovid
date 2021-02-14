@@ -3,6 +3,8 @@
  */
 package Hra_zakladneTriedy;
 
+import java.util.Random;
+
 /**
  * @author Zuzana Žillová
  */
@@ -17,6 +19,9 @@ public class Clovek {
     private boolean maCovid = false;
     private boolean karantena = false;
     private boolean zaockovany = false;
+    private boolean kritickyStav = false;
+    private boolean jeVNemocnici = false;
+    private boolean mrtvi = false;
     private int dniDoOdhalenia = -1;
     private int dniVchorobe;
     private boolean imunny = false;
@@ -49,8 +54,24 @@ public class Clovek {
         return pocetDniStravenychVChorobe;
     }
 
+    public boolean isKritickyStav() {
+        return kritickyStav;
+    }
+
+    public boolean isJeVNemocnici() {
+        return jeVNemocnici;
+    }
+
+    public boolean isMrtvi() {
+        return mrtvi;
+    }
+
     public boolean isMaCovid() {
         return maCovid;
+    }
+
+    public void setJeVNemocnici(boolean jeVNemocnici) {
+        this.jeVNemocnici = jeVNemocnici;
     }
 
     public boolean isKarantena() {
@@ -80,12 +101,13 @@ public class Clovek {
     public void setMaCovid() {
         if (dniDoOdhalenia == -1) {
             if (!imunny) {
-               if(!maCovid)
+                if (!maCovid) {
                     if (!zaockovany) {
                         dniDoOdhalenia = 2;
-                      //  System.out.println("nakazeny");
+                        //  System.out.println("nakazeny");
                     }
-                
+                }
+
             }
         }
     }
@@ -107,30 +129,64 @@ public class Clovek {
     }
 
     public void spravSiDen() {
-     /*   if (this.karantena) {
+        /*   if (this.karantena) {
             pocetDniVkarantene--;
             if (pocetDniVkarantene == 0) {
                 this.karantena = false;
             }
         }*/
-        if (this.maCovid) {
-            dniVchorobe--;
-            if (dniVchorobe == 0) {
-                this.maCovid = false;
-                this.imunny = true;
-                this.pocetImunnychDni = 90;
-            }
-        } else if (dniDoOdhalenia > 0) {
-            dniDoOdhalenia--;
-            if (dniDoOdhalenia == 0) {
-                this.maCovid = true;
-                dniVchorobe = 7;
-                //this.rodina.setMaRodinaCovid(true);
-            }
-        } else if (this.imunny) {
-            this.pocetImunnychDni--;
-            if (this.pocetImunnychDni == 0) {
-                this.imunny = false;
+        if (!mrtvi) {
+            if (this.maCovid) {
+                dniVchorobe--;
+                if (dniVchorobe == 0) {
+                    this.maCovid = false;
+                    kritickyStav = false;
+                    jeVNemocnici = false;
+                    this.imunny = true;
+                    this.pocetImunnychDni = 90;
+                } else {
+                    Random rand = new Random();
+                    if (!kritickyStav) {
+
+                        if (rand.nextDouble() < 0.05) {
+                            kritickyStav = true;
+                            dniVchorobe += 10;
+                        }
+                    }
+                    if (kritickyStav) {
+                        if (jeVNemocnici) {
+                            if (rand.nextDouble() < 0.01) {
+                                mrtvi = true;
+                                this.maCovid = false;
+                                kritickyStav = false;
+                                jeVNemocnici = false;
+                                this.imunny = false;
+                            }
+                        } else {
+                            if (rand.nextDouble() < 0.02) {
+                                mrtvi = true;
+                                this.maCovid = false;
+                                kritickyStav = false;
+                                jeVNemocnici = false;
+                                this.imunny = false;
+                            }
+                        }
+
+                    }
+                }
+
+            } else if (dniDoOdhalenia > 0) {
+                dniDoOdhalenia--;
+                if (dniDoOdhalenia == 0) {
+                    this.maCovid = true;
+                    dniVchorobe = 7;
+                    //this.rodina.setMaRodinaCovid(true);
+                }
+            } else if (this.imunny) {
+                this.pocetImunnychDni--;
+                if (this.pocetImunnychDni == 0) {
+                    this.imunny = false;
+                }
             }
         }
     }

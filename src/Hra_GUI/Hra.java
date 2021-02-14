@@ -51,8 +51,8 @@ public class Hra {
         HP.napisVsetciNakazeni(SR.getPocetNakazenych());
         HP.napisZaockovanych(SR.getPocetImunnych());
         HP.napisNakazenychNaDen(SR.getPrirastok());
-        HP.napisPocetUmrti(0);
-        HP.napisStavNemocnic(0);
+        HP.napisPocetUmrti(SR.getPocetUmrti());
+        HP.napisStavNemocnic(SR.getStavNemocnic());
         HP.napisSpolocenskuStabilitu(0); //vsetky doplnene su len na skusku :D 
         
         infoKraje.stavVkrajoch();
