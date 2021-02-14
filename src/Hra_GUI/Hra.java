@@ -40,9 +40,9 @@ public class Hra {
        oznam.pridajOznamenie("3 oznamenie");
        
        
-       this.hranie = true;
-       cas.oddialStart(1);
-       this.zacniHru();
+       //this.hranie = true;
+       //cas.oddialStart(1);
+       //this.zacniHru();
         
        
     }

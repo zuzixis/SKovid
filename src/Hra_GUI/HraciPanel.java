@@ -116,7 +116,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
         pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
         hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(-1360, 570, 1400, 720);
+        pozadieUvod.setBounds(0, 0, 1400, 720);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -698,8 +698,8 @@ public class HraciPanel extends javax.swing.JFrame{
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);  
-        //this.hra.setHranie(true);
-        //this.hra.zacniHru();
+        Vlakno_ZacatiaHry vlakno = new Vlakno_ZacatiaHry(this.hra);
+        vlakno.start();
     }//GEN-LAST:event_startMouseClicked
 
     private void zavriVsetko(){

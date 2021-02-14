@@ -56,8 +56,7 @@ public class Nemocnica {
     }
 
     public int getPercentualneZaplnenie() {
-        System.out.println(pacienti.size());
+        //System.out.println(pacienti.size());
         return (int) ((double) pacienti.size() / (double) maxKapacita * (double) 100);
-
     }
 }

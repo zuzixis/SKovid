@@ -18,6 +18,7 @@ import java.util.Scanner;
  *
  * @author Erik Malina
  */
+
 public class Nacitavac {
     private ArrayList<Kraj> kraje = new ArrayList<Kraj>();
     private int index = -1;
