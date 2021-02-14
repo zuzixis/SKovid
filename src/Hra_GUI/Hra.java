@@ -19,6 +19,8 @@ public class Hra {
     private Opatrenia opatrenia;
     private Cas cas;
     private VypisOkrajoch infoKraje;
+    private Hlaska hlaska;
+    
     private boolean hranie = false;
     
     
@@ -28,9 +30,10 @@ public class Hra {
         SR = new Slovensko();
         HP = new HraciPanel(opatrenia, this); 
         infoKraje = new VypisOkrajoch(HP);
+        hlaska = new Hlaska(HP);
         
         
-      // this.hranie = true;
+       this.hranie = true;
        cas.oddialStart(1);
        this.zacniHru();
         
@@ -59,15 +62,14 @@ public class Hra {
     //tu by sa mohla cykliť hra až kym hrac neprehá (obnova opatreni, pocitanie indexov, pribudanie novych a podobne :D )
     public void zacniHru(){
         
-        hranie = true;
-        int i = 0;
         SR.vygenerujNakazenehoClovek();
+        
         while(hranie){
             cas.dalsiDen(1);
             this.vypisVsetkyInformacieOSlovensku();
             SR.spravDen();
-           
-            //System.out.println(SR.dajPocetVsetkychNakazenych());
+            hlaska.vypisRandomHlasku(5);
+            
         }
     }
 
@@ -78,7 +80,6 @@ public class Hra {
     public boolean isHranie() {
         return hranie;
     }
-    
     
 }
     

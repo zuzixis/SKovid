@@ -113,7 +113,7 @@ public class Slovensko {
         for (int i = 0; i < infekcny.size(); i++) {
             double sanca = rand.nextDouble();
             if (sanca <= koeficient) {
-                if (rand.nextDouble() < 0.9)//opatrit ci su otvorene kraje
+                if (rand.nextDouble() < 0.95)//opatrit ci su otvorene kraje
                 {
                     vygenerujNakazenehoClovekVKraji(infekcny.get(i).getKraj());
                 } else {
@@ -121,7 +121,6 @@ public class Slovensko {
                 }
             }
         }
-
     }
 
     public void vygenerujNakazenehoClovekVKraji(Kraj k) {

@@ -27,7 +27,7 @@ public class Cas {
     public void dalsiDen(int rychlost)
     {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(rychlost);
            // TimeUnit.MILLISECONDS.sleep(30);
             } catch (InterruptedException ex) {
                 System.out.println("Chyba pri cese!");
