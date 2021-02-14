@@ -55,9 +55,7 @@ public class Slovensko {
         return pocetUmrti;
     }
 
-    public int getPocetImunnych() {
-        return pocetImunnych;
-    }
+    
 
     public int getPocetVsetkychZaockovanych() {
         return pocetVsetkychZaockovanych;
@@ -83,9 +81,7 @@ public class Slovensko {
         this.pocetUmrti = pocetUmrti;
     }
 
-    public void setPocetImunnych(int pocetImunnych) {
-        this.pocetImunnych = pocetImunnych;
-    }
+
 
     public void setPocetVsetkychZaockovanych(int pocetVsetkychZaockovanych) {
         this.pocetVsetkychZaockovanych = pocetVsetkychZaockovanych;
@@ -102,7 +98,7 @@ public class Slovensko {
         int vygenerovanieRodiny = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().size());
         int vygenerovanyClen = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().size());
         Clovek vygenerovany = this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
-
+        
         vygenerovany.setMaCovid();
         infekcny.add(vygenerovany);
     }
@@ -110,10 +106,17 @@ public class Slovensko {
     //odratavanie do ohhalenia ze ma kovid
     public void nakazDalsich() {
         Random rand = new Random();
-
+        
+        double koeficient = 0.7;
+        if(infekcny.size() > 100000)
+            koeficient = 0.3;
+        if(infekcny.size() > 200000)
+            koeficient = 0.1;
+        if(infekcny.size() > 500000)
+            koeficient = 0.05;
         for (int i = 0; i < infekcny.size(); i++) {
             double sanca = rand.nextDouble();
-            if (sanca <= 0.6) {
+            if (sanca <= koeficient) {
                 if (rand.nextDouble() < 0.9)//opatrit ci su otvorene kraje
                 {
                     vygenerujNakazenehoClovekVKraji(infekcny.get(i).getKraj());
@@ -135,7 +138,7 @@ public class Slovensko {
     }
 
     public void spravDen() {
-        prirastok = 0;
+        
         for (int i = 0; i < this.kraje.size(); i++) {
             for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
                 for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
@@ -144,23 +147,27 @@ public class Slovensko {
                 }
             }
         }
-
+        
         boolean vymaz = false;
         do {
+            vymaz = false;
             if (!this.infekcny.isEmpty()) {
-                vymaz = true;
+                
                 if (infekcny.get(0).getDniDoOdhalenia() == 0) {
                     this.infekcny.remove(0);
                     prirastok++;
+                    vymaz = true;
                 } else {
                     vymaz = false;
                 }
             }
         } while (vymaz);
-        System.out.println("Po while: ");
+        System.out.println(prirastok);
 
         nakazDalsich();
-        System.out.println("Po nakazeni: ");
+        if(infekcny.isEmpty())
+            vygenerujNakazenehoClovek();
+       // System.out.println("Po nakazeni: ");
         System.out.println();
     }
 
@@ -179,7 +186,37 @@ public class Slovensko {
         return pocet;
     }
 
+    public int getPocetImunnych() {
+        int pocet = 0;
+        for (int i = 0; i < this.kraje.size(); i++) {
+            for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
+                for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
+                    Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
+                    if (c.isImunny()) {
+                        pocet++;
+                    }
+                }
+            }
+        }
+        return pocet;
+    }
+    
+    
     public int getPrirastok() {
-        return prirastok;
+       
+        int pocet = 0;
+        for (int i = 0; i < this.kraje.size(); i++) {
+            for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
+                for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
+                    Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
+                    if (c.getDniDoOdhalenia()==0) {
+                        pocet++;
+                        c.setDniDoOdhalenia(-1);
+                    }
+                }
+            }
+        }
+        return pocet;
+    
     }
 }

@@ -7,6 +7,7 @@ package Hra_zakladneTriedy;
  * @author Zuzana Žillová
  */
 public class Clovek {
+
     private int vek;
     private Rodina rodina;
     private Kraj kraj;
@@ -16,35 +17,31 @@ public class Clovek {
     private boolean maCovid = false;
     private boolean karantena = false;
     private boolean zaockovany = false;
-    private int dniDoOdhalenia;
+    private int dniDoOdhalenia = -1;
     private int dniVchorobe;
-    private boolean imunny = false; 
+    private boolean imunny = false;
     private int pocetImunnychDni = 0;
-    
+
     private int pocetDniVkarantene;
-    
-    public Clovek(int vek, Rodina rodina, Kraj kraj)
-    {
+
+    public Clovek(int vek, Rodina rodina, Kraj kraj) {
         this.vek = vek;
         this.zaockovany = false;
-        
+        maCovid = false;
         this.rodina = rodina;
         this.kraj = kraj;
     }
-    
+
     //Gettery a Settery
-    public int getVek()
-    {
+    public int getVek() {
         return vek;
     }
-    
-    public int getZdravotnyStav()
-    {
+
+    public int getZdravotnyStav() {
         return zdravotnyStav;
     }
-    
-    public int getPocetDniOdPrekonania()
-    {
+
+    public int getPocetDniOdPrekonania() {
         return pocetDniOdPrekonania;
     }
 
@@ -81,7 +78,16 @@ public class Clovek {
     }
 
     public void setMaCovid() {
-        dniDoOdhalenia = 3;
+        if (dniDoOdhalenia == -1) {
+            if (!imunny) {
+               if(!maCovid)
+                    if (!zaockovany) {
+                        dniDoOdhalenia = 2;
+                      //  System.out.println("nakazeny");
+                    }
+                
+            }
+        }
     }
 
     public void setKarantena(boolean karantena) {
@@ -99,30 +105,29 @@ public class Clovek {
     public Kraj getKraj() {
         return kraj;
     }
-    
-    public void spravSiDen(){
-        if(this.karantena){
+
+    public void spravSiDen() {
+     /*   if (this.karantena) {
             pocetDniVkarantene--;
-            if(pocetDniVkarantene == 0)
+            if (pocetDniVkarantene == 0) {
                 this.karantena = false;
-        }else
+            }
+        }*/
         if (this.maCovid) {
-            dniVchorobe--; 
+            dniVchorobe--;
             if (dniVchorobe == 0) {
                 this.maCovid = false;
-                this.imunny =true;
+                this.imunny = true;
                 this.pocetImunnychDni = 90;
             }
-        }else
-        if (dniDoOdhalenia > 0) {
-                dniDoOdhalenia--;
-                if (dniDoOdhalenia == 0) {
+        } else if (dniDoOdhalenia > 0) {
+            dniDoOdhalenia--;
+            if (dniDoOdhalenia == 0) {
                 this.maCovid = true;
                 dniVchorobe = 7;
-                this.karantena = true;
-                this.rodina.setMaRodinaCovid(true);
+                //this.rodina.setMaRodinaCovid(true);
             }
-        }else if (this.imunny) {
+        } else if (this.imunny) {
             this.pocetImunnychDni--;
             if (this.pocetImunnychDni == 0) {
                 this.imunny = false;
@@ -132,6 +137,10 @@ public class Clovek {
 
     public int getDniDoOdhalenia() {
         return dniDoOdhalenia;
+    }
+
+    public void setDniDoOdhalenia(int dniDoOdhalenia) {
+        this.dniDoOdhalenia = dniDoOdhalenia;
     }
 
     public boolean isImunny() {
@@ -145,5 +154,5 @@ public class Clovek {
     public int getPocetDniVkarantene() {
         return pocetDniVkarantene;
     }
-    
+
 }
