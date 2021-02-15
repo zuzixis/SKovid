@@ -36,9 +36,9 @@ public class Akcie implements IOpatrenie {
     public double getIndex() {
         if(zapnute){
             switch(povolenyPocetLudi){
-                case 10: return 0.42; 
-                case 100: return 0.34;
-                case 1000: return 0.23;
+                case 10: return 0.35; 
+                case 100: return 0.3;
+                case 1000: return 0.2;
                 default: return 0;
             }
         }else

@@ -30,7 +30,7 @@ public class ZakazVychadzania implements IOpatrenie{
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.13;
+            return 0.1;
         }
         return 0;
     }

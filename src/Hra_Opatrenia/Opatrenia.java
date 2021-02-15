@@ -32,11 +32,11 @@ public class Opatrenia {
         opatrenia.add(hranice);
         opatrenia.add(ruskaOdstup);
         opatrenia.add(skoly);
-        //opatrenia.add(sluzby);
+       // opatrenia.add(sluzby);
         opatrenia.add(vysokeSkoly);
-       // opatrenia.add(zakazVychadzania);
+        opatrenia.add(zakazVychadzania);
        // opatrenia.add(celoplosneTestovanie);
-       // opatrenia.add(zatvorenieKrajov);
+       
     }
     
     public double getIndex() {
@@ -90,4 +90,10 @@ public class Opatrenia {
     public CeloplosneTestovanie getCeloplosneTestovanie() {
         return celoplosneTestovanie;
     }
+    
+    public double getIndexKraja(){
+        return zatvorenieKrajov.getIndex();
+    }
+    
+ 
 }

@@ -132,7 +132,7 @@ public class Hra {
             SR.spravDen();
             hlaska.vypisRandomHlasku(5);
             if(vakcina.getZaciatokVakcinacie().equals(cas.getAktualnyDatum()))
-                vakcina.setZaciatok(true);
+                vakcina.setZaciatok();
             
         }
     }

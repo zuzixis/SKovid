@@ -119,7 +119,23 @@ public class Clovek {
     }
 
     public void setZaockovany(boolean zaockovany) {
-        this.zaockovany = zaockovany;
+        if (!mrtvi) {
+            this.maCovid = false;
+            this.karantena = false;
+            this.dniDoOdhalenia = -1;
+            this.imunny = false;
+            this.kritickyStav = false;
+            this.zaockovany = zaockovany;
+
+        } else {
+            this.maCovid = false;
+            this.karantena = false;
+            this.dniDoOdhalenia = -1;
+            this.imunny = false;
+            this.kritickyStav = false;
+            this.zaockovany = false;
+            this.zaockovanyPrvouDavkou = false;
+        }
     }
 
     public Rodina getRodina() {
@@ -191,8 +207,7 @@ public class Clovek {
                 }
             }
         }
-        if(zaockovanyPrvouDavkou)
-        {
+        if (zaockovanyPrvouDavkou) {
             pocetDniDoDruhejDavky--;
         }
     }
@@ -223,10 +238,15 @@ public class Clovek {
 
     public void setZaockovanyPrvouDavkou(boolean zaockovanyPrvouDavkou) {
         this.zaockovanyPrvouDavkou = zaockovanyPrvouDavkou;
-        pocetDniDoDruhejDavky  = 21;
+        pocetDniDoDruhejDavky = 21;
     }
 
     public boolean isZaockovanyPrvouDavkou() {
         return zaockovanyPrvouDavkou;
+    }
+
+    public void nastavOtestovanehoScovidom() {
+        this.maCovid = true;
+        dniVchorobe = 7;
     }
 }

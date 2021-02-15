@@ -11,39 +11,42 @@ package Hra_Opatrenia;
  */
 public class Sluzby implements IOpatrenie {
 
-    private boolean zapnute;
-    private int povolenyPocetLudi;
+    private boolean rizikove = true;
+    private boolean zakladne = true;
 
-    public void setPovolenyPocetLudi(int povolenyPocetLudi) {
-        this.povolenyPocetLudi = povolenyPocetLudi;
+    public void setRizikove(boolean rizikove) {
+        this.rizikove = rizikove;
     }
 
-    public boolean isZapnute() {
-        return zapnute;
+    public void setNechajZakladne(boolean zakladne) {
+        this.zakladne = zakladne;
     }
-    
+
+    public void setNeobmedzene() {
+        zakladne = true;
+        rizikove = true;
+    }
+
     @Override
     public void zapnutie() {
-        zapnute = true;
+
     }
 
     @Override
     public void vypnutie() {
-        zapnute = false;
+
     }
 
     @Override
     public double getIndex() {
-        if(zapnute){
-            switch(povolenyPocetLudi){
-                case 10: return 0.2; //zmeniť index
-                case 100: return 0.15;
-                case 1000: return 0.1;
-                default: return 0;
-            }
-        }else
-        {
-            return 0;//treba doplniť index ked bude neobmedzené
+        if (rizikove == false) {
+            return 0.15;
+                    
+        } else if (!zakladne) {
+            return 0.2;
         }
+        return 0;
+
     }
+
 }
