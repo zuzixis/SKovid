@@ -102,6 +102,10 @@ public class Hra {
         return HP;
     }
 
+    public Cas getCas() {
+        return cas;
+    }
+    
     public Slovensko getSlovensko() {
         return SR;
     }

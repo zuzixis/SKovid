@@ -6,6 +6,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -45,6 +46,8 @@ public class HraciPanel extends javax.swing.JFrame{
     private ArrayList<Integer> hototyNakazenyhc = new ArrayList<>();
     private ArrayList<Integer> hodnotyZaockovanych = new ArrayList<>();
     private ArrayList<Integer> hodnotyImunnych = new ArrayList<>();
+    private ArrayList<String> vsetkyHlasenia = new ArrayList<>();
+    private DefaultListModel zoznamPoloziek = new DefaultListModel();
     
     
     public HraciPanel(Opatrenia opatrenia, Hra hra) {
@@ -118,6 +121,8 @@ public class HraciPanel extends javax.swing.JFrame{
         Mapa_trnavsky = new javax.swing.JLabel();
         Mapa_bratislavsky = new javax.swing.JLabel();
         Mapa_pozadie = new javax.swing.JLabel();
+        Notifikacie = new javax.swing.JScrollPane();
+        List = new javax.swing.JList<>();
         panel_Graf = new javax.swing.JPanel();
         panel_Graf2_kruhovy = new javax.swing.JPanel();
         panel_Graf3_vyfarbeny = new javax.swing.JPanel();
@@ -457,6 +462,16 @@ public class HraciPanel extends javax.swing.JFrame{
         hlavnyPanel.add(Mapa_pozadie);
         Mapa_pozadie.setBounds(1010, 510, 394, 219);
 
+        List.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        Notifikacie.setViewportView(List);
+
+        hlavnyPanel.add(Notifikacie);
+        Notifikacie.setBounds(270, 90, 540, 440);
+
         panel_Graf.setForeground(new java.awt.Color(229, 229, 229));
 
         javax.swing.GroupLayout panel_GrafLayout = new javax.swing.GroupLayout(panel_Graf);
@@ -534,8 +549,8 @@ public class HraciPanel extends javax.swing.JFrame{
         pack();
         
         this.Mapa_hranice.setVisible(hranice);
-        this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
-               
+        this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov); 
+        this.Notifikacie.setVisible(false);
         
     }
     
@@ -762,6 +777,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
     private void M_PrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_PrehladMouseClicked
         this.zmenViditelnostPrehladu(true);
+        this.Notifikacie.setVisible(false);
         this.skrytiePrehladu = false;
         this.menu = ENadstavenieMenu.PREHLAD;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Prehlad.png")));
@@ -770,6 +786,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
     private void M_SpravyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_SpravyMouseClicked
         this.zmenViditelnostPrehladu(false);
+        this.Notifikacie.setVisible(false);
         this.skrytiePrehladu = true;
         this.menu = ENadstavenieMenu.SPRAVY;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_spravy.png")));
@@ -777,6 +794,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
     private void M_NotifikacieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_NotifikacieMouseClicked
         this.zmenViditelnostPrehladu(false);
+        this.Notifikacie.setVisible(true);
         this.skrytiePrehladu = true;
         this.menu = ENadstavenieMenu.NOTIFIKACIE;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Notifikacie.png")));
@@ -784,6 +802,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
         this.pozadieUvod.setVisible(false);  
+        this.Notifikacie.setVisible(false);
         Vlakno_ZacatiaHry vlakno = new Vlakno_ZacatiaHry(this.hra);
         vlakno.start();
     }//GEN-LAST:event_startMouseClicked
@@ -899,6 +918,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel K_S_ZavreteRizikove;
     private javax.swing.JLabel K_ZakazVych;
     private javax.swing.JLabel K_ZavKraje;
+    private javax.swing.JList<String> List;
     private javax.swing.JLabel M_Notifikacie;
     private javax.swing.JLabel M_Prehlad;
     private javax.swing.JLabel M_Soc_siete;
@@ -914,6 +934,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel Mapa_trenciansky;
     private javax.swing.JLabel Mapa_trnavsky;
     private javax.swing.JLabel Mapa_zilinsky;
+    private javax.swing.JScrollPane Notifikacie;
     private javax.swing.JLabel Oznam;
     private javax.swing.JLabel P_nakazeniZaDen;
     private javax.swing.JLabel P_nstavNemocnice;
@@ -1226,6 +1247,11 @@ public class HraciPanel extends javax.swing.JFrame{
         this.panel_Graf.setVisible(viditelnost);
         this.panel_Graf2_kruhovy.setVisible(viditelnost);
         this.panel_Graf3_vyfarbeny.setVisible(viditelnost);
+    }
+    
+    public void pridajNotifikaciu(String s){
+        zoznamPoloziek.addElement(/*vsetkyHlasenia.get(i)*/s);
+        List.setModel(zoznamPoloziek);
     }
     
 }

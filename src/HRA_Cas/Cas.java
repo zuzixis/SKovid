@@ -55,4 +55,10 @@ public class Cas {
             Logger.getLogger(Cas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public String getAktualnyDatum() {
+        return aktualnyDatum;
+    }
+    
+    
 }

@@ -31,6 +31,10 @@ public class Oznamenie {
                 this.hra.getHP().napisOznam(oznamenie);
                 sekundy = sekundyDoDalsiehoOznamenia;
                 pocetZobrazenych++;
+                String datum = this.hra.getCas().getAktualnyDatum();
+                hra.getHP().pridajNotifikaciu(datum);
+                hra.getHP().pridajNotifikaciu("        ♦ "+oznamenie);
+                hra.getHP().pridajNotifikaciu("                       ");
             } else {
                 generujOznamenie();
             }
