@@ -3,18 +3,25 @@ package Hra_GUI;
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.EStavKraja;
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Label;
 import java.awt.Rectangle;
+import java.awt.Scrollbar;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JScrollBar;
 
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -96,7 +103,7 @@ public class HraciPanel extends javax.swing.JFrame{
         P_nstavNemocnice = new javax.swing.JLabel();
         P_spoocenskaStabilita = new javax.swing.JLabel();
         Datum = new javax.swing.JLabel();
-        M_Soc_siete = new javax.swing.JLabel();
+        M_InfoOkrajoch = new javax.swing.JLabel();
         M_Spravy = new javax.swing.JLabel();
         M_Notifikacie = new javax.swing.JLabel();
         M_Prehlad = new javax.swing.JLabel();
@@ -341,13 +348,13 @@ public class HraciPanel extends javax.swing.JFrame{
         hlavnyPanel.add(Datum);
         Datum.setBounds(720, 60, 100, 30);
 
-        M_Soc_siete.addMouseListener(new java.awt.event.MouseAdapter() {
+        M_InfoOkrajoch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                M_Soc_sieteMouseClicked(evt);
+                M_InfoOkrajochMouseClicked(evt);
             }
         });
-        hlavnyPanel.add(M_Soc_siete);
-        M_Soc_siete.setBounds(70, 130, 200, 40);
+        hlavnyPanel.add(M_InfoOkrajoch);
+        M_InfoOkrajoch.setBounds(70, 130, 200, 40);
 
         M_Spravy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -553,6 +560,8 @@ public class HraciPanel extends javax.swing.JFrame{
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov); 
         this.Notifikacie.setVisible(false);
+        
+        
         
     }
     
@@ -771,11 +780,11 @@ public class HraciPanel extends javax.swing.JFrame{
         //treba volako vymazať metodu :D :D 
     }//GEN-LAST:event_BTNI_MenuMouseClicked
 
-    private void M_Soc_sieteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_Soc_sieteMouseClicked
+    private void M_InfoOkrajochMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_InfoOkrajochMouseClicked
         this.zmenViditelnostPrehladu(false);
         this.menu = ENadstavenieMenu.SOCIALNE_SIETE;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_soc_siete.png")));
-    }//GEN-LAST:event_M_Soc_sieteMouseClicked
+    }//GEN-LAST:event_M_InfoOkrajochMouseClicked
 
     private void M_PrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_PrehladMouseClicked
         this.zmenViditelnostPrehladu(true);
@@ -921,9 +930,9 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel K_ZakazVych;
     private javax.swing.JLabel K_ZavKraje;
     private javax.swing.JList<String> List;
+    private javax.swing.JLabel M_InfoOkrajoch;
     private javax.swing.JLabel M_Notifikacie;
     private javax.swing.JLabel M_Prehlad;
-    private javax.swing.JLabel M_Soc_siete;
     private javax.swing.JLabel M_Spravy;
     private javax.swing.JLabel Mapa_banskobystricky;
     private javax.swing.JLabel Mapa_bratislavsky;
@@ -1186,11 +1195,13 @@ public class HraciPanel extends javax.swing.JFrame{
         dataset.setValue("KE", kosice);
         
         
-        JFreeChart chart = ChartFactory.createPieChart("",
-                dataset, true, false, false);
+        JFreeChart chart = ChartFactory.createPieChart("", dataset, true, true, false);
+        
+        final PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setInteriorGap(0.0);
+        plot.setLabelGenerator(null);
 
         chart.getPlot().setOutlineVisible(false);
-        //chart.getLegend().setVisible(false);
         
         chart.setBorderVisible(false);
         chart.getPlot().setBackgroundPaint(null);
@@ -1200,6 +1211,7 @@ public class HraciPanel extends javax.swing.JFrame{
         this.panel_Graf2_kruhovy.setLayout(new java.awt.BorderLayout());
         this.panel_Graf2_kruhovy.add(oPanel);
         this.panel_Graf2_kruhovy.validate();
+        
     }
     
     public void vykresliGrafImunni(int pocetZaockovanych, int pocetImunnych){
@@ -1246,6 +1258,7 @@ public class HraciPanel extends javax.swing.JFrame{
         this.panel_Graf3_vyfarbeny.setLayout(new java.awt.BorderLayout());
         this.panel_Graf3_vyfarbeny.add(oPanel);
         this.panel_Graf3_vyfarbeny.validate();
+        
     }
     
     private void zmenViditelnostPrehladu(boolean viditelnost){
@@ -1255,7 +1268,7 @@ public class HraciPanel extends javax.swing.JFrame{
     }
     
     public void pridajNotifikaciu(String s){
-        zoznamPoloziek.addElement(/*vsetkyHlasenia.get(i)*/s);
+        zoznamPoloziek.addElement(s);
         List.setModel(zoznamPoloziek);
     }
     
