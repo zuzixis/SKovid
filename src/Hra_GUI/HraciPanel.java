@@ -89,6 +89,7 @@ public class HraciPanel extends javax.swing.JFrame{
         Hlasky = new javax.swing.JLabel();
         Oznam = new javax.swing.JLabel();
         tien = new javax.swing.JLabel();
+        Mapa_hraniceOkresy = new javax.swing.JLabel();
         Mapa_hranice = new javax.swing.JLabel();
         Mapa_kosicky = new javax.swing.JLabel();
         Mapa_presovsky = new javax.swing.JLabel();
@@ -406,6 +407,10 @@ public class HraciPanel extends javax.swing.JFrame{
         tien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/spodok.png"))); // NOI18N
         hlavnyPanel.add(tien);
         tien.setBounds(950, 500, 430, 50);
+
+        Mapa_hraniceOkresy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/okresyHranica.png"))); // NOI18N
+        hlavnyPanel.add(Mapa_hraniceOkresy);
+        Mapa_hraniceOkresy.setBounds(1010, 510, 394, 219);
 
         Mapa_hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieHranica.png"))); // NOI18N
         hlavnyPanel.add(Mapa_hranice);
@@ -819,6 +824,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel Mapa_banskobystricky;
     private javax.swing.JLabel Mapa_bratislavsky;
     private javax.swing.JLabel Mapa_hranice;
+    private javax.swing.JLabel Mapa_hraniceOkresy;
     private javax.swing.JLabel Mapa_kosicky;
     private javax.swing.JLabel Mapa_nitriansky;
     private javax.swing.JLabel Mapa_pozadie;
