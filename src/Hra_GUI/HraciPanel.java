@@ -2,11 +2,28 @@ package Hra_GUI;
 
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.EStavKraja;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 
 /**
  * @author Zuzana Žillová
@@ -24,10 +41,14 @@ public class HraciPanel extends javax.swing.JFrame{
     private ESkoly skoly = ESkoly.OTVORENE;
     private boolean zapnutieOpatreni = false;
     private ENadstavenieMenu menu = ENadstavenieMenu.PREHLAD;
-    
     private Opatrenia opatrenia;
     
     private String aktualnyDatum ="2020-01-01";
+    
+    private ArrayList<Integer> hototyNakazenyhc = new ArrayList<>();
+    private ArrayList<Integer> hodnotyZaockovanych = new ArrayList<>();
+    private ArrayList<Integer> hodnotyImunnych = new ArrayList<>();
+    
     
     public HraciPanel(Opatrenia opatrenia, Hra hra) {
         this.nadtsaveniaJFrame();
@@ -42,8 +63,8 @@ public class HraciPanel extends javax.swing.JFrame{
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
-        start = new javax.swing.JLabel();
         pozadieUvod = new javax.swing.JLabel();
+        start = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -100,12 +121,19 @@ public class HraciPanel extends javax.swing.JFrame{
         Mapa_trnavsky = new javax.swing.JLabel();
         Mapa_bratislavsky = new javax.swing.JLabel();
         Mapa_pozadie = new javax.swing.JLabel();
+        panel_Graf = new javax.swing.JPanel();
+        panel_Graf2_kruhovy = new javax.swing.JPanel();
+        panel_Graf3_vyfarbeny = new javax.swing.JPanel();
         pozadie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
         hlavnyPanel.setLayout(null);
+
+        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
+        hlavnyPanel.add(pozadieUvod);
+        pozadieUvod.setBounds(0, 730, 1400, 720);
 
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,10 +142,6 @@ public class HraciPanel extends javax.swing.JFrame{
         });
         hlavnyPanel.add(start);
         start.setBounds(950, 610, 60, 50);
-
-        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
-        hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(0, 0, 1400, 720);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -402,7 +426,7 @@ public class HraciPanel extends javax.swing.JFrame{
         Oznam.setForeground(new java.awt.Color(229, 229, 229));
         Oznam.setText("Oznam ");
         hlavnyPanel.add(Oznam);
-        Oznam.setBounds(270, 66, 460, 20);
+        Oznam.setBounds(270, 66, 440, 20);
 
         tien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/spodok.png"))); // NOI18N
         hlavnyPanel.add(tien);
@@ -435,6 +459,52 @@ public class HraciPanel extends javax.swing.JFrame{
         Mapa_pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieMapa1.png"))); // NOI18N
         hlavnyPanel.add(Mapa_pozadie);
         Mapa_pozadie.setBounds(1010, 510, 394, 219);
+
+        panel_Graf.setForeground(new java.awt.Color(229, 229, 229));
+
+        javax.swing.GroupLayout panel_GrafLayout = new javax.swing.GroupLayout(panel_Graf);
+        panel_Graf.setLayout(panel_GrafLayout);
+        panel_GrafLayout.setHorizontalGroup(
+            panel_GrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+        panel_GrafLayout.setVerticalGroup(
+            panel_GrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+
+        hlavnyPanel.add(panel_Graf);
+        panel_Graf.setBounds(270, 90, 540, 240);
+
+        panel_Graf2_kruhovy.setForeground(new java.awt.Color(102, 255, 102));
+
+        javax.swing.GroupLayout panel_Graf2_kruhovyLayout = new javax.swing.GroupLayout(panel_Graf2_kruhovy);
+        panel_Graf2_kruhovy.setLayout(panel_Graf2_kruhovyLayout);
+        panel_Graf2_kruhovyLayout.setHorizontalGroup(
+            panel_Graf2_kruhovyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+        panel_Graf2_kruhovyLayout.setVerticalGroup(
+            panel_Graf2_kruhovyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        hlavnyPanel.add(panel_Graf2_kruhovy);
+        panel_Graf2_kruhovy.setBounds(270, 330, 280, 200);
+
+        javax.swing.GroupLayout panel_Graf3_vyfarbenyLayout = new javax.swing.GroupLayout(panel_Graf3_vyfarbeny);
+        panel_Graf3_vyfarbeny.setLayout(panel_Graf3_vyfarbenyLayout);
+        panel_Graf3_vyfarbenyLayout.setHorizontalGroup(
+            panel_Graf3_vyfarbenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        panel_Graf3_vyfarbenyLayout.setVerticalGroup(
+            panel_Graf3_vyfarbenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        hlavnyPanel.add(panel_Graf3_vyfarbeny);
+        panel_Graf3_vyfarbeny.setBounds(550, 330, 260, 200);
 
         pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie1.png"))); // NOI18N
         hlavnyPanel.add(pozadie);
@@ -690,6 +760,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private void M_PrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_PrehladMouseClicked
         this.menu = ENadstavenieMenu.PREHLAD;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Prehlad.png")));
+        //this.vykresliGraf();        
     }//GEN-LAST:event_M_PrehladMouseClicked
 
     private void M_SpravyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_SpravyMouseClicked
@@ -841,6 +912,9 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel P_vsetciNakazeni;
     private javax.swing.JLabel T_Opatrenia;
     private javax.swing.JPanel hlavnyPanel;
+    private javax.swing.JPanel panel_Graf;
+    private javax.swing.JPanel panel_Graf2_kruhovy;
+    private javax.swing.JPanel panel_Graf3_vyfarbeny;
     private javax.swing.JLabel pozadie;
     private javax.swing.JLabel pozadieUvod;
     private javax.swing.JLabel start;
@@ -1025,6 +1099,116 @@ public class HraciPanel extends javax.swing.JFrame{
     
     public void napisOznam(String oznam){
         this.Oznam.setText(oznam);
+    }
+    
+    public void vykresliGraf(int hodnotaNakazenych){
+        //vypisanie grafu
+        
+        hototyNakazenyhc.add(hodnotaNakazenych);
+        
+        XYSeries oSeries = new XYSeries("");
+        for (int i = 0; i < hototyNakazenyhc.size(); i++) {
+            oSeries.add(i+1,hototyNakazenyhc.get(i));
+        }
+        
+        XYSeriesCollection oDatabase = new XYSeriesCollection();
+        oDatabase.addSeries(oSeries);
+        JFreeChart oChart = ChartFactory.createXYLineChart("", "", "", oDatabase,PlotOrientation.VERTICAL,false, false, false);
+        oChart.setBackgroundPaint(null);
+        ChartPanel oPanel = new ChartPanel(oChart);
+        
+        
+        XYPlot plot = oChart.getXYPlot();
+        
+        var renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setRangeGridlinesVisible(false);
+        plot.setDomainGridlinesVisible(false);
+        plot.setOutlinePaint(null);//vypnutie bordera
+        
+        
+        plot.setRenderer(renderer);
+        
+        this.panel_Graf.setLayout(new java.awt.BorderLayout());
+        this.panel_Graf.add(oPanel);
+        this.panel_Graf.validate();
+    }
+    
+    public void vykresliGrafKruhovy(int aktualnyPocetNakazenych, int pocetUmrti, int pocetImunnych, int pocetZaockovanyh){
+        var dataset = new DefaultPieDataset();
+        
+    
+        
+        dataset.setValue("Zdraví", 100 -(aktualnyPocetNakazenych + pocetUmrti + pocetImunnych + pocetZaockovanyh ));
+        dataset.setValue("Nakazení", aktualnyPocetNakazenych);
+        dataset.setValue("Úmrtia", pocetUmrti);
+        dataset.setValue("Imunni", pocetImunnych);
+        dataset.setValue("Zaočkovaní", pocetZaockovanyh);
+        
+        
+        JFreeChart chart = ChartFactory.createPieChart("",
+                dataset, true, false, false);
+
+        chart.getPlot().setOutlineVisible(false);
+        //chart.getLegend().setVisible(false);
+        
+        chart.setBorderVisible(false);
+        chart.getPlot().setBackgroundPaint(null);
+        ChartPanel oPanel = new ChartPanel(chart);
+        
+        
+        this.panel_Graf2_kruhovy.setLayout(new java.awt.BorderLayout());
+        this.panel_Graf2_kruhovy.add(oPanel);
+        this.panel_Graf2_kruhovy.validate();
+    }
+    
+    public void vykresliGrafImunni(int pocetZaockovanych, int pocetImunnych){
+        //vypisanie grafu
+        
+        this.hodnotyZaockovanych.add(pocetZaockovanych);
+        this.hodnotyImunnych.add(pocetImunnych);
+        
+        XYSeries oSeries = new XYSeries("imunni");
+        for (int i = 0; i < hodnotyZaockovanych.size(); i++) {
+            oSeries.add(i+1,hodnotyZaockovanych.get(i));
+        }
+        
+        XYSeries oSeries2 = new XYSeries("úmrtia");
+        for (int i = 0; i < hodnotyImunnych.size(); i++) {
+            oSeries2.add(i+1,hodnotyImunnych.get(i));
+        }
+        
+        XYSeriesCollection oDatabase = new XYSeriesCollection();
+        oDatabase.addSeries(oSeries);
+        oDatabase.addSeries(oSeries2);
+        
+        
+        JFreeChart oChart = ChartFactory.createXYLineChart("", "", "", oDatabase,PlotOrientation.VERTICAL,true, true, false);
+        //oChart.setBackgroundPaint(null);
+        ChartPanel oPanel = new ChartPanel(oChart);
+        
+        
+        XYPlot plot = oChart.getXYPlot();
+        
+        var renderer = new XYLineAndShapeRenderer();
+
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
+
+        plot.setRenderer(renderer);
+        plot.setBackgroundPaint(Color.white);
+        plot.setRangeGridlinesVisible(false);
+        plot.setDomainGridlinesVisible(false);
+
+
+        this.panel_Graf3_vyfarbeny.setLayout(new java.awt.BorderLayout());
+        this.panel_Graf3_vyfarbeny.add(oPanel);
+        this.panel_Graf3_vyfarbeny.validate();
     }
 }
 

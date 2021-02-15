@@ -6,7 +6,7 @@ package Hra_GUI;
 import HRA_Cas.Cas;
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.Slovensko;
-import Subory.Nacitavac;
+
 
 /**
  *
@@ -92,6 +92,10 @@ public class Hra {
              oznam.vypisOznamenie(1);
         else
             oznam.vypisOznamenie(2);
+        
+        HP.vykresliGraf(dennyPrirastok);
+        HP.vykresliGrafKruhovy(12, 2, 5, 17);
+        HP.vykresliGrafImunni(SR.getPocetImunnych(), SR.getPocetUmrti());
     }
 
     public HraciPanel getHP() {
