@@ -96,7 +96,15 @@ public class Hra {
         }
 
         HP.vykresliGraf(dennyPrirastok);
-        HP.vykresliGrafKruhovy(pocetNakazenych, pocetUmrti, SR.getPocetImunnych(), 0);
+        HP.vykresliGrafKruhovy( this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(1).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(2).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(3).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(4).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(5).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(),
+                                this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji());
+        
         HP.vykresliGrafImunni(SR.getPocetImunnych(), SR.getPocetUmrti());
     }
 

@@ -5,6 +5,7 @@ import Hra_zakladneTriedy.EStavKraja;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.YIntervalRenderer;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -1137,7 +1139,6 @@ public class HraciPanel extends javax.swing.JFrame{
         //vypisanie grafu
         
         hototyNakazenyhc.add(hodnotaNakazenych);
-        
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < hototyNakazenyhc.size(); i++) {
             oSeries.add(i+1,hototyNakazenyhc.get(i));
@@ -1154,7 +1155,10 @@ public class HraciPanel extends javax.swing.JFrame{
         
         var renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+        renderer.setSeriesStroke(0, new BasicStroke( 2f ));
+        
+        YIntervalRenderer r = new YIntervalRenderer();
+        r.setSeriesShape(5, new Rectangle());
 
         plot.setBackgroundPaint(Color.WHITE);
         plot.setRangeGridlinesVisible(false);
@@ -1162,23 +1166,24 @@ public class HraciPanel extends javax.swing.JFrame{
         plot.setOutlinePaint(null);//vypnutie bordera
         
         
-        plot.setRenderer(renderer);
+        //plot.setRenderer(renderer);
         
         this.panel_Graf.setLayout(new java.awt.BorderLayout());
         this.panel_Graf.add(oPanel);
         this.panel_Graf.validate();
     }
     
-    public void vykresliGrafKruhovy(int aktualnyPocetNakazenych, int pocetUmrti, int pocetImunnych, int pocetZaockovanyh){
+    public void vykresliGrafKruhovy(int bratislava, int trnava, int trencin, int nitra, int zilina, int bystrica, int presov, int kosice){
         var dataset = new DefaultPieDataset();
         
-    
-        
-        dataset.setValue("Zdraví", this.hra.getSlovensko().getPocetObyvatelov() -(aktualnyPocetNakazenych + pocetUmrti + pocetImunnych + pocetZaockovanyh ));
-        dataset.setValue("Nakazení", aktualnyPocetNakazenych);
-        dataset.setValue("Úmrtia", pocetUmrti);
-        dataset.setValue("Imunni", pocetImunnych);
-        dataset.setValue("Zaočkovaní", pocetZaockovanyh);
+        dataset.setValue("BA", bratislava);
+        dataset.setValue("TN", trnava);
+        dataset.setValue("TR", trencin);
+        dataset.setValue("NT", nitra);
+        dataset.setValue("ZA", zilina);
+        dataset.setValue("BB", bystrica);
+        dataset.setValue("PR", presov);
+        dataset.setValue("KE", kosice);
         
         
         JFreeChart chart = ChartFactory.createPieChart("",

@@ -12,6 +12,7 @@ public class Kraj {
     private EStavKraja stav;
     private boolean lokalneObmedzenia;
     private String nazov;
+    private int pocetNakazenych;
 
     public Kraj(String nazovKraja) {
         this.stav = EStavKraja.ZELENY;
@@ -81,6 +82,11 @@ public class Kraj {
         }
         return pocet;
     }
+
+    public int getPocetNakazenych() {
+        return pocetNakazenych;
+    }
+    
 
     public int dajPocetZaockovanychVKraji() {
         int pocet = 0;

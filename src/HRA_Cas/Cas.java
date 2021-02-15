@@ -60,9 +60,6 @@ public class Cas {
         }
     }
 
-    public String getAktualnyDatum() {
-        return aktualnyDatum;
-    }
     
     
 }
