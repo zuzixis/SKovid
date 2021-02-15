@@ -36,9 +36,9 @@ public class Sluzby implements IOpatrenie {
     public double getIndex() {
         if(zapnute){
             switch(povolenyPocetLudi){
-                case 10: return 0; //zmeniť index
-                case 100: return 0;
-                case 1000: return 0;
+                case 10: return 0.2; //zmeniť index
+                case 100: return 0.15;
+                case 1000: return 0.1;
                 default: return 0;
             }
         }else

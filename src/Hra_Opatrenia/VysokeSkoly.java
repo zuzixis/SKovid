@@ -30,7 +30,7 @@ public class VysokeSkoly implements IOpatrenie{
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.17;
+            return 0.1;
         }
         return 0;
     }

@@ -31,7 +31,7 @@ public class Skoly implements IOpatrenie{
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.38;
+            return 0.2;
         }
         return 0;
     }

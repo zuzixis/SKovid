@@ -32,9 +32,9 @@ public class Hranice implements IOpatrenie{
     @Override
     public double getIndex() {
         if(zapnute){
-            return 0; //doplnit index 
+            return 0.1; //doplnit index 
         } 
-        return 1;//doplnit index 
+        return 0;//doplnit index 
         
     }
     

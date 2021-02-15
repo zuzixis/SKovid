@@ -26,11 +26,11 @@ public class Slovensko {
     private double koeficient =  0.7;
     
 
-    public Slovensko(Hra hra) {
+    public Slovensko(Hra hra, Opatrenia opatrenia) {
         nacitavac = new Nacitavac();
         setKraje(nacitavac.getKraje());
         nemocnica = new Nemocnica();
-        opatrenia = new Opatrenia();
+       this.opatrenia = opatrenia;
         this.hra = hra;
     }
 
@@ -98,8 +98,9 @@ public class Slovensko {
     public void nakazDalsich() {
          koeficient = 0.7;
         Random rand = new Random();
-        System.out.println(opatrenia.getIndex());
+        
        koeficient = koeficient*(1-opatrenia.getIndex());
+       System.out.println(koeficient);
         if (infekcny.size() > 100000) {
             koeficient = 0.3;
         }
