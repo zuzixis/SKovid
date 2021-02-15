@@ -5,9 +5,6 @@ import Hra_zakladneTriedy.EStavKraja;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,7 +16,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -42,6 +38,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private boolean zapnutieOpatreni = false;
     private ENadstavenieMenu menu = ENadstavenieMenu.PREHLAD;
     private Opatrenia opatrenia;
+    private boolean skrytiePrehladu = false;
     
     private String aktualnyDatum ="2020-01-01";
     
@@ -54,7 +51,7 @@ public class HraciPanel extends javax.swing.JFrame{
         this.nadtsaveniaJFrame();
         this.opatrenia = opatrenia;
         this.hra = hra;
-        //this.pozadieUvod.setVisible(false);
+        
         
     }
     
@@ -133,7 +130,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
         pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
         hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(0, 730, 1400, 720);
+        pozadieUvod.setBounds(-10, 710, 1400, 750);
 
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -537,6 +534,9 @@ public class HraciPanel extends javax.swing.JFrame{
         pack();
         
         this.Mapa_hranice.setVisible(hranice);
+        this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
+               
+        
     }
     
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
@@ -674,10 +674,12 @@ public class HraciPanel extends javax.swing.JFrame{
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
             uzavretieKrajov = true;
+            this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
             this.opatrenia.getZatvorenieKrajov().zapnutie();
             BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_active.png")));
         }else{
             uzavretieKrajov = false;
+            this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
             this.opatrenia.getZatvorenieKrajov().vypnutie();
             BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_inactive.png")));
         }
@@ -753,22 +755,29 @@ public class HraciPanel extends javax.swing.JFrame{
     }//GEN-LAST:event_BTNI_MenuMouseClicked
 
     private void M_Soc_sieteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_Soc_sieteMouseClicked
+        this.zmenViditelnostPrehladu(false);
         this.menu = ENadstavenieMenu.SOCIALNE_SIETE;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_soc_siete.png")));
     }//GEN-LAST:event_M_Soc_sieteMouseClicked
 
     private void M_PrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_PrehladMouseClicked
+        this.zmenViditelnostPrehladu(true);
+        this.skrytiePrehladu = false;
         this.menu = ENadstavenieMenu.PREHLAD;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Prehlad.png")));
         //this.vykresliGraf();        
     }//GEN-LAST:event_M_PrehladMouseClicked
 
     private void M_SpravyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_SpravyMouseClicked
+        this.zmenViditelnostPrehladu(false);
+        this.skrytiePrehladu = true;
         this.menu = ENadstavenieMenu.SPRAVY;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_spravy.png")));
     }//GEN-LAST:event_M_SpravyMouseClicked
 
     private void M_NotifikacieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_NotifikacieMouseClicked
+        this.zmenViditelnostPrehladu(false);
+        this.skrytiePrehladu = true;
         this.menu = ENadstavenieMenu.NOTIFIKACIE;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Notifikacie.png")));
     }//GEN-LAST:event_M_NotifikacieMouseClicked
@@ -796,6 +805,7 @@ public class HraciPanel extends javax.swing.JFrame{
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
         
         this.Mapa_hranice.setVisible(hranice);
+        this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
     }
     
     private void otvorVsetko(){
@@ -817,6 +827,7 @@ public class HraciPanel extends javax.swing.JFrame{
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
         
         this.Mapa_hranice.setVisible(hranice);
+        this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
     }
     
     public void napisVsetciNakazeni(int pocet)
@@ -1210,6 +1221,13 @@ public class HraciPanel extends javax.swing.JFrame{
         this.panel_Graf3_vyfarbeny.add(oPanel);
         this.panel_Graf3_vyfarbeny.validate();
     }
+    
+    private void zmenViditelnostPrehladu(boolean viditelnost){
+        this.panel_Graf.setVisible(viditelnost);
+        this.panel_Graf2_kruhovy.setVisible(viditelnost);
+        this.panel_Graf3_vyfarbeny.setVisible(viditelnost);
+    }
+    
 }
 
 enum ESluzby {

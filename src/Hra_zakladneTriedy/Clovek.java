@@ -210,5 +210,4 @@ public class Clovek {
     public int getPocetDniVkarantene() {
         return pocetDniVkarantene;
     }
-
 }
