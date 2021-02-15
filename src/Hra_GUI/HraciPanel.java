@@ -1174,7 +1174,7 @@ public class HraciPanel extends javax.swing.JFrame{
         
     
         
-        dataset.setValue("Zdraví", 100 -(aktualnyPocetNakazenych + pocetUmrti + pocetImunnych + pocetZaockovanyh ));
+        dataset.setValue("Zdraví", this.hra.getSlovensko().getPocetObyvatelov() -(aktualnyPocetNakazenych + pocetUmrti + pocetImunnych + pocetZaockovanyh ));
         dataset.setValue("Nakazení", aktualnyPocetNakazenych);
         dataset.setValue("Úmrtia", pocetUmrti);
         dataset.setValue("Imunni", pocetImunnych);

@@ -16,9 +16,11 @@ public class Clovek {
     private int zdravotnyStav;
     private int pocetDniOdPrekonania;
     private int pocetDniStravenychVChorobe;
+    private int pocetDniDoDruhejDavky = -1;
     private boolean maCovid = false;
     private boolean karantena = false;
     private boolean zaockovany = false;
+    private boolean zaockovanyPrvouDavkou = false;
     private boolean kritickyStav = false;
     private boolean jeVNemocnici = false;
     private boolean mrtvi = false;
@@ -189,6 +191,14 @@ public class Clovek {
                 }
             }
         }
+        if(zaockovanyPrvouDavkou)
+        {
+            pocetDniDoDruhejDavky--;
+        }
+    }
+
+    public int getPocetDniDoDruhejDavky() {
+        return pocetDniDoDruhejDavky;
     }
 
     public int getDniDoOdhalenia() {
@@ -209,5 +219,14 @@ public class Clovek {
 
     public int getPocetDniVkarantene() {
         return pocetDniVkarantene;
+    }
+
+    public void setZaockovanyPrvouDavkou(boolean zaockovanyPrvouDavkou) {
+        this.zaockovanyPrvouDavkou = zaockovanyPrvouDavkou;
+        pocetDniDoDruhejDavky  = 21;
+    }
+
+    public boolean isZaockovanyPrvouDavkou() {
+        return zaockovanyPrvouDavkou;
     }
 }
