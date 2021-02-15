@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class Cas {
     private Hra hra;
-    private String aktualnyDatum = "2020-03-03";
+    private String aktualnyDatum = "2020-12-03";
     
     public Cas(Hra hra)
     {
@@ -28,7 +28,7 @@ public class Cas {
     {
         try {
             TimeUnit.SECONDS.sleep(rychlost);
-           // TimeUnit.MILLISECONDS.sleep(30);
+           // TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException ex) {
                 System.out.println("Chyba pri cese!");
             }
@@ -37,6 +37,10 @@ public class Cas {
         } catch (ParseException ex) {
             System.out.print("Chyba s prepnutim datumu");
         }
+    }
+
+    public String getAktualnyDatum() {
+        return aktualnyDatum;
     }
     
     private void vypisDatum() throws ParseException{

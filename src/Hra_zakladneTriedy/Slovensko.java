@@ -23,15 +23,22 @@ public class Slovensko {
     private ArrayList<Clovek> infekcny = new ArrayList<>();
     private int prirastok = 0;
     private Nemocnica nemocnica;
-    private double koeficient =  0.7;
-    
+    private Vakcina vakcina;
+
+    private double koeficient = 0.7;
+    private int pocetObyvatelov = 669592 + 564917 + 584569 + 674306 + 691509 + 645276 + 826244 + 801460;
+
+    public int getPocetObyvatelov() {
+        return pocetObyvatelov;
+    }
 
     public Slovensko(Hra hra, Opatrenia opatrenia) {
         nacitavac = new Nacitavac();
         setKraje(nacitavac.getKraje());
         nemocnica = new Nemocnica();
-       this.opatrenia = opatrenia;
+        this.opatrenia = opatrenia;
         this.hra = hra;
+        this.vakcina = hra.getVakcina();
     }
 
     public int dajPocetVsetkychZaockovanych() {
@@ -96,11 +103,11 @@ public class Slovensko {
 
     //odratavanie do ohhalenia ze ma kovid
     public void nakazDalsich() {
-         koeficient = 0.7;
+        koeficient = 0.7;
         Random rand = new Random();
-        
-       koeficient = koeficient*(1-opatrenia.getIndex());
-       System.out.println(koeficient);
+
+        koeficient = koeficient * (1 - opatrenia.getIndex());
+        System.out.println(koeficient);
         if (infekcny.size() > 100000) {
             koeficient = 0.3;
         }
@@ -143,6 +150,7 @@ public class Slovensko {
         if (getStavNemocnic() < 90) {
             upozornenie = true;
         }
+        nemocnica.aktaulizuj();
         for (int i = 0; i < this.kraje.size(); i++) {
             for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
                 for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
@@ -154,12 +162,17 @@ public class Slovensko {
                 }
             }
         }
-        
-        //Nemocnice
-        nemocnica.aktaulizuj();
-
+        //upozornenie nemocnic
         if (upozornenie && getStavNemocnic() >= 90) {
             hra.pridajOznamenie(nemocnica.getOznamenie());
+        }
+
+        //vakcinacia
+        if (vakcina.mameDavky()) {
+            int pocet = vakcina.SpravDen();
+            for (int i = 0; i < pocet; i++) {
+                NajdiClovekaNaOckovanie();
+            }
         }
 
         boolean vymaz = false;
@@ -252,7 +265,49 @@ public class Slovensko {
         return pocet;
     }
 
-    public void upravKoeficient(double cislo){
-        koeficient +=cislo;
+    public int getPocetZaockovanych() {
+        int pocet = 0;
+        for (int i = 0; i < this.kraje.size(); i++) {
+            for (int j = 0; j < this.kraje.get(i).getRodiny().size(); j++) {
+                for (int k = 0; k < this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().size(); k++) {
+                    Clovek c = this.kraje.get(i).getRodiny().get(j).getClenoviaRodiny().get(k);
+                    if (c.isZaockovanyPrvouDavkou()) {
+                        pocet++;
+
+                    }
+                }
+            }
+        }
+        return pocet;
+    }
+
+    public void upravKoeficient(double cislo) {
+        koeficient += cislo;
+    }
+
+    private void NajdiClovekaNaOckovanie() {
+        Clovek vygenerovany;
+        boolean spravny = false;
+        do {
+            Random rand = new Random();
+            int vygenerovanyKraj = rand.nextInt(8);
+            int vygenerovanieRodiny = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().size());
+            int vygenerovanyClen = rand.nextInt(this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().size());
+            vygenerovany = this.kraje.get(vygenerovanyKraj).getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
+            //kontrola spravnosti vygenerovaneho
+            if (!vygenerovany.isImunny()) {
+                if (!vygenerovany.isMaCovid()) {
+                    if (!vygenerovany.isMrtvi()) {
+                        if (!vygenerovany.isZaockovanyPrvouDavkou()) {
+                            spravny = true;
+                        }
+                    }
+                }
+            }
+
+        } while (!spravny);
+        if (spravny) {
+            vakcina.zaockuj(vygenerovany);
+        }
     }
 }
