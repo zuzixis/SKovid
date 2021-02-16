@@ -99,6 +99,15 @@ public class Hra {
                 this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji());
 
         HP.vykresliGrafImunni(SR.getPocetPrvoZaockovanych(), SR.getPocetZaockovanych());
+        
+        HP.informacieObratislavskomKraji(15, 4, 5);
+        HP.informacieOtrnavskonKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieOtrencianskomKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieOnitrianskomKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieOzilinskomKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieObanskobystrickomKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieOpresovskommKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
+        HP.informacieOkosickomKraji(pocetNakazenych, pocetUmrti, pocetUmrti);
     }
 
     public HraciPanel getHP() {
