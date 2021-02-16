@@ -151,8 +151,9 @@ public class HraciPanel extends javax.swing.JFrame{
         Hlasky = new javax.swing.JLabel();
         Oznam = new javax.swing.JLabel();
         tien = new javax.swing.JLabel();
-        Mapa_hraniceOkresy = new javax.swing.JLabel();
         Mapa_hranice = new javax.swing.JLabel();
+        Mapa_hranicabiela = new javax.swing.JLabel();
+        Mapa_hraniceOkresy = new javax.swing.JLabel();
         Mapa_kosicky = new javax.swing.JLabel();
         Mapa_presovsky = new javax.swing.JLabel();
         Mapa_banskobystricky = new javax.swing.JLabel();
@@ -580,13 +581,17 @@ public class HraciPanel extends javax.swing.JFrame{
         hlavnyPanel.add(tien);
         tien.setBounds(950, 500, 430, 50);
 
-        Mapa_hraniceOkresy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/okresyHranica.png"))); // NOI18N
-        hlavnyPanel.add(Mapa_hraniceOkresy);
-        Mapa_hraniceOkresy.setBounds(1010, 510, 394, 219);
-
         Mapa_hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieHranica.png"))); // NOI18N
         hlavnyPanel.add(Mapa_hranice);
         Mapa_hranice.setBounds(1010, 510, 394, 219);
+
+        Mapa_hranicabiela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/hranicaBiela.png"))); // NOI18N
+        hlavnyPanel.add(Mapa_hranicabiela);
+        Mapa_hranicabiela.setBounds(1010, 510, 394, 219);
+
+        Mapa_hraniceOkresy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieHranica2 (1).png"))); // NOI18N
+        hlavnyPanel.add(Mapa_hraniceOkresy);
+        Mapa_hraniceOkresy.setBounds(1010, 510, 394, 219);
         hlavnyPanel.add(Mapa_kosicky);
         Mapa_kosicky.setBounds(1010, 510, 394, 219);
         hlavnyPanel.add(Mapa_presovsky);
@@ -2144,6 +2149,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel M_Spravy;
     private javax.swing.JLabel Mapa_banskobystricky;
     private javax.swing.JLabel Mapa_bratislavsky;
+    private javax.swing.JLabel Mapa_hranicabiela;
     private javax.swing.JLabel Mapa_hranice;
     private javax.swing.JLabel Mapa_hraniceOkresy;
     private javax.swing.JLabel Mapa_kosicky;
