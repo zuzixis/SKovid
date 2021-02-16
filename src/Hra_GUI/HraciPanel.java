@@ -236,7 +236,7 @@ public class HraciPanel extends javax.swing.JFrame{
             }
         });
         hlavnyPanel.add(K_SK_ZavreteVS);
-        K_SK_ZavreteVS.setBounds(1120, 130, 30, 30);
+        K_SK_ZavreteVS.setBounds(1120, 120, 30, 30);
 
         K_SK_ZavreteVsetky.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -754,24 +754,40 @@ public class HraciPanel extends javax.swing.JFrame{
                 zapnutieOpatreni = true;
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
-        skoly = ESkoly.ZAVRETE_VYSOKE_SKOLY;
-        BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyVysoke.png")));
+        if (skoly != ESkoly.ZAVRETE_VYSOKE_SKOLY) {
+            skoly = ESkoly.ZAVRETE_VYSOKE_SKOLY;
+            BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyVysoke.png")));
+            this.opatrenia.getSkoly().setVSzapnute(false);
+            this.opatrenia.getSkoly().zapnutie();
+        }else{
+            skoly = ESkoly.OTVORENE;
+            BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
+            this.opatrenia.getSkoly().setVSzapnute(true);
+            this.opatrenia.getSkoly().setOstatneSkoly(true);
+            this.opatrenia.getSkoly().vypnutie();
+        }
+        
     }//GEN-LAST:event_K_SK_ZavreteVSMouseClicked
 
     private void K_SK_ZavreteVsetkyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_SK_ZavreteVsetkyMouseClicked
-        if(skoly == ESkoly.OTVORENE || skoly == ESkoly.ZAVRETE_VYSOKE_SKOLY)
-        {
-            skoly = ESkoly.VSETKY_ZAVRETE;
-            if (!zapnutieOpatreni) {
+        if (!zapnutieOpatreni) {
                 zapnutieOpatreni = true;
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
+        if(skoly == ESkoly.OTVORENE || skoly == ESkoly.ZAVRETE_VYSOKE_SKOLY)
+        {
+            skoly = ESkoly.VSETKY_ZAVRETE;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
-            
+            this.opatrenia.getSkoly().setVSzapnute(false);
+            this.opatrenia.getSkoly().setOstatneSkoly(false);
+            this.opatrenia.getSkoly().zapnutie();
         }else
         {
             skoly = ESkoly.OTVORENE;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
+            this.opatrenia.getSkoly().setVSzapnute(true);
+            this.opatrenia.getSkoly().setOstatneSkoly(true);
+            this.opatrenia.getSkoly().vypnutie();
         }
     }//GEN-LAST:event_K_SK_ZavreteVsetkyMouseClicked
 
@@ -1265,7 +1281,7 @@ public class HraciPanel extends javax.swing.JFrame{
         renderer.setSeriesPaint(1, Color.BLUE);
         renderer.setSeriesStroke(1, new BasicStroke(2.0f));
 
-        plot.setRenderer(renderer);
+        //plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.white);
         plot.setRangeGridlinesVisible(false);
         plot.setDomainGridlinesVisible(false);
