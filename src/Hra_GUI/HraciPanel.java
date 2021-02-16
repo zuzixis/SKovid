@@ -14,6 +14,7 @@ import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 
@@ -866,7 +867,6 @@ public class HraciPanel extends javax.swing.JFrame{
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
         
         this.opatrenia.getAkcie().zapnutie();
-        this.opatrenia.getCeloplosneTestovanie().zapnutie();
         this.opatrenia.getHranice().zapnutie();
         this.opatrenia.getRuskaOdstup().zapnutie();
         this.opatrenia.getSkoly().zapnutie();
@@ -1304,10 +1304,17 @@ public class HraciPanel extends javax.swing.JFrame{
         plot.setRangeGridlinesVisible(false);
         plot.setDomainGridlinesVisible(false);
 
-
+        //this.jPanel2.setLayout(new BorderLayout());
+        //this.jPanel2.add(oPanel);
+        //this.jPanel2.validate();
+        
         this.panel_Graf3_vyfarbeny.setLayout(new java.awt.BorderLayout());
         this.panel_Graf3_vyfarbeny.add(oPanel);
         this.panel_Graf3_vyfarbeny.validate();
+        
+        ChartPanel localChartPanel =  new ChartPanel(oChart, true);
+        
+      //  this.scrol.add(localChartPanel);
         
     }
     

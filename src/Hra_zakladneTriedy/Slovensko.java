@@ -102,7 +102,9 @@ public class Slovensko {
 
         vygenerovany.setMaCovid();
         if (vygenerovany.getDniDoOdhalenia() > 0) {
-            infekcny.add(vygenerovany);
+            if (!skontrolujInfekcnost(vygenerovany)) {
+                infekcny.add(vygenerovany);
+            }
         }
     }
 
@@ -111,7 +113,7 @@ public class Slovensko {
         koeficient = 0.7;
         Random rand = new Random();
         System.out.println(opatrenia.getIndex());
-        
+
         //System.out.println(koeficient);
         if (infekcny.size() > 100000) {
             koeficient = 0.3;
@@ -123,13 +125,19 @@ public class Slovensko {
             koeficient = 0.05;
         }
         koeficient = koeficient * (1 - opatrenia.getIndex());
-        /* if (infekcny.size() > 800000) {
+         if (infekcny.size() > 800000) {
         koeficient = 0.02;
         }
-        if (getPocetImunnych() > 750000) {
+        /*if (getPocetImunnych() > 750000) {
         koeficient -= 0.019;
         }*/
-        for (int i = 0; i < infekcny.size(); i++) {
+        
+         int k = infekcny.size();
+        if (infekcny.size() > 7000) {
+            k = 7000;
+        }
+        
+        for (int i = 0; i < k; i++) {
             double sanca = rand.nextDouble();
             if (sanca <= koeficient) {
                 if (rand.nextDouble() < opatrenia.getIndexKraja()) {
@@ -148,7 +156,9 @@ public class Slovensko {
         Clovek vygenerovany = k.getRodiny().get(vygenerovanieRodiny).getClenoviaRodiny().get(vygenerovanyClen);
         vygenerovany.setMaCovid();
         if (vygenerovany.getDniDoOdhalenia() > 0) {
-            infekcny.add(vygenerovany);
+            if (!skontrolujInfekcnost(vygenerovany)) {
+                infekcny.add(vygenerovany);
+            }
         }
     }
 
@@ -216,7 +226,6 @@ public class Slovensko {
             pridajNakazenych();
 
         }
-
     }
 
     public int getPocetNakazenych() {
@@ -354,8 +363,6 @@ public class Slovensko {
     }
 
     private void UsporiadajTestovanie() {
-        prirastok = 0;
-        
         int pocet = 0;
         if (!infekcny.isEmpty()) {
             Random r = new Random();
@@ -366,7 +373,6 @@ public class Slovensko {
                     int konkretny = r.nextInt(infekcny.size());
                     infekcny.get(konkretny).nastavOtestovanehoScovidom();
                     this.infekcny.remove(konkretny);
-                    prirastok++;
                     pocet++;
                 }
 
@@ -380,9 +386,18 @@ public class Slovensko {
         Random cislo = new Random();
         if (cislo.nextInt(3) == 0) {
             vygenerujNakazenehoClovek();
-            if(cislo.nextInt(4) == 0){
-                 vygenerujNakazenehoClovek();
+            if (cislo.nextInt(4) == 0) {
+                vygenerujNakazenehoClovek();
             }
         }
+    }
+
+    public boolean skontrolujInfekcnost(Clovek c) {
+        for (int i = 0; i < infekcny.size(); i++) {
+            if (c.equals(infekcny.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 }
