@@ -39,12 +39,12 @@ public class Vakcina {
         double koef = maxPocetNaOckovanieDenne * 9 / 10;
         maxPocetNaOckovanie = (int) koef;
         Random r = new Random();
-        maxPocetNaOckovanie += r.nextInt((int) (koef / 9));
-         System.out.println(maxPocetNaOckovanie);
-       // System.out.println(pocetDostupnychVakcin);
+        maxPocetNaOckovanie += r.nextInt((int) (koef / 10));
+        System.out.println(maxPocetNaOckovanie);
+        //System.out.println("Poecet vakcin: "+pocetDostupnychVakcin);
         if (maxPocetNaOckovanieDenne < limitDenny) {
-            maxPocetNaOckovanieDenne *= 1.2;
-            System.out.println("zvysil som");
+            maxPocetNaOckovanieDenne *= 1.15;
+            //System.out.println("zvysil som");
         }
         ZaockujDruhouDavkou();
         if (maxPocetNaOckovanie < pocetDostupnychVakcin) {
@@ -89,6 +89,7 @@ public class Vakcina {
             }
 
         }
+        NastavDodaniaVakcin();
     }
 
     public void setZaciatok() {

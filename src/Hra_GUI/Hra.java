@@ -23,8 +23,6 @@ public class Hra {
     private Oznamenie oznam;
     private Vakcina vakcina;
 
-   
-
     private boolean prvyPripad = false;
     private int oznamMrtvi = 1;
     private int dennyRekord = 100;
@@ -40,7 +38,7 @@ public class Hra {
         infoKraje = new VypisOkrajoch(HP);
         hlaska = new Hlaska(HP);
         oznam = new Oznamenie(this);
-       
+
         //skuska oznamení
         oznam.pridajOznamenie("Slovensko zatial bez prvveho pripadu covid-19.");
 
@@ -57,7 +55,7 @@ public class Hra {
             prvyPripad = true;
             this.pridajOznamenie("Na Slovensku sme odhalili prvy pripad covid-19.");
         }
-        HP.napisZaockovanych(SR.getPocetZaockovanych());
+        HP.napisZaockovanych(SR.getPocetZaockovanych() + SR.getPocetImunnych());
         //denny nakazeny
         int dennyPrirastok = SR.getPrirastok();
         HP.napisNakazenychNaDen(dennyPrirastok);
@@ -84,11 +82,6 @@ public class Hra {
 
         infoKraje.stavVkrajoch();
 
-        if (oznam.getPocetCakajucichOznameni() == 0 && !oznam.zobrazuje()) {
-            System.out.println("teraz pridavam");
-            oznam.generujOznamenie();
-        }
-
         if (oznam.getPocetCakajucichOznameni() > 1) {
             oznam.vypisOznamenie(1);
         } else {
@@ -96,16 +89,16 @@ public class Hra {
         }
 
         HP.vykresliGraf(dennyPrirastok);
-        HP.vykresliGrafKruhovy( this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(1).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(2).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(3).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(4).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(5).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(),
-                                this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji());
-        
-        HP.vykresliGrafImunni(SR.getPocetImunnych(), SR.getPocetUmrti());
+        HP.vykresliGrafKruhovy(this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(1).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(2).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(3).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(4).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(5).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji());
+
+        HP.vykresliGrafImunni(SR.getPocetPrvoZaockovanych(), SR.getPocetZaockovanych());
     }
 
     public HraciPanel getHP() {
@@ -115,7 +108,7 @@ public class Hra {
     public Cas getCas() {
         return cas;
     }
-    
+
     public Slovensko getSlovensko() {
         return SR;
     }
@@ -127,13 +120,20 @@ public class Hra {
 
         while (hranie) {
             cas.dalsiDen(1);
-           // if(!vakcina.mameDavky())System.out.println(vakcina.mameDavky());
+            // if(!vakcina.mameDavky())System.out.println(vakcina.mameDavky());
             this.vypisVsetkyInformacieOSlovensku();
             SR.spravDen();
             hlaska.vypisRandomHlasku(5);
-            if(vakcina.getZaciatokVakcinacie().equals(cas.getAktualnyDatum()))
-                vakcina.setZaciatok();
-            
+            if (!vakcina.isVakcinacia()) {
+                if (vakcina.getZaciatokVakcinacie().equals(cas.getAktualnyDatum())) {
+                    vakcina.setZaciatok();
+                }
+            } else {
+                if (vakcina.getDatumDodaniaZasielky().equals(cas.getAktualnyDatum())) {
+                    vakcina.dodajZasielku();
+                }
+
+            }
         }
     }
 
@@ -149,7 +149,7 @@ public class Hra {
         oznam.pridajOznamenie(s);
     }
 
-     public Vakcina getVakcina() {
+    public Vakcina getVakcina() {
         return vakcina;
     }
 }

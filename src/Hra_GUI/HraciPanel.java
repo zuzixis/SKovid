@@ -1220,12 +1220,12 @@ public class HraciPanel extends javax.swing.JFrame{
         this.hodnotyZaockovanych.add(pocetZaockovanych);
         this.hodnotyImunnych.add(pocetImunnych);
         
-        XYSeries oSeries = new XYSeries("imunni");
+        XYSeries oSeries = new XYSeries("1. davka vakciny");
         for (int i = 0; i < hodnotyZaockovanych.size(); i++) {
             oSeries.add(i+1,hodnotyZaockovanych.get(i));
         }
         
-        XYSeries oSeries2 = new XYSeries("úmrtia");
+        XYSeries oSeries2 = new XYSeries("2. davka vakciny");
         for (int i = 0; i < hodnotyImunnych.size(); i++) {
             oSeries2.add(i+1,hodnotyImunnych.get(i));
         }

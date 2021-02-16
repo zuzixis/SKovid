@@ -111,7 +111,7 @@ public class Slovensko {
         koeficient = 0.7;
         Random rand = new Random();
         System.out.println(opatrenia.getIndex());
-        koeficient = koeficient * (1 - opatrenia.getIndex());
+        
         //System.out.println(koeficient);
         if (infekcny.size() > 100000) {
             koeficient = 0.3;
@@ -122,6 +122,7 @@ public class Slovensko {
         if (infekcny.size() > 500000) {
             koeficient = 0.05;
         }
+        koeficient = koeficient * (1 - opatrenia.getIndex());
         /* if (infekcny.size() > 800000) {
         koeficient = 0.02;
         }
@@ -201,18 +202,19 @@ public class Slovensko {
 
         //testovanie
         if (testovanie.isZapnute()) {
-            if(testovanie.getPocetDniDoTestovania() == 3){
+            if (testovanie.getPocetDniDoTestovania() == 3) {
                 this.hra.pridajOznamenie("Ak nenastanú komplikácie, štát plánuje celoplošné testovanie o 3 dni.");
             }
             testovanie.odratajDenDoTestovania();
             if (testovanie.getPocetDniDoTestovania() == 0) {
-            UsporiadajTestovanie();
+                UsporiadajTestovanie();
+            }
         }
-        }
-        
 
+        //ak je malo nakazenych
         if (infekcny.size() < 10) {
-            vygenerujNakazenehoClovek();
+            pridajNakazenych();
+
         }
 
     }
@@ -355,12 +357,13 @@ public class Slovensko {
         int pocet = 0;
         if (!infekcny.isEmpty()) {
             Random r = new Random();
-            int pocetOtestovanych = infekcny.size()*3/4;
-            System.out.println("pocet: "+pocetOtestovanych);
-            for (int i = 0; i < infekcny.size(); i++) {
+            int pocetOtestovanych = infekcny.size() * 3 / 4;
+            System.out.println("pocet: " + pocetOtestovanych);
+            for (int i = 0; i < pocetOtestovanych; i++) {
                 if (r.nextDouble() < 0.6) {
-                    infekcny.get(i).nastavOtestovanehoScovidom();
-                     this.infekcny.remove(0);
+                    int konkretny = r.nextInt(infekcny.size());
+                    infekcny.get(konkretny).nastavOtestovanehoScovidom();
+                    this.infekcny.remove(konkretny);
                     prirastok++;
                     pocet++;
                 }
@@ -368,6 +371,16 @@ public class Slovensko {
             }
         }
         System.out.println(pocet);
-        this.hra.pridajOznamenie("Celoplosne testovanie prebehlo uspesne. Odhalilo "+ pocet + " pripadov.");
+        this.hra.pridajOznamenie("Celoplosne testovanie prebehlo uspesne. Odhalilo " + pocet + " pripadov.");
+    }
+
+    private void pridajNakazenych() {
+        Random cislo = new Random();
+        if (cislo.nextInt(3) == 0) {
+            vygenerujNakazenehoClovek();
+            if(cislo.nextInt(4) == 0){
+                 vygenerujNakazenehoClovek();
+            }
+        }
     }
 }
