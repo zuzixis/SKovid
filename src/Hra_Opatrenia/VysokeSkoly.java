@@ -12,7 +12,7 @@ package Hra_Opatrenia;
 public class VysokeSkoly implements IOpatrenie{
          private boolean zapnute;
      
-     // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak? môže byť :D že je akoby zapnuté opatrenie
+     // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak? môže byť :D 
     public boolean isZapnute() {
         return zapnute;
     }

@@ -757,14 +757,12 @@ public class HraciPanel extends javax.swing.JFrame{
         if (skoly != ESkoly.ZAVRETE_VYSOKE_SKOLY) {
             skoly = ESkoly.ZAVRETE_VYSOKE_SKOLY;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyVysoke.png")));
-            this.opatrenia.getSkoly().setVSzapnute(false);
-            this.opatrenia.getSkoly().zapnutie();
+            this.opatrenia.getVysokeSkoly().zapnutie();
         }else{
             skoly = ESkoly.OTVORENE;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
-            this.opatrenia.getSkoly().setVSzapnute(true);
-            this.opatrenia.getSkoly().setOstatneSkoly(true);
             this.opatrenia.getSkoly().vypnutie();
+            this.opatrenia.getVysokeSkoly().vypnutie();
         }
         
     }//GEN-LAST:event_K_SK_ZavreteVSMouseClicked
@@ -778,16 +776,14 @@ public class HraciPanel extends javax.swing.JFrame{
         {
             skoly = ESkoly.VSETKY_ZAVRETE;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
-            this.opatrenia.getSkoly().setVSzapnute(false);
-            this.opatrenia.getSkoly().setOstatneSkoly(false);
             this.opatrenia.getSkoly().zapnutie();
+            this.opatrenia.getVysokeSkoly().zapnutie();
         }else
         {
             skoly = ESkoly.OTVORENE;
             BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
-            this.opatrenia.getSkoly().setVSzapnute(true);
-            this.opatrenia.getSkoly().setOstatneSkoly(true);
             this.opatrenia.getSkoly().vypnutie();
+            this.opatrenia.getVysokeSkoly().vypnutie();
         }
     }//GEN-LAST:event_K_SK_ZavreteVsetkyMouseClicked
 
@@ -868,9 +864,20 @@ public class HraciPanel extends javax.swing.JFrame{
         
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
+        
+        this.opatrenia.getAkcie().zapnutie();
+        this.opatrenia.getCeloplosneTestovanie().zapnutie();
+        this.opatrenia.getHranice().zapnutie();
+        this.opatrenia.getRuskaOdstup().zapnutie();
+        this.opatrenia.getSkoly().zapnutie();
+        this.opatrenia.getVysokeSkoly().zapnutie();
+        this.opatrenia.getSluzby().setNechajZakladne(true);
+        this.opatrenia.getZakazVychadzania().zapnutie();
+        this.opatrenia.getZatvorenieKrajov().zapnutie();
     }
     
     private void otvorVsetko(){
+        
         rusko = false;
         hranice = false;
         zakazVychadzania = false;
@@ -890,6 +897,17 @@ public class HraciPanel extends javax.swing.JFrame{
         
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
+        
+        this.opatrenia.getAkcie().vypnutie();
+        this.opatrenia.getCeloplosneTestovanie().vypnutie();
+        this.opatrenia.getHranice().vypnutie();
+        this.opatrenia.getRuskaOdstup().vypnutie();
+        this.opatrenia.getSkoly().vypnutie();
+        this.opatrenia.getVysokeSkoly().vypnutie();
+        this.opatrenia.getSluzby().setNeobmedzene();
+        this.opatrenia.getZakazVychadzania().vypnutie();
+        this.opatrenia.getZatvorenieKrajov().vypnutie();
+    
     }
     
     public void napisVsetciNakazeni(int pocet)

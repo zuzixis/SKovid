@@ -11,8 +11,6 @@ package Hra_Opatrenia;
  */
 public class Skoly implements IOpatrenie{
      private boolean zapnute;
-     private boolean VSzapnute = true; //vysoke skoly su otvorene
-     private boolean OstatneSkoly = true; //ostatne su otvorene
      
      // je to nastavene ze ak su zapnute tak sa do skoly nechodi, ci dat to naopak? Môže
     public boolean isZapnute() {
@@ -35,13 +33,5 @@ public class Skoly implements IOpatrenie{
             return 0.2;
         }
         return 0;
-    }
-
-    public void setVSzapnute(boolean VSzapnute) {
-        this.VSzapnute = VSzapnute;
-    }
-
-    public void setOstatneSkoly(boolean OstatneSkoly) {
-        this.OstatneSkoly = OstatneSkoly;
     }
 }
