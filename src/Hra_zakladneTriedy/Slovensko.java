@@ -354,6 +354,8 @@ public class Slovensko {
     }
 
     private void UsporiadajTestovanie() {
+        prirastok = 0;
+        
         int pocet = 0;
         if (!infekcny.isEmpty()) {
             Random r = new Random();

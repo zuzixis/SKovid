@@ -78,7 +78,7 @@ public class Hra {
             oznamMrtvi *= 10;
         }
         HP.napisStavNemocnic(SR.getStavNemocnic());
-        HP.napisSpolocenskuStabilitu(0); //vsetky doplnene su len na skusku :D 
+        HP.napisSpolocenskuStabilitu(0); 
 
         infoKraje.stavVkrajoch();
 

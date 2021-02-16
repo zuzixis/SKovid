@@ -712,23 +712,39 @@ public class HraciPanel extends javax.swing.JFrame{
     }//GEN-LAST:event_K_ZavKrajeMouseClicked
 
     private void K_S_ZavreteRizikoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_S_ZavreteRizikoveMouseClicked
-        sluzby = ESluzby.ZAVRETE_RIZIKOVE;
         if (!zapnutieOpatreni) {
                 zapnutieOpatreni = true;
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
-        BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/rizikove.png")));
+        if(sluzby != ESluzby.ZAVRETE_RIZIKOVE){
+            sluzby = ESluzby.ZAVRETE_RIZIKOVE;
+            BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/rizikove.png")));
+            this.opatrenia.getSluzby().setRizikove(false);
+        }else{
+            sluzby = ESluzby.OTVORENE;
+            this.opatrenia.getSluzby().setNeobmedzene();
+            BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
+        }
+        
         this.opatrenia.getSluzby().zapnutie();
         //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZavreteRizikoveMouseClicked
 
     private void K_S_ZakladneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_S_ZakladneMouseClicked
-        sluzby = ESluzby.OTVORENE_LEN_ZAKLADNE;
         if (!zapnutieOpatreni) {
                 zapnutieOpatreni = true;
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
         }
-        BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
+        if(sluzby != ESluzby.OTVORENE_LEN_ZAKLADNE){
+            sluzby = ESluzby.OTVORENE_LEN_ZAKLADNE;
+            BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
+            this.opatrenia.getSluzby().setNechajZakladne(true);
+        }else{
+            sluzby = ESluzby.OTVORENE;
+            this.opatrenia.getSluzby().setNeobmedzene();
+            BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
+        }
+        
         this.opatrenia.getSluzby().zapnutie();
         //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZakladneMouseClicked

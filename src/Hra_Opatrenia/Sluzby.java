@@ -16,10 +16,12 @@ public class Sluzby implements IOpatrenie {
 
     public void setRizikove(boolean rizikove) {
         this.rizikove = rizikove;
+        this.zakladne = true;
     }
 
     public void setNechajZakladne(boolean zakladne) {
         this.zakladne = zakladne;
+        this.rizikove = false;
     }
 
     public void setNeobmedzene() {
