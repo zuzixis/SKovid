@@ -3,20 +3,12 @@ package Hra_GUI;
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.EStavKraja;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Label;
 import java.awt.Rectangle;
-import java.awt.Scrollbar;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JScrollBar;
 
 
 import org.jfree.chart.ChartFactory;
@@ -1614,7 +1606,7 @@ public class HraciPanel extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     private void nadtsaveniaJFrame(){
-        ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\logo.jpg");
+        ImageIcon frameIcon = new ImageIcon("C:\\Users\\Zuzana Žillová\\Documents\\Projekty\\Java\\SKovid\\src\\HRA_Kresbicky\\icon.png");
         this.setIconImage(frameIcon.getImage());
         setPreferredSize( new Dimension( 1400,750 ) );
         initComponents();
