@@ -28,8 +28,8 @@ public class Cas {
     public void dalsiDen(int rychlost)
     {
         try {
-            //TimeUnit.SECONDS.sleep(rychlost);
-            TimeUnit.MILLISECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(rychlost);
+            //TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException ex) {
                 System.out.println("Chyba pri cese!");
             }

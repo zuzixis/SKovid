@@ -2549,7 +2549,10 @@ public class HraciPanel extends javax.swing.JFrame{
     
     public void vykresliGrafImunni(int pocetZaockovanych, int pocetImunnych){
         //vypisanie grafu
-        
+        if(hodnotyImunnych.size()>100){
+            hodnotyImunnych.remove(0);
+            hodnotyZaockovanych.remove(0);
+        }
         this.hodnotyZaockovanych.add(pocetZaockovanych);
         this.hodnotyImunnych.add(pocetImunnych);
         
