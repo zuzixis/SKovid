@@ -100,14 +100,22 @@ public class Hra {
 
         HP.vykresliGrafImunni(SR.getPocetPrvoZaockovanych(), SR.getPocetZaockovanych());
         
-        HP.informacieObratislavskomKraji(this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(), 4, 5);
-        HP.informacieOtrnavskonKraji(this.getSlovensko().getKraje().get(1).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieOtrencianskomKraji(this.getSlovensko().getKraje().get(2).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieOnitrianskomKraji(this.getSlovensko().getKraje().get(3).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieOzilinskomKraji(this.getSlovensko().getKraje().get(4).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieObanskobystrickomKraji(this.getSlovensko().getKraje().get(5).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieOpresovskommKraji(this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
-        HP.informacieOkosickomKraji(this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji(), pocetUmrti, pocetUmrti);
+        HP.informacieObratislavskomKraji(this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(0).getPocetMrtvych(), this.getSlovensko().getKraje().get(0).getPocetZaockovanych());
+        HP.informacieOtrnavskonKraji(this.getSlovensko().getKraje().get(1).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(1).getPocetMrtvych(), this.getSlovensko().getKraje().get(1).getPocetZaockovanych());
+        HP.informacieOtrencianskomKraji(this.getSlovensko().getKraje().get(2).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(2).getPocetMrtvych(), this.getSlovensko().getKraje().get(2).getPocetZaockovanych());
+        HP.informacieOnitrianskomKraji(this.getSlovensko().getKraje().get(3).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(3).getPocetMrtvych(), this.getSlovensko().getKraje().get(3).getPocetZaockovanych());
+        HP.informacieOzilinskomKraji(this.getSlovensko().getKraje().get(4).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(4).getPocetMrtvych(), this.getSlovensko().getKraje().get(4).getPocetZaockovanych());
+        HP.informacieObanskobystrickomKraji(this.getSlovensko().getKraje().get(5).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(5).getPocetMrtvych(), this.getSlovensko().getKraje().get(5).getPocetZaockovanych());
+        HP.informacieOpresovskommKraji(this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(6).getPocetMrtvych(), this.getSlovensko().getKraje().get(6).getPocetZaockovanych());
+        HP.informacieOkosickomKraji(this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji(),
+                this.getSlovensko().getKraje().get(7).getPocetMrtvych(), this.getSlovensko().getKraje().get(7).getPocetZaockovanych());
     }
 
     public HraciPanel getHP() {
