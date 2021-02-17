@@ -3,22 +3,14 @@ package Hra_GUI;
 import Hra_Opatrenia.Opatrenia;
 import Hra_zakladneTriedy.EStavKraja;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Label;
 import java.awt.Rectangle;
-import java.awt.Scrollbar;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JScrollBar;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -2483,7 +2475,7 @@ public class HraciPanel extends javax.swing.JFrame {
         var dataset = new DefaultCategoryDataset();
         for (int i = 0; i < hototyNakazenyhc.size(); i++) {
             // oSeries.add(i+1,);
-            dataset.addValue(hototyNakazenyhc.get(i), "", Integer.toString(i+1));
+            dataset.addValue(hototyNakazenyhc.get(i), "", Integer.toString(i + 1));
         }
 
         XYSeriesCollection oDatabase = new XYSeriesCollection();
@@ -2496,7 +2488,11 @@ public class HraciPanel extends javax.swing.JFrame {
         //var renderer = new BarRenderer();
         //renderer.setSeriesPaint(0, Color.RED);
         //renderer.setSeriesStroke(0, new BasicStroke( 2f ));
-     
+        CategoryPlot plot = (CategoryPlot) oChart.getPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setBarPainter(new StandardBarPainter());
+        oChart.getPlot().setBackgroundPaint(Color.white);
+        plot.setOutlinePaint(null);
         //plot.setBackgroundPaint(Color.WHITE);
         // plot.setRangeGridlinesVisible(false);
         //plot.setDomainGridlinesVisible(false);
