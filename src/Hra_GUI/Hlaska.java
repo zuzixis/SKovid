@@ -27,16 +27,19 @@ public class Hlaska {
     }
     
     private void nacitajHlasky(){
-        hlasky.add("Nevymyslel");
-        hlasky.add("OneTime");
-        hlasky.add("automat");
-        hlasky.add("Hroby");
-        hlasky.add("jednota");
-        hlasky.add("odbornik");
-        hlasky.add("ouNou");
-        hlasky.add("pes");
-        hlasky.add("podmeNato");
-        hlasky.add("spolu");
+        hlasky.add("1");
+        hlasky.add("2");
+        hlasky.add("3");
+        hlasky.add("4");
+        hlasky.add("5");
+        hlasky.add("6");
+        hlasky.add("7");
+        hlasky.add("8");
+        hlasky.add("9");
+        hlasky.add("10");
+        hlasky.add("11");
+        hlasky.add("12");
+        hlasky.add("13");
     }
    
 }

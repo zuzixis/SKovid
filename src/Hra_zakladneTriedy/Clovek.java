@@ -101,10 +101,11 @@ public class Clovek {
     }
 
     public boolean setMaCovid() {
-        if (dniDoOdhalenia == -1) {
-            if (!imunny) {
-                if (!maCovid) {
-                    if (!zaockovany) {
+        if (!zaockovany) {
+            if (dniDoOdhalenia == -1) {
+                if (!imunny) {
+                    if (!maCovid) {
+
                         dniDoOdhalenia = 2;
                         return true;
                         //  System.out.println("nakazeny");
@@ -136,7 +137,7 @@ public class Clovek {
             this.dniDoOdhalenia = -1;
             this.imunny = false;
             this.kritickyStav = false;
-           // this.zaockovany = true;
+            // this.zaockovany = true;
             rodina.odstranClena(this);
         }
     }
@@ -156,61 +157,63 @@ public class Clovek {
                 this.karantena = false;
             }
         }*/
-        if (!mrtvi) {
+        if (!zaockovany) {
+            if (!mrtvi) {
 
-            if (this.maCovid) {
-                dniVchorobe--;
-                if (dniVchorobe == 0) {
-                    this.maCovid = false;
-                    kritickyStav = false;
-                    jeVNemocnici = false;
-                    this.imunny = true;
-                    this.pocetImunnychDni = 90;
-                } else {
-                    Random rand = new Random();
-                    if (!kritickyStav) {
+                if (this.maCovid) {
+                    dniVchorobe--;
+                    if (dniVchorobe == 0) {
+                        this.maCovid = false;
+                        kritickyStav = false;
+                        jeVNemocnici = false;
+                        this.imunny = true;
+                        this.pocetImunnychDni = 90;
+                    } else {
+                        Random rand = new Random();
+                        if (!kritickyStav) {
 
-                        if (rand.nextDouble() < 0.05) {
-                            kritickyStav = true;
-                            dniVchorobe += 10;
+                            if (rand.nextDouble() < 0.05) {
+                                kritickyStav = true;
+                                dniVchorobe += 10;
+                            }
                         }
-                    }
-                    if (kritickyStav) {
-                        if (jeVNemocnici) {
+                        if (kritickyStav) {
+                            if (jeVNemocnici) {
 
-                            if (rand.nextDouble() < 0.01) {
-                                zgegni();
+                                if (rand.nextDouble() < 0.01) {
+                                    zgegni();
+                                }
+
+                            } else {
+
+                                if (rand.nextDouble() < 0.02) {
+                                    zgegni();
+                                }
+
                             }
 
-                        } else {
-
-                            if (rand.nextDouble() < 0.02) {
-                                zgegni();
-                            }
-
                         }
 
                     }
 
+                } else if (dniDoOdhalenia > 0) {
+                    dniDoOdhalenia--;
+                    if (dniDoOdhalenia == 0) {
+                        this.maCovid = true;
+                        dniVchorobe = 7;
+                        //this.rodina.setMaRodinaCovid(true);
+                    }
+                } else if (this.imunny) {
+                    this.pocetImunnychDni--;
+                    if (this.pocetImunnychDni == 0) {
+                        this.imunny = false;
+                    }
                 }
 
-            } else if (dniDoOdhalenia > 0) {
-                dniDoOdhalenia--;
-                if (dniDoOdhalenia == 0) {
-                    this.maCovid = true;
-                    dniVchorobe = 7;
-                    //this.rodina.setMaRodinaCovid(true);
-                }
-            } else if (this.imunny) {
-                this.pocetImunnychDni--;
-                if (this.pocetImunnychDni == 0) {
-                    this.imunny = false;
-                }
             }
-
-        }
-        if (zaockovanyPrvouDavkou) {
-            pocetDniDoDruhejDavky--;
+            if (zaockovanyPrvouDavkou) {
+                pocetDniDoDruhejDavky--;
+            }
         }
     }
 
@@ -223,7 +226,7 @@ public class Clovek {
         this.imunny = false;
         kraj.pridajMrtveho();
         // pocetDniDoDruhejDavky = -1;
-        
+
     }
 
     public int getPocetDniDoDruhejDavky() {

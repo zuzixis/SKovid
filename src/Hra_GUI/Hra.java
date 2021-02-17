@@ -165,6 +165,7 @@ public class Hra {
 
     public void pridajOznamenie(String s) {
         oznam.pridajOznamenie(s);
+        oznam.vypisOznamenie(2);
     }
 
     public Vakcina getVakcina() {
