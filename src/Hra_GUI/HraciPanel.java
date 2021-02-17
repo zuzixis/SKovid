@@ -104,8 +104,8 @@ public class HraciPanel extends javax.swing.JFrame{
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
-        pozadieUvod = new javax.swing.JLabel();
         start = new javax.swing.JLabel();
+        pozadieUvod = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -136,7 +136,7 @@ public class HraciPanel extends javax.swing.JFrame{
         P_spoocenskaStabilita = new javax.swing.JLabel();
         Datum = new javax.swing.JLabel();
         M_InfoOkrajoch = new javax.swing.JLabel();
-        M_Spravy = new javax.swing.JLabel();
+        M_vakcina = new javax.swing.JLabel();
         M_Notifikacie = new javax.swing.JLabel();
         M_Prehlad = new javax.swing.JLabel();
         BTNI_Menu = new javax.swing.JLabel();
@@ -163,6 +163,8 @@ public class HraciPanel extends javax.swing.JFrame{
         Mapa_trnavsky = new javax.swing.JLabel();
         Mapa_bratislavsky = new javax.swing.JLabel();
         Mapa_pozadie = new javax.swing.JLabel();
+        vakcina = new javax.swing.JPanel();
+        pozadie_vakcina = new javax.swing.JLabel();
         Kraje_info = new javax.swing.JPanel();
         TN = new javax.swing.JLabel();
         BA = new javax.swing.JLabel();
@@ -280,17 +282,17 @@ public class HraciPanel extends javax.swing.JFrame{
         hlavnyPanel.setPreferredSize(new java.awt.Dimension(1400, 750));
         hlavnyPanel.setLayout(null);
 
-        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
-        hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(-10, 710, 1400, 750);
-
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startMouseClicked(evt);
             }
         });
         hlavnyPanel.add(start);
-        start.setBounds(950, 610, 60, 50);
+        start.setBounds(950, 620, 60, 60);
+
+        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
+        hlavnyPanel.add(pozadieUvod);
+        pozadieUvod.setBounds(0, 0, 1400, 750);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -490,17 +492,20 @@ public class HraciPanel extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 M_InfoOkrajochMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                M_InfoOkrajochMouseEntered(evt);
+            }
         });
         hlavnyPanel.add(M_InfoOkrajoch);
         M_InfoOkrajoch.setBounds(70, 130, 200, 40);
 
-        M_Spravy.addMouseListener(new java.awt.event.MouseAdapter() {
+        M_vakcina.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                M_SpravyMouseClicked(evt);
+                M_vakcinaMouseClicked(evt);
             }
         });
-        hlavnyPanel.add(M_Spravy);
-        M_Spravy.setBounds(70, 170, 200, 40);
+        hlavnyPanel.add(M_vakcina);
+        M_vakcina.setBounds(70, 170, 200, 40);
 
         M_Notifikacie.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -573,7 +578,7 @@ public class HraciPanel extends javax.swing.JFrame{
 
         Oznam.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         Oznam.setForeground(new java.awt.Color(229, 229, 229));
-        Oznam.setText("Oznam ");
+        Oznam.setText("Na Slovensku zatiaľ neni zistený prípad covid-19. ");
         hlavnyPanel.add(Oznam);
         Oznam.setBounds(270, 66, 440, 20);
 
@@ -612,6 +617,15 @@ public class HraciPanel extends javax.swing.JFrame{
         Mapa_pozadie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/pozadieMapa1.png"))); // NOI18N
         hlavnyPanel.add(Mapa_pozadie);
         Mapa_pozadie.setBounds(1010, 510, 394, 219);
+
+        vakcina.setLayout(null);
+
+        pozadie_vakcina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcina_pozadie.png"))); // NOI18N
+        vakcina.add(pozadie_vakcina);
+        pozadie_vakcina.setBounds(131, 0, 281, 440);
+
+        hlavnyPanel.add(vakcina);
+        vakcina.setBounds(270, 90, 540, 440);
 
         Kraje_info.setBackground(new java.awt.Color(51, 51, 51));
         Kraje_info.setLayout(null);
@@ -1613,7 +1627,16 @@ public class HraciPanel extends javax.swing.JFrame{
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov); 
         this.Notifikacie.setVisible(false);
         this.Kraje_info.setVisible(false);
-        
+        this.info_bratislava.setVisible(true);
+        this.info_bystrica.setVisible(false);
+        this.info_kosice.setVisible(false);
+        this.info_nitra.setVisible(false);
+        this.info_presov.setVisible(false);
+        this.info_trencin.setVisible(false);
+        this.info_trnava.setVisible(false);
+        this.info_zilina.setVisible(false);
+        this.vakcina.setVisible(false);
+               
     }
     
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
@@ -1866,6 +1889,7 @@ public class HraciPanel extends javax.swing.JFrame{
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_soc_siete.png")));
         this.Notifikacie.setVisible(false);
         this.Kraje_info.setVisible(true);
+        this.vakcina.setVisible(false);
     }//GEN-LAST:event_M_InfoOkrajochMouseClicked
 
     private void M_PrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_PrehladMouseClicked
@@ -1875,27 +1899,33 @@ public class HraciPanel extends javax.swing.JFrame{
         this.menu = ENadstavenieMenu.PREHLAD;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Prehlad.png")));
         this.Kraje_info.setVisible(false);
+        this.vakcina.setVisible(false);
     }//GEN-LAST:event_M_PrehladMouseClicked
 
-    private void M_SpravyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_SpravyMouseClicked
+    private void M_vakcinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_vakcinaMouseClicked
         this.zmenViditelnostPrehladu(false);
         this.Notifikacie.setVisible(false);
         this.skrytiePrehladu = true;
-        this.menu = ENadstavenieMenu.SPRAVY;
+        this.menu = ENadstavenieMenu.VAKCINA;
+        this.Kraje_info.setVisible(false);
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_spravy.png")));
-    }//GEN-LAST:event_M_SpravyMouseClicked
+        this.vakcina.setVisible(true);
+    }//GEN-LAST:event_M_vakcinaMouseClicked
 
     private void M_NotifikacieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_NotifikacieMouseClicked
         this.zmenViditelnostPrehladu(false);
         this.Notifikacie.setVisible(true);
         this.skrytiePrehladu = true;
+        this.Kraje_info.setVisible(false);
         this.menu = ENadstavenieMenu.NOTIFIKACIE;
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_Notifikacie.png")));
+        this.vakcina.setVisible(false);
     }//GEN-LAST:event_M_NotifikacieMouseClicked
 
     private void startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMouseClicked
-        this.pozadieUvod.setVisible(false);  
-        this.Notifikacie.setVisible(false);
+        this.pozadieUvod.setVisible(false); 
+        this.start.setVisible(false);
+        this.start.setEnabled(false);
         Vlakno_ZacatiaHry vlakno = new Vlakno_ZacatiaHry(this.hra);
         vlakno.start();
     }//GEN-LAST:event_startMouseClicked
@@ -1987,6 +2017,10 @@ public class HraciPanel extends javax.swing.JFrame{
         this.info_trnava.setVisible(false);
         this.info_zilina.setVisible(false);
     }//GEN-LAST:event_KEMouseClicked
+
+    private void M_InfoOkrajochMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_InfoOkrajochMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_M_InfoOkrajochMouseEntered
 
     private void zavriVsetko(){
         rusko = true;
@@ -2146,7 +2180,7 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JLabel M_InfoOkrajoch;
     private javax.swing.JLabel M_Notifikacie;
     private javax.swing.JLabel M_Prehlad;
-    private javax.swing.JLabel M_Spravy;
+    private javax.swing.JLabel M_vakcina;
     private javax.swing.JLabel Mapa_banskobystricky;
     private javax.swing.JLabel Mapa_bratislavsky;
     private javax.swing.JLabel Mapa_hranicabiela;
@@ -2257,8 +2291,10 @@ public class HraciPanel extends javax.swing.JFrame{
     private javax.swing.JPanel panel_Graf3_vyfarbeny;
     private javax.swing.JLabel pozadie;
     private javax.swing.JLabel pozadieUvod;
+    private javax.swing.JLabel pozadie_vakcina;
     private javax.swing.JLabel start;
     private javax.swing.JLabel tien;
+    private javax.swing.JPanel vakcina;
     // End of variables declaration//GEN-END:variables
 
     public Hra getHra() {
@@ -3049,6 +3085,6 @@ enum ESkoly {
 enum ENadstavenieMenu{
     PREHLAD,
     KRAJE,
-    SPRAVY,
+    VAKCINA,
     NOTIFIKACIE
 }
