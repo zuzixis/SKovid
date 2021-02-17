@@ -30,7 +30,7 @@ public class RuskaOdstup implements IOpatrenie {
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.15;
+            return 0.13;
         }
         return 0;
     }

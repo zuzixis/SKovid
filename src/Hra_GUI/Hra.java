@@ -24,7 +24,7 @@ public class Hra {
     private Vakcina vakcina;
 
     private boolean prvyPripad = false;
-    private int oznamMrtvi = 1;
+    private int oznamMrtvi = 100;
     private int dennyRekord = 100;
 
     private boolean hranie = false;
@@ -40,7 +40,7 @@ public class Hra {
         oznam = new Oznamenie(this);
 
         //skuska oznamení
-        oznam.pridajOznamenie("Slovensko zatial bez prvveho pripadu covid-19.");
+       // oznam.pridajOznamenie("Slovensko zatial bez prvveho pripadu covid-19.");
 
         // oznam.pridajOznamenie("");
         //this.hranie = true;
@@ -50,7 +50,7 @@ public class Hra {
 
     private void vypisVsetkyInformacieOSlovensku() {
         int pocetNakazenych = SR.getPocetNakazenych();
-        HP.napisVsetciNakazeni(pocetNakazenych);
+        
         if (pocetNakazenych > 0 && !prvyPripad) {
             prvyPripad = true;
             this.pridajOznamenie("Na Slovensku sme odhalili prvy pripad covid-19.");
@@ -58,7 +58,8 @@ public class Hra {
         HP.napisZaockovanych(SR.getPocetZaockovanych() + SR.getPocetImunnych());
         //denny nakazeny
         int dennyPrirastok = SR.getPrirastok();
-        HP.napisNakazenychNaDen(dennyPrirastok);
+        HP.napisNakazenychNaDen(pocetNakazenych);
+        HP.napisVsetciNakazeni(dennyPrirastok);
         if (dennyRekord < dennyPrirastok) {
             this.pridajOznamenie("Na Slovensku padol rekord v pocte novych pripadov covid-19 - " + dennyPrirastok);
             dennyRekord = dennyPrirastok;

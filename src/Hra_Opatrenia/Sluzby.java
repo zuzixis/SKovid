@@ -42,7 +42,7 @@ public class Sluzby implements IOpatrenie {
     @Override
     public double getIndex() {
         if (rizikove == false) {
-            return 0.15;
+            return 0.12;
                     
         } else if (!zakladne) {
             return 0.2;
