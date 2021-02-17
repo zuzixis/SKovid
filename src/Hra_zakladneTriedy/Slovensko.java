@@ -123,7 +123,13 @@ public class Slovensko {
         if (infekcny.size() > 500000) {
             koeficient = 0.05;
         }
-        koeficient = koeficient * (1 - opatrenia.getIndex());
+        double x = 0;
+        if (1 - opatrenia.getIndex() < 0) {
+            x = 0.0001;
+        } else {
+            x = 1 - opatrenia.getIndex();
+        }
+        koeficient = koeficient * x;
         if (infekcny.size() > 800000) {
             koeficient = 0.02;
         }
