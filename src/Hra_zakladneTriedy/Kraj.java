@@ -13,6 +13,9 @@ public class Kraj {
     private boolean lokalneObmedzenia;
     private String nazov;
     private int pocetNakazenych;
+    private int pocetMrtvych = 0;
+    private int pocetZaockovanych = 0;
+    private int pocetZaockovanychPrvouDavkou = 0;
 
     public Kraj(String nazovKraja) {
         this.stav = EStavKraja.ZELENY;
@@ -86,7 +89,6 @@ public class Kraj {
     public int getPocetNakazenych() {
         return pocetNakazenych;
     }
-    
 
     public int dajPocetZaockovanychVKraji() {
         int pocet = 0;
@@ -96,4 +98,31 @@ public class Kraj {
         return pocet;
     }
 
+    public int getPocetMrtvych() {
+        return pocetMrtvych;
+    }
+
+    public void pridajMrtveho() {
+        this.pocetMrtvych++;
+    }
+
+    public void pridajZaockovaneho() {
+        this.pocetZaockovanych++;
+    }
+
+    public void pridajPrvoZaockovaneho() {
+        this.pocetZaockovanychPrvouDavkou++;
+    }
+
+    public int getPocetZaockovanych() {
+        return pocetZaockovanych;
+    }
+
+    public int getPocetZaockovanychPrvouDavkou() {
+        return pocetZaockovanychPrvouDavkou;
+    }
+    
+    public void odstranRodinu(Rodina r){
+        this.rodiny.remove(r);
+    }
 }

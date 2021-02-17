@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Erik
+ * @author Erik Malina
  */
 public class Nemocnica {
 
     private ArrayList<Clovek> pacienti = new ArrayList<Clovek>();
-    private int maxKapacita = 3500;
+    private int maxKapacita = 3800-1;
 
     public Nemocnica() {
     }

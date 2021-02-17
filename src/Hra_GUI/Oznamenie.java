@@ -61,7 +61,8 @@ public class Oznamenie {
         zoznamOznameniNaGenerovanie.add("Panika ľudí spôsobila v reťazcoch nedostatok múky.");
         zoznamOznameniNaGenerovanie.add("Minister zdravotníctva upozorňuje na zlé vybavenie nemocníc");
         zoznamOznameniNaGenerovanie.add("Slovom roka je Lockdown.");
-        zoznamOznameniNaGenerovanie.add("Maťo akurát porušuje štátnu karanténu a búri ľudí aby sa pridali.");
+        zoznamOznameniNaGenerovanie.add("Opozícia tvrdí, že premiér nezvláda spravovanie pandémie.");
+      
 
     }
 

@@ -100,18 +100,20 @@ public class Clovek {
         this.pocetDniStravenychVChorobe = pocetDniStravenychVChorobe;
     }
 
-    public void setMaCovid() {
+    public boolean setMaCovid() {
         if (dniDoOdhalenia == -1) {
             if (!imunny) {
                 if (!maCovid) {
                     if (!zaockovany) {
                         dniDoOdhalenia = 2;
+                        return true;
                         //  System.out.println("nakazeny");
                     }
                 }
 
             }
         }
+        return false;
     }
 
     public void setKarantena(boolean karantena) {
@@ -126,15 +128,16 @@ public class Clovek {
             this.imunny = false;
             this.kritickyStav = false;
             this.zaockovany = zaockovany;
-
+            kraj.pridajZaockovaneho();
+            //rodina.odstranClena(this);
         } else {
             this.maCovid = false;
             this.karantena = false;
             this.dniDoOdhalenia = -1;
             this.imunny = false;
             this.kritickyStav = false;
-            this.zaockovany = false;
-            this.zaockovanyPrvouDavkou = false;
+           // this.zaockovany = true;
+            rodina.odstranClena(this);
         }
     }
 
@@ -154,6 +157,7 @@ public class Clovek {
             }
         }*/
         if (!mrtvi) {
+
             if (this.maCovid) {
                 dniVchorobe--;
                 if (dniVchorobe == 0) {
@@ -173,24 +177,21 @@ public class Clovek {
                     }
                     if (kritickyStav) {
                         if (jeVNemocnici) {
+
                             if (rand.nextDouble() < 0.01) {
-                                mrtvi = true;
-                                this.maCovid = false;
-                                kritickyStav = false;
-                                jeVNemocnici = false;
-                                this.imunny = false;
+                                zgegni();
                             }
+
                         } else {
+
                             if (rand.nextDouble() < 0.02) {
-                                mrtvi = true;
-                                this.maCovid = false;
-                                kritickyStav = false;
-                                jeVNemocnici = false;
-                                this.imunny = false;
+                                zgegni();
                             }
+
                         }
 
                     }
+
                 }
 
             } else if (dniDoOdhalenia > 0) {
@@ -206,10 +207,23 @@ public class Clovek {
                     this.imunny = false;
                 }
             }
+
         }
         if (zaockovanyPrvouDavkou) {
             pocetDniDoDruhejDavky--;
         }
+    }
+
+    private void zgegni() {
+
+        mrtvi = true;
+        this.maCovid = false;
+        kritickyStav = false;
+        jeVNemocnici = false;
+        this.imunny = false;
+        kraj.pridajMrtveho();
+        // pocetDniDoDruhejDavky = -1;
+        
     }
 
     public int getPocetDniDoDruhejDavky() {
@@ -239,6 +253,7 @@ public class Clovek {
     public void setZaockovanyPrvouDavkou(boolean zaockovanyPrvouDavkou) {
         this.zaockovanyPrvouDavkou = zaockovanyPrvouDavkou;
         pocetDniDoDruhejDavky = 21;
+        kraj.pridajPrvoZaockovaneho();
     }
 
     public boolean isZaockovanyPrvouDavkou() {

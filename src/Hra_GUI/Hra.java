@@ -31,7 +31,7 @@ public class Hra {
 
     public Hra() {
         cas = new Cas(this);
-        opatrenia = new Opatrenia();
+        opatrenia = new Opatrenia(this);
         vakcina = new Vakcina();
         SR = new Slovensko(this, opatrenia);
         HP = new HraciPanel(opatrenia, this);

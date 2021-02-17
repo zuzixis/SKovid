@@ -5,6 +5,7 @@
  */
 package Hra_Opatrenia;
 
+import Hra_GUI.Hra;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class Opatrenia {
     
     private double index;
+    private Hra hra;
     
     private Akcie akcie = new Akcie();
     private Hranice hranice = new Hranice();
@@ -24,20 +26,24 @@ public class Opatrenia {
     private ZakazVychadzania zakazVychadzania = new ZakazVychadzania();
     private CeloplosneTestovanie celoplosneTestovanie = new CeloplosneTestovanie();
     private ZatvorenieKrajov zatvorenieKrajov = new ZatvorenieKrajov();
-
+    private RocneObdobie leto = new RocneObdobie();
     private ArrayList<IOpatrenie> opatrenia = new ArrayList<>();
     
-    public Opatrenia(){
+    public Opatrenia(Hra hra){
+        this.hra = hra;
         opatrenia.add(akcie);
         opatrenia.add(hranice);
         opatrenia.add(ruskaOdstup);
         opatrenia.add(skoly);
-       // opatrenia.add(sluzby);
+        opatrenia.add(sluzby);
         opatrenia.add(vysokeSkoly);
         opatrenia.add(zakazVychadzania);
+       // opatrenia.add(leto);
        // opatrenia.add(celoplosneTestovanie);
        
     }
+
+   
     
     public double getIndex() {
         return vypocitajIndex();
@@ -95,5 +101,7 @@ public class Opatrenia {
         return zatvorenieKrajov.getIndex();
     }
     
- 
+    public void skontrolujRocneObdobie(String datum){
+        leto.skontrolujDatum(datum);
+    }
 }

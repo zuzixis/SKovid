@@ -40,18 +40,24 @@ public class Vakcina {
         maxPocetNaOckovanie = (int) koef;
         Random r = new Random();
         maxPocetNaOckovanie += r.nextInt((int) (koef / 10));
-        System.out.println(maxPocetNaOckovanie);
+        //System.out.println(maxPocetNaOckovanie);
         //System.out.println("Poecet vakcin: "+pocetDostupnychVakcin);
         if (maxPocetNaOckovanieDenne < limitDenny) {
             maxPocetNaOckovanieDenne *= 1.15;
             //System.out.println("zvysil som");
         }
+
         ZaockujDruhouDavkou();
+        //System.out.println("pocet prvou = " + maxPocetNaOckovanie);
+        if (maxPocetNaOckovanie < 0) {
+            return 0;
+        }
         if (maxPocetNaOckovanie < pocetDostupnychVakcin) {
             return maxPocetNaOckovanie;
         } else if (pocetDostupnychVakcin > 0) {
-            return pocetDostupnychVakcin/2;
+            return pocetDostupnychVakcin / 2;
         }
+
         return 0;
     }
 
@@ -65,19 +71,29 @@ public class Vakcina {
     }
 
     private void ZaockujDruhouDavkou() {
+        int pocet = 0;
         boolean potrebujeDruhuDavku = false;
         do {
             potrebujeDruhuDavku = false;
             if (cakajuciNaDruhuDavku.size() > 0) {
+                //System.out.println(cakajuciNaDruhuDavku.size());
+                //odstranZcakacky();
+                //System.out.println(cakajuciNaDruhuDavku.size());
+                //System.out.println("-------------------------");
                 if (cakajuciNaDruhuDavku.get(0).getPocetDniDoDruhejDavky() == 0) {
                     potrebujeDruhuDavku = true;
                     cakajuciNaDruhuDavku.get(0).setZaockovany(true);
                     cakajuciNaDruhuDavku.remove(0);
-                    // System.out.println("zaockoval som druhou davkou");
+                    pocet++;
+
                     maxPocetNaOckovanie--;
                 }
             }
+
         } while (potrebujeDruhuDavku);
+        if (cakajuciNaDruhuDavku.size() > 0) {
+            System.out.println(cakajuciNaDruhuDavku.get(0).getPocetDniDoDruhejDavky());
+        }
     }
 
     public void dodajZasielku() {
@@ -118,6 +134,10 @@ public class Vakcina {
         return datumDodaniaZasielky;
     }
 
+    public int getPocetNajblizsejDodavky() {
+        return dodavkyVakcin.get(0);
+    }
+
     public void setDatumDodaniaZasielky(String datumDodaniaZasielky) {
         this.datumDodaniaZasielky = datumDodaniaZasielky;
     }
@@ -154,6 +174,25 @@ public class Vakcina {
         c.add(Calendar.MONTH, 1);  // number of days to add
         String datumDodavkyVakcin = sdf.format(c.getTime());  // dt is now the new date
         setDatumDodaniaZasielky(datumDodavkyVakcin);
+
+    }
+
+    public String getSchvalenieVakciny() {
+        return schvalenieVakciny;
+    }
+
+    public void odstranZcakacky() {
+        ArrayList<Clovek> pom = new ArrayList<>();
+        int pocet = 0;
+        for (int i = 0; i < cakajuciNaDruhuDavku.size(); i++) {
+            if (cakajuciNaDruhuDavku.get(i).isMrtvi()) {
+
+            } else {
+                pom.add(cakajuciNaDruhuDavku.get(i));
+            }
+        }
+        cakajuciNaDruhuDavku.clear();
+        cakajuciNaDruhuDavku = pom;
 
     }
 }

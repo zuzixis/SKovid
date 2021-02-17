@@ -17,6 +17,7 @@ public class Rodina {
     private int pocetNakazenychClenov;
     private static final double INDEX_NAKAZENOSTI = 0.8; 
                      //dal som 0.8, lebo bez rusok je 0.9 ale predpokladam ze ak sa mu ludia vyhybaju je o nieco nizsia ale dost vysoka ci?
+    //                                                                                                                                              jj vysoka
     
 
     public Rodina() {
@@ -60,7 +61,7 @@ public class Rodina {
     public void nadstavChorobu(){
         for (int i = 0; i < this.clenoviaRodiny.size(); i++) {
             if (nakazenieDalsiehoClenaRodiny(this.pocetNakazenychClenov*INDEX_NAKAZENOSTI)){
-               this.clenoviaRodiny.get(i).setMaCovid();
+               this.clenoviaRodiny.get(i).nastavOtestovanehoScovidom();
                this.pocetNakazenychClenov++;
             }
         }
@@ -91,6 +92,14 @@ public class Rodina {
 
     public ArrayList<Clovek> getClenoviaRodiny() {
         return clenoviaRodiny;
+    }
+    
+    
+    public void odstranClena(Clovek c){
+        clenoviaRodiny.remove(c);
+        if(clenoviaRodiny.size() == 0){
+            c.getKraj().odstranRodinu(this);
+        }
     }
     
 }
