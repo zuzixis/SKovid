@@ -174,6 +174,7 @@ public class HraciPanel extends javax.swing.JFrame {
         pozadie_vakcina = new javax.swing.JLabel();
         vakcinaciaPercenta = new javax.swing.JLabel();
         vakcinaciaPocetPercent = new javax.swing.JLabel();
+        vakcina_graf_panel = new javax.swing.JPanel();
         Kraje_info = new javax.swing.JPanel();
         TN = new javax.swing.JLabel();
         BA = new javax.swing.JLabel();
@@ -581,9 +582,9 @@ public class HraciPanel extends javax.swing.JFrame {
         hlavnyPanel.add(KR_Kosicky);
         KR_Kosicky.setBounds(1280, 590, 60, 16);
 
-        Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/podmeNato.png"))); // NOI18N
+        Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/10.png"))); // NOI18N
         hlavnyPanel.add(Hlasky);
-        Hlasky.setBounds(220, 600, 330, 100);
+        Hlasky.setBounds(210, 590, 330, 100);
 
         Oznam.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         Oznam.setForeground(new java.awt.Color(229, 229, 229));
@@ -643,7 +644,7 @@ public class HraciPanel extends javax.swing.JFrame {
         vakcinaciaPocetLabel.setForeground(new java.awt.Color(22, 173, 225));
         vakcinaciaPocetLabel.setText("Počet zaočkovaných 1. dávkou: 0");
         vakcina.add(vakcinaciaPocetLabel);
-        vakcinaciaPocetLabel.setBounds(50, 60, 270, 16);
+        vakcinaciaPocetLabel.setBounds(50, 60, 270, 20);
 
         vakcinaciaPocetLabel3.setForeground(new java.awt.Color(22, 173, 225));
         vakcinaciaPocetLabel3.setText("Počet dostupných dávok: 0");
@@ -675,6 +676,20 @@ public class HraciPanel extends javax.swing.JFrame {
         vakcinaciaPocetPercent.setText("Počet percent \nzaočkovaných");
         vakcina.add(vakcinaciaPocetPercent);
         vakcinaciaPocetPercent.setBounds(290, 100, 170, 30);
+
+        javax.swing.GroupLayout vakcina_graf_panelLayout = new javax.swing.GroupLayout(vakcina_graf_panel);
+        vakcina_graf_panel.setLayout(vakcina_graf_panelLayout);
+        vakcina_graf_panelLayout.setHorizontalGroup(
+            vakcina_graf_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+        vakcina_graf_panelLayout.setVerticalGroup(
+            vakcina_graf_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        vakcina.add(vakcina_graf_panel);
+        vakcina_graf_panel.setBounds(0, 160, 540, 280);
 
         hlavnyPanel.add(vakcina);
         vakcina.setBounds(270, 90, 540, 440);
@@ -2340,6 +2355,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel start;
     private javax.swing.JLabel tien;
     private javax.swing.JPanel vakcina;
+    private javax.swing.JPanel vakcina_graf_panel;
     private javax.swing.JLabel vakcinaciaLabel1;
     private javax.swing.JLabel vakcinaciaPercenta;
     private javax.swing.JLabel vakcinaciaPocet2Label;
