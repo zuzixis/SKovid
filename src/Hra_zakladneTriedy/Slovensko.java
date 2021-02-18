@@ -7,6 +7,7 @@ import Hra_Opatrenia.Opatrenia;
 import Subory.Nacitavac;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.SplittableRandom;
 
 /**
  * @author Zuzana Žillová
@@ -318,13 +319,9 @@ public class Slovensko {
             if (!vygenerovany.isMaCovid()) {
                 if (!vygenerovany.isMrtvi()) {
                     if (!vygenerovany.isZaockovanyPrvouDavkou()) {
-                        if (pocet < 1) {
-                            if (!vygenerovany.isImunny()) {
-                                spravny = true;
-                            }
-                        } else {
+                        
                             spravny = true;
-                        }
+                        
                     }
                 }
             }
@@ -338,12 +335,12 @@ public class Slovensko {
     private void UsporiadajTestovanie() {
         int pocet = 0;
         if (!infekcny.isEmpty()) {
-            Random r = new Random();
+            SplittableRandom r = new SplittableRandom();
             int pocetOtestovanych = infekcny.size() * 3 / 4;
             System.out.println("pocet: " + pocetOtestovanych);
             for (int i = 0; i < pocetOtestovanych; i++) {
                 if (r.nextDouble() < 0.6) {
-                    int konkretny = r.nextInt(infekcny.size());
+                    int konkretny = r.nextInt(0, infekcny.size());
                     infekcny.get(konkretny).nastavOtestovanehoScovidom();
                     this.infekcny.remove(konkretny);
                     pocet++;

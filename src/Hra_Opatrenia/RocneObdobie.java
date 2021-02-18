@@ -5,6 +5,8 @@
  */
 package Hra_Opatrenia;
 
+import Hra_GUI.Hra;
+
 /**
  *
  * @author Erik
@@ -14,10 +16,11 @@ public class RocneObdobie implements IOpatrenie {
     private boolean leto = false;
     private String zaciatokLeta = "06";
     private String koniecLeta = "09";
-    ;
-    int trvanieLeta;
+    
+    private Hra hra;
+    
 
-    public RocneObdobie() {
+    public RocneObdobie(Hra hra) {
     }
 
     public void skontrolujDatum(String datum) {

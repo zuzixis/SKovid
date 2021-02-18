@@ -70,6 +70,10 @@ public class Vakcina {
         }
     }
 
+    public int getPocetDostupnychVakcin() {
+        return pocetDostupnychVakcin/2;
+    }
+
     private void ZaockujDruhouDavkou() {
         int pocet = 0;
         boolean potrebujeDruhuDavku = false;

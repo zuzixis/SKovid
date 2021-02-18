@@ -8,9 +8,11 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Label;
 import java.awt.Rectangle;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -163,7 +165,15 @@ public class HraciPanel extends javax.swing.JFrame {
         Mapa_bratislavsky = new javax.swing.JLabel();
         Mapa_pozadie = new javax.swing.JLabel();
         vakcina = new javax.swing.JPanel();
+        vakcinaciaPocet2Label = new javax.swing.JLabel();
+        vakcinaciaLabel1 = new javax.swing.JLabel();
+        vakcinaciaPocetLabel = new javax.swing.JLabel();
+        vakcinaciaPocetLabel3 = new javax.swing.JLabel();
+        vakcinaciaPocet2Label1 = new javax.swing.JLabel();
+        pozadie_vakcina_bocne = new javax.swing.JLabel();
         pozadie_vakcina = new javax.swing.JLabel();
+        vakcinaciaPercenta = new javax.swing.JLabel();
+        vakcinaciaPocetPercent = new javax.swing.JLabel();
         Kraje_info = new javax.swing.JPanel();
         TN = new javax.swing.JLabel();
         BA = new javax.swing.JLabel();
@@ -291,7 +301,7 @@ public class HraciPanel extends javax.swing.JFrame {
 
         pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
         hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(0, 0, 1400, 750);
+        pozadieUvod.setBounds(-20, 670, 1400, 750);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -619,9 +629,52 @@ public class HraciPanel extends javax.swing.JFrame {
 
         vakcina.setLayout(null);
 
+        vakcinaciaPocet2Label.setForeground(new java.awt.Color(27, 57, 84));
+        vakcinaciaPocet2Label.setText("Počet zaočkovaných 2. dávkou: 0");
+        vakcina.add(vakcinaciaPocet2Label);
+        vakcinaciaPocet2Label.setBounds(50, 80, 270, 16);
+
+        vakcinaciaLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        vakcinaciaLabel1.setForeground(new java.awt.Color(27, 57, 84));
+        vakcinaciaLabel1.setText("Vakcinácia");
+        vakcina.add(vakcinaciaLabel1);
+        vakcinaciaLabel1.setBounds(30, 20, 120, 24);
+
+        vakcinaciaPocetLabel.setForeground(new java.awt.Color(22, 173, 225));
+        vakcinaciaPocetLabel.setText("Počet zaočkovaných 1. dávkou: 0");
+        vakcina.add(vakcinaciaPocetLabel);
+        vakcinaciaPocetLabel.setBounds(50, 60, 270, 16);
+
+        vakcinaciaPocetLabel3.setForeground(new java.awt.Color(22, 173, 225));
+        vakcinaciaPocetLabel3.setText("Počet dostupných dávok: 0");
+        vakcina.add(vakcinaciaPocetLabel3);
+        vakcinaciaPocetLabel3.setBounds(50, 120, 300, 16);
+
+        vakcinaciaPocet2Label1.setForeground(new java.awt.Color(27, 57, 84));
+        vakcinaciaPocet2Label1.setText("Najbližšia dodávka vakcín: ");
+        vakcina.add(vakcinaciaPocet2Label1);
+        vakcinaciaPocet2Label1.setBounds(50, 140, 330, 16);
+
+        pozadie_vakcina_bocne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcinaObrBocny.png"))); // NOI18N
+        vakcina.add(pozadie_vakcina_bocne);
+        pozadie_vakcina_bocne.setBounds(440, 30, 90, 110);
+
         pozadie_vakcina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcina_pozadie.png"))); // NOI18N
         vakcina.add(pozadie_vakcina);
-        pozadie_vakcina.setBounds(131, 0, 281, 440);
+        pozadie_vakcina.setBounds(130, 0, 281, 440);
+
+        vakcinaciaPercenta.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        vakcinaciaPercenta.setForeground(new java.awt.Color(22, 173, 225));
+        vakcinaciaPercenta.setText("80 %");
+        vakcinaciaPercenta.setToolTipText("");
+        vakcina.add(vakcinaciaPercenta);
+        vakcinaciaPercenta.setBounds(290, 50, 160, 70);
+
+        vakcinaciaPocetPercent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        vakcinaciaPocetPercent.setForeground(new java.awt.Color(27, 57, 84));
+        vakcinaciaPocetPercent.setText("Počet percent \nzaočkovaných");
+        vakcina.add(vakcinaciaPocetPercent);
+        vakcinaciaPocetPercent.setBounds(290, 100, 170, 30);
 
         hlavnyPanel.add(vakcina);
         vakcina.setBounds(270, 90, 540, 440);
@@ -1907,6 +1960,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.Kraje_info.setVisible(false);
         this.BTNI_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/menu_spravy.png")));
         this.vakcina.setVisible(true);
+        this.zobrazVakcinaciu();
     }//GEN-LAST:event_M_vakcinaMouseClicked
 
     private void M_NotifikacieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_NotifikacieMouseClicked
@@ -2282,9 +2336,17 @@ public class HraciPanel extends javax.swing.JFrame {
     private javax.swing.JLabel pozadie;
     private javax.swing.JLabel pozadieUvod;
     private javax.swing.JLabel pozadie_vakcina;
+    private javax.swing.JLabel pozadie_vakcina_bocne;
     private javax.swing.JLabel start;
     private javax.swing.JLabel tien;
     private javax.swing.JPanel vakcina;
+    private javax.swing.JLabel vakcinaciaLabel1;
+    private javax.swing.JLabel vakcinaciaPercenta;
+    private javax.swing.JLabel vakcinaciaPocet2Label;
+    private javax.swing.JLabel vakcinaciaPocet2Label1;
+    private javax.swing.JLabel vakcinaciaPocetLabel;
+    private javax.swing.JLabel vakcinaciaPocetLabel3;
+    private javax.swing.JLabel vakcinaciaPocetPercent;
     // End of variables declaration//GEN-END:variables
 
     public Hra getHra() {
@@ -3099,6 +3161,37 @@ public class HraciPanel extends javax.swing.JFrame {
         this.KE_g_zaockovani.setLayout(new java.awt.BorderLayout());
         this.KE_g_zaockovani.add(oPanel2);
         this.KE_g_zaockovani.validate();
+    }
+
+    public void zobrazVakcinaciu() {
+        if (hra.getVakcina().isVakcinacia()) {
+            pozadie_vakcina.setVisible(false);
+            vakcinaciaPocet2Label.setVisible(true);
+            vakcinaciaLabel1.setVisible(true);
+            vakcinaciaPercenta.setVisible(true);
+            vakcinaciaPocetLabel.setVisible(true);
+            vakcinaciaPocetLabel3.setVisible(true);
+            pozadie_vakcina_bocne.setVisible(true);
+            vakcinaciaPocetPercent.setVisible(true);
+            vakcinaciaPocet2Label1.setVisible(true);
+             DecimalFormat df = new DecimalFormat("#.#");
+            vakcinaciaPocetLabel.setText("Počet zaočkovaných 1. dávkou: " + hra.getSlovensko().getPocetPrvoZaockovanych());
+            vakcinaciaPocet2Label.setText("Počet zaočkovaných 2. dávkou: " + hra.getSlovensko().getPocetZaockovanych());
+            vakcinaciaPocetLabel3.setText("Počet dostupných dávok: " + hra.getVakcina().getPocetDostupnychVakcin());
+            vakcinaciaPocet2Label1.setText("Najbližšia dodávka vakcín:  "+hra.getVakcina().getDatumDodaniaZasielky()+" (pre "+hra.getVakcina().getPocetNajblizsejDodavky()/2+" ľudí)");
+            vakcinaciaPercenta.setText(df.format(hra.getSlovensko().getPocetZaockovanych()/(double)hra.getSlovensko().getPocetObyvatelov()*100)+" %");
+            vakcinaciaPercenta.setHorizontalAlignment(SwingConstants.CENTER);
+        } else {
+            pozadie_vakcina.setVisible(true);
+            vakcinaciaPocet2Label.setVisible(false);
+            vakcinaciaLabel1.setVisible(false);
+            vakcinaciaPercenta.setVisible(false);
+            vakcinaciaPocetLabel.setVisible(false);
+            vakcinaciaPocetLabel3.setVisible(false);
+            pozadie_vakcina_bocne.setVisible(false);
+            vakcinaciaPocetPercent.setVisible(false);
+            vakcinaciaPocet2Label1.setVisible(false);
+        }
     }
 
 }

@@ -26,7 +26,7 @@ public class Opatrenia {
     private ZakazVychadzania zakazVychadzania = new ZakazVychadzania();
     private CeloplosneTestovanie celoplosneTestovanie = new CeloplosneTestovanie();
     private ZatvorenieKrajov zatvorenieKrajov = new ZatvorenieKrajov();
-    private RocneObdobie leto = new RocneObdobie();
+    private RocneObdobie leto = new RocneObdobie(hra);
     private ArrayList<IOpatrenie> opatrenia = new ArrayList<>();
     
     public Opatrenia(Hra hra){

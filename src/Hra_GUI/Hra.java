@@ -117,6 +117,8 @@ public class Hra {
                 this.getSlovensko().getKraje().get(6).getPocetMrtvych(), this.getSlovensko().getKraje().get(6).getPocetZaockovanych());
         HP.informacieOkosickomKraji(this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji(),
                 this.getSlovensko().getKraje().get(7).getPocetMrtvych(), this.getSlovensko().getKraje().get(7).getPocetZaockovanych());
+        
+        HP.zobrazVakcinaciu();
     }
 
     public HraciPanel getHP() {
