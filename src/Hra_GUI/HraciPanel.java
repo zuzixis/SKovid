@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import org.jfree.chart.ChartColor;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -26,6 +27,7 @@ import org.jfree.chart.renderer.category.BarPainter;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StackedBarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.renderer.xy.YIntervalRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -38,7 +40,7 @@ import org.jfree.ui.RectangleEdge;
  * @author Zuzana Žillová
  */
 public class HraciPanel extends javax.swing.JFrame {
-
+    
     private final Hra hra;
     private boolean rusko = false;
     private boolean hranice = false;
@@ -52,61 +54,62 @@ public class HraciPanel extends javax.swing.JFrame {
     private ENadstavenieMenu menu = ENadstavenieMenu.PREHLAD;
     private Opatrenia opatrenia;
     private boolean skrytiePrehladu = false;
-
+    
     private String aktualnyDatum = "2020-01-01";
-
+    
     private ArrayList<Integer> hototyNakazenyhc = new ArrayList<>();
     private ArrayList<Integer> hodnotyZaockovanych = new ArrayList<>();
+    private ArrayList<Integer> hodnotyPrvoZaockovanych = new ArrayList<>();
     private ArrayList<Integer> hodnotyImunnych = new ArrayList<>();
+    private ArrayList<Integer> hodnotyMrtvych = new ArrayList<>();
     private ArrayList<String> vsetkyHlasenia = new ArrayList<>();
     private DefaultListModel zoznamPoloziek = new DefaultListModel();
-
+    
     private ArrayList<Integer> BAnakazeni = new ArrayList<>();
     private ArrayList<Integer> BAumrtia = new ArrayList<>();
     private ArrayList<Integer> BAzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> TNnakazeni = new ArrayList<>();
     private ArrayList<Integer> TNumrtia = new ArrayList<>();
     private ArrayList<Integer> TNzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> TRnakazeni = new ArrayList<>();
     private ArrayList<Integer> TRumrtia = new ArrayList<>();
     private ArrayList<Integer> TRzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> NTnakazeni = new ArrayList<>();
     private ArrayList<Integer> NTumrtia = new ArrayList<>();
     private ArrayList<Integer> NTzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> ZAnakazeni = new ArrayList<>();
     private ArrayList<Integer> ZAumrtia = new ArrayList<>();
     private ArrayList<Integer> ZAzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> BBnakazeni = new ArrayList<>();
     private ArrayList<Integer> BBumrtia = new ArrayList<>();
     private ArrayList<Integer> BBzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> PRnakazeni = new ArrayList<>();
     private ArrayList<Integer> PRumrtia = new ArrayList<>();
     private ArrayList<Integer> PRzaockovani = new ArrayList<>();
-
+    
     private ArrayList<Integer> KEnakazeni = new ArrayList<>();
     private ArrayList<Integer> KEumrtia = new ArrayList<>();
     private ArrayList<Integer> KEzaockovani = new ArrayList<>();
-
+    
     public HraciPanel(Opatrenia opatrenia, Hra hra) {
         this.nadtsaveniaJFrame();
         this.opatrenia = opatrenia;
         this.hra = hra;
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         hlavnyPanel = new javax.swing.JPanel();
         start = new javax.swing.JLabel();
-        pozadieUvod = new javax.swing.JLabel();
         T_Opatrenia = new javax.swing.JLabel();
         K_ZavKraje = new javax.swing.JLabel();
         K_Rusko = new javax.swing.JLabel();
@@ -171,10 +174,10 @@ public class HraciPanel extends javax.swing.JFrame {
         vakcinaciaPocetLabel3 = new javax.swing.JLabel();
         vakcinaciaPocet2Label1 = new javax.swing.JLabel();
         pozadie_vakcina_bocne = new javax.swing.JLabel();
-        pozadie_vakcina = new javax.swing.JLabel();
         vakcinaciaPercenta = new javax.swing.JLabel();
         vakcinaciaPocetPercent = new javax.swing.JLabel();
         vakcina_graf_panel = new javax.swing.JPanel();
+        pozadie_vakcina = new javax.swing.JLabel();
         Kraje_info = new javax.swing.JPanel();
         TN = new javax.swing.JLabel();
         BA = new javax.swing.JLabel();
@@ -286,6 +289,7 @@ public class HraciPanel extends javax.swing.JFrame {
         panel_Graf2_kruhovy = new javax.swing.JPanel();
         panel_Graf3_vyfarbeny = new javax.swing.JPanel();
         pozadie = new javax.swing.JLabel();
+        pozadieUvod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,11 +302,7 @@ public class HraciPanel extends javax.swing.JFrame {
             }
         });
         hlavnyPanel.add(start);
-        start.setBounds(950, 620, 60, 60);
-
-        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
-        hlavnyPanel.add(pozadieUvod);
-        pozadieUvod.setBounds(-20, 670, 1400, 750);
+        start.setBounds(940, 610, 60, 60);
 
         T_Opatrenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/opatreniaLabel.png"))); // NOI18N
         hlavnyPanel.add(T_Opatrenia);
@@ -633,49 +633,45 @@ public class HraciPanel extends javax.swing.JFrame {
         vakcinaciaPocet2Label.setForeground(new java.awt.Color(27, 57, 84));
         vakcinaciaPocet2Label.setText("Počet zaočkovaných 2. dávkou: 0");
         vakcina.add(vakcinaciaPocet2Label);
-        vakcinaciaPocet2Label.setBounds(50, 80, 270, 16);
+        vakcinaciaPocet2Label.setBounds(30, 80, 270, 16);
 
         vakcinaciaLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         vakcinaciaLabel1.setForeground(new java.awt.Color(27, 57, 84));
         vakcinaciaLabel1.setText("Vakcinácia");
         vakcina.add(vakcinaciaLabel1);
-        vakcinaciaLabel1.setBounds(30, 20, 120, 24);
+        vakcinaciaLabel1.setBounds(220, 10, 120, 24);
 
         vakcinaciaPocetLabel.setForeground(new java.awt.Color(22, 173, 225));
         vakcinaciaPocetLabel.setText("Počet zaočkovaných 1. dávkou: 0");
         vakcina.add(vakcinaciaPocetLabel);
-        vakcinaciaPocetLabel.setBounds(50, 60, 270, 20);
+        vakcinaciaPocetLabel.setBounds(30, 60, 270, 20);
 
         vakcinaciaPocetLabel3.setForeground(new java.awt.Color(22, 173, 225));
         vakcinaciaPocetLabel3.setText("Počet dostupných dávok: 0");
         vakcina.add(vakcinaciaPocetLabel3);
-        vakcinaciaPocetLabel3.setBounds(50, 120, 300, 16);
+        vakcinaciaPocetLabel3.setBounds(30, 120, 300, 16);
 
         vakcinaciaPocet2Label1.setForeground(new java.awt.Color(27, 57, 84));
         vakcinaciaPocet2Label1.setText("Najbližšia dodávka vakcín: ");
         vakcina.add(vakcinaciaPocet2Label1);
-        vakcinaciaPocet2Label1.setBounds(50, 140, 330, 16);
+        vakcinaciaPocet2Label1.setBounds(30, 140, 330, 16);
 
-        pozadie_vakcina_bocne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcinaObrBocny.png"))); // NOI18N
+        pozadie_vakcina_bocne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcinaObrBocny2.png"))); // NOI18N
         vakcina.add(pozadie_vakcina_bocne);
-        pozadie_vakcina_bocne.setBounds(440, 30, 90, 110);
-
-        pozadie_vakcina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcina_pozadie.png"))); // NOI18N
-        vakcina.add(pozadie_vakcina);
-        pozadie_vakcina.setBounds(130, 0, 281, 440);
+        pozadie_vakcina_bocne.setBounds(450, 30, 90, 110);
 
         vakcinaciaPercenta.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         vakcinaciaPercenta.setForeground(new java.awt.Color(22, 173, 225));
         vakcinaciaPercenta.setText("80 %");
         vakcinaciaPercenta.setToolTipText("");
         vakcina.add(vakcinaciaPercenta);
-        vakcinaciaPercenta.setBounds(290, 50, 160, 70);
+        vakcinaciaPercenta.setBounds(310, 50, 160, 70);
 
         vakcinaciaPocetPercent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         vakcinaciaPocetPercent.setForeground(new java.awt.Color(27, 57, 84));
         vakcinaciaPocetPercent.setText("Počet percent \nzaočkovaných");
         vakcina.add(vakcinaciaPocetPercent);
-        vakcinaciaPocetPercent.setBounds(290, 100, 170, 30);
+        vakcinaciaPocetPercent.setBounds(310, 100, 170, 30);
 
         javax.swing.GroupLayout vakcina_graf_panelLayout = new javax.swing.GroupLayout(vakcina_graf_panel);
         vakcina_graf_panel.setLayout(vakcina_graf_panelLayout);
@@ -690,6 +686,10 @@ public class HraciPanel extends javax.swing.JFrame {
 
         vakcina.add(vakcina_graf_panel);
         vakcina_graf_panel.setBounds(0, 160, 540, 280);
+
+        pozadie_vakcina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vakcina_pozadie.png"))); // NOI18N
+        vakcina.add(pozadie_vakcina);
+        pozadie_vakcina.setBounds(130, 0, 281, 440);
 
         hlavnyPanel.add(vakcina);
         vakcina.setBounds(270, 90, 540, 440);
@@ -1664,6 +1664,10 @@ public class HraciPanel extends javax.swing.JFrame {
         hlavnyPanel.add(pozadie);
         pozadie.setBounds(0, 0, 1400, 715);
 
+        pozadieUvod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/Pozadie_uvod.png"))); // NOI18N
+        hlavnyPanel.add(pozadieUvod);
+        pozadieUvod.setBounds(110, 540, 1400, 750);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1689,7 +1693,7 @@ public class HraciPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("SKovid");
         pack();
-
+        
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
         this.Notifikacie.setVisible(false);
@@ -1703,20 +1707,20 @@ public class HraciPanel extends javax.swing.JFrame {
         this.info_trnava.setVisible(false);
         this.info_zilina.setVisible(false);
         this.vakcina.setVisible(false);
-
+        
     }
 
     private void K_RuskoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_K_RuskoMouseClicked
         if (!rusko) {
             if (!zapnutieOpatreni) {
                 zapnutieOpatreni = true;
-
+                
                 this.BTNI_OtvorVsetko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zapinac.png")));;
             }
             rusko = true;
             this.opatrenia.getRuskaOdstup().zapnutie();
             if (!hranice) {
-
+                
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Lactive.png")));
             } else {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_active.png")));
@@ -1729,7 +1733,7 @@ public class HraciPanel extends javax.swing.JFrame {
             } else {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Ractive.png")));
             }
-
+            
         }
     }//GEN-LAST:event_K_RuskoMouseClicked
 
@@ -1756,7 +1760,7 @@ public class HraciPanel extends javax.swing.JFrame {
             } else {
                 BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_Lactive.png")));
             }
-
+            
         }
     }//GEN-LAST:event_K_HraniceMouseClicked
 
@@ -1866,7 +1870,7 @@ public class HraciPanel extends javax.swing.JFrame {
             this.opatrenia.getSluzby().setNeobmedzene();
             BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         }
-
+        
         this.opatrenia.getSluzby().zapnutie();
         //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZavreteRizikoveMouseClicked
@@ -1885,7 +1889,7 @@ public class HraciPanel extends javax.swing.JFrame {
             this.opatrenia.getSluzby().setNeobmedzene();
             BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         }
-
+        
         this.opatrenia.getSluzby().zapnutie();
         //treba vyriešiť ako sa to bude správať (kolko ludi sa bude stretávať v takopmto prípade)
     }//GEN-LAST:event_K_S_ZakladneMouseClicked
@@ -1933,7 +1937,7 @@ public class HraciPanel extends javax.swing.JFrame {
             BTNI_CeloTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/testovanie_inactive.png")));
             celoplosneTestovanie = false;
             zapnutieOpatreni = false;
-
+            
         } else {
             zavriVsetko();
             celoplosneTestovanie = true;
@@ -2087,7 +2091,7 @@ public class HraciPanel extends javax.swing.JFrame {
     private void M_InfoOkrajochMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_M_InfoOkrajochMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_M_InfoOkrajochMouseEntered
-
+    
     private void zavriVsetko() {
         rusko = true;
         hranice = true;
@@ -2096,17 +2100,17 @@ public class HraciPanel extends javax.swing.JFrame {
         akcie = 10;
         sluzby = ESluzby.OTVORENE_LEN_ZAKLADNE;
         skoly = ESkoly.VSETKY_ZAVRETE;
-
+        
         BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_active.png")));
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_active.png")));
         BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_active.png")));
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacita10.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/zakladne.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyZavrete.png")));
-
+        
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
-
+        
         this.opatrenia.getAkcie().zapnutie();
         this.opatrenia.getHranice().zapnutie();
         this.opatrenia.getRuskaOdstup().zapnutie();
@@ -2116,9 +2120,9 @@ public class HraciPanel extends javax.swing.JFrame {
         this.opatrenia.getZakazVychadzania().zapnutie();
         this.opatrenia.getZatvorenieKrajov().zapnutie();
     }
-
+    
     private void otvorVsetko() {
-
+        
         rusko = false;
         hranice = false;
         zakazVychadzania = false;
@@ -2127,7 +2131,7 @@ public class HraciPanel extends javax.swing.JFrame {
         akcie = 0;
         sluzby = ESluzby.OTVORENE;
         skoly = ESkoly.OTVORENE;
-
+        
         BTNI_Rusko_Hranice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/ruska_inactive.png")));
         BTNI_ZakazVych.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/vychadzanie_inactive.png")));
         BTNI_ZavKraje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kraje_inactive.png")));
@@ -2135,10 +2139,10 @@ public class HraciPanel extends javax.swing.JFrame {
         BTNI_Akcie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/kapacitaNeobmedzena.png")));
         BTNI_Sluzby.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/otvoreneSluzby.png")));
         BTNI_Skoly.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Kresbicky/skolyNeobmedzene.png")));
-
+        
         this.Mapa_hranice.setVisible(hranice);
         this.Mapa_hraniceOkresy.setVisible(uzavretieKrajov);
-
+        
         this.opatrenia.getAkcie().vypnutie();
         this.opatrenia.getCeloplosneTestovanie().vypnutie();
         this.opatrenia.getHranice().vypnutie();
@@ -2148,33 +2152,33 @@ public class HraciPanel extends javax.swing.JFrame {
         this.opatrenia.getSluzby().setNeobmedzene();
         this.opatrenia.getZakazVychadzania().vypnutie();
         this.opatrenia.getZatvorenieKrajov().vypnutie();
-
+        
     }
-
+    
     public void napisVsetciNakazeni(int pocet) {
         this.P_vsetciNakazeni.setText("" + pocet);
     }
-
+    
     public void napisNakazenychNaDen(int pocet) {
         this.P_nakazeniZaDen.setText("" + pocet);
     }
-
+    
     public void napisPocetUmrti(int pocet) {
         this.P_pocetUmrti.setText("" + pocet);
     }
-
+    
     public void napisZaockovanych(int pocet) {
         this.P_pocetZaockovanych.setText("" + pocet);
     }
-
+    
     public void napisStavNemocnic(int pocet) {
         this.P_nstavNemocnice.setText("" + pocet + " %");
     }
-
+    
     public void napisSpolocenskuStabilitu(int pocet) {
         this.P_spoocenskaStabilita.setText("" + pocet);
     }
-
+    
     public void zmenDatum(String datum) {
         this.Datum.setText(datum);
     }
@@ -2368,7 +2372,7 @@ public class HraciPanel extends javax.swing.JFrame {
     public Hra getHra() {
         return hra;
     }
-
+    
     public void upravBratislavsky(int pocet, EStavKraja stav) {
         this.KR_Bratislavsky.setText("" + pocet);
         switch (stav) {
@@ -2389,7 +2393,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravTrnavsky(int pocet, EStavKraja stav) {
         this.KR_Trnavsky.setText("" + pocet);
         switch (stav) {
@@ -2410,7 +2414,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravTrenciansky(int pocet, EStavKraja stav) {
         this.KR_Trenciansky.setText("" + pocet);
         switch (stav) {
@@ -2431,7 +2435,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravNitriansky(int pocet, EStavKraja stav) {
         this.KR_Nitriansky.setText("" + pocet);
         switch (stav) {
@@ -2452,7 +2456,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravZilinsky(int pocet, EStavKraja stav) {
         this.KR_Zilinsky.setText("" + pocet);
         switch (stav) {
@@ -2473,7 +2477,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravBanskobystricky(int pocet, EStavKraja stav) {
         this.KR_BanskoBystricky.setText("" + pocet);
         switch (stav) {
@@ -2494,7 +2498,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravPresovsky(int pocet, EStavKraja stav) {
         this.KR_Presovsky.setText("" + pocet);
         switch (stav) {
@@ -2515,7 +2519,7 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void upravKosickyky(int pocet, EStavKraja stav) {
         this.KR_Kosicky.setText("" + pocet);
         switch (stav) {
@@ -2536,15 +2540,15 @@ public class HraciPanel extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     public void napisHlasku(String menoHlasky) {
         this.Hlasky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HRA_Hlasky_Upozornenia/" + menoHlasky + ".png")));
     }
-
+    
     public void napisOznam(String oznam) {
         this.Oznam.setText(oznam);
     }
-
+    
     public void vykresliGraf(int hodnotaNakazenych) {
         //vypisanie grafu
 
@@ -2555,7 +2559,7 @@ public class HraciPanel extends javax.swing.JFrame {
             // oSeries.add(i+1,);
             dataset.addValue(hototyNakazenyhc.get(i), "", Integer.toString(i + 1));
         }
-
+        
         XYSeriesCollection oDatabase = new XYSeriesCollection();
         oDatabase.addSeries(oSeries);
         JFreeChart oChart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
@@ -2580,10 +2584,10 @@ public class HraciPanel extends javax.swing.JFrame {
         this.panel_Graf.add(oPanel);
         this.panel_Graf.validate();
     }
-
+    
     public void vykresliGrafKruhovy(int bratislava, int trnava, int trencin, int nitra, int zilina, int bystrica, int presov, int kosice) {
         var dataset = new DefaultPieDataset();
-
+        
         dataset.setValue("BA", bratislava);
         dataset.setValue("TN", trnava);
         dataset.setValue("TR", trencin);
@@ -2592,59 +2596,59 @@ public class HraciPanel extends javax.swing.JFrame {
         dataset.setValue("BB", bystrica);
         dataset.setValue("PR", presov);
         dataset.setValue("KE", kosice);
-
+        
         JFreeChart chart = ChartFactory.createPieChart("", dataset, true, true, false);
-
+        
         final PiePlot plot = (PiePlot) chart.getPlot();
         plot.setInteriorGap(0.0);
         plot.setLabelGenerator(null);
-
+        
         chart.getPlot().setOutlineVisible(false);
-
+        
         chart.setBorderVisible(false);
         chart.getPlot().setBackgroundPaint(null);
         ChartPanel oPanel = new ChartPanel(chart);
-
+        
         this.panel_Graf2_kruhovy.setLayout(new java.awt.BorderLayout());
         this.panel_Graf2_kruhovy.add(oPanel);
         this.panel_Graf2_kruhovy.validate();
-
+        
     }
-
-    public void vykresliGrafImunni(int pocetZaockovanych, int pocetImunnych) {
+    
+    public void vykresliGrafImunni(int pocetMrtvych, int pocetImunnych) {
         //vypisanie grafu
         if (hodnotyImunnych.size() > 100) {
             hodnotyImunnych.remove(0);
-            hodnotyZaockovanych.remove(0);
+            hodnotyMrtvych.remove(0);
         }
-        this.hodnotyZaockovanych.add(pocetZaockovanych);
+        this.hodnotyMrtvych.add(pocetMrtvych);
         this.hodnotyImunnych.add(pocetImunnych);
-
-        XYSeries oSeries = new XYSeries("1. davka vakciny");
-        for (int i = 0; i < hodnotyZaockovanych.size(); i++) {
-            oSeries.add(i + 1, hodnotyZaockovanych.get(i));
+        
+        XYSeries oSeries = new XYSeries("Imunita");
+        for (int i = 0; i < hodnotyMrtvych.size(); i++) {
+            oSeries.add(i + 1, hodnotyMrtvych.get(i));
         }
-
-        XYSeries oSeries2 = new XYSeries("2. davka vakciny");
+        
+        XYSeries oSeries2 = new XYSeries("Úmrtia");
         for (int i = 0; i < hodnotyImunnych.size(); i++) {
             oSeries2.add(i + 1, hodnotyImunnych.get(i));
         }
-
+        
         XYSeriesCollection oDatabase = new XYSeriesCollection();
         oDatabase.addSeries(oSeries);
         oDatabase.addSeries(oSeries2);
-
+        
         JFreeChart oChart = ChartFactory.createXYLineChart("", "", "", oDatabase, PlotOrientation.VERTICAL, true, true, false);
         //oChart.setBackgroundPaint(null);
         ChartPanel oPanel = new ChartPanel(oChart);
-
+        
         XYPlot plot = oChart.getXYPlot();
-
+        
         var renderer = new XYLineAndShapeRenderer();
-
-        renderer.setSeriesPaint(0, Color.RED);
+        
+        renderer.setSeriesPaint(0, Color.blue);
         renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesPaint(1, Color.red);
         renderer.setSeriesStroke(1, new BasicStroke(2.0f));
 
         //plot.setRenderer(renderer);
@@ -2658,7 +2662,63 @@ public class HraciPanel extends javax.swing.JFrame {
         this.panel_Graf3_vyfarbeny.setLayout(new java.awt.BorderLayout());
         this.panel_Graf3_vyfarbeny.add(oPanel);
         this.panel_Graf3_vyfarbeny.validate();
+        
+        ChartPanel localChartPanel = new ChartPanel(oChart, true);
 
+        //  this.scrol.add(localChartPanel);
+    }
+    
+    public void vykresliGrafOckovanie(int pocetPrvozaockovanych, int pocetzaockovanych) {
+        //vypisanie grafu
+        
+        this.hodnotyZaockovanych.add(pocetzaockovanych);
+        this.hodnotyPrvoZaockovanych.add(pocetPrvozaockovanych);
+        
+        XYSeries oSeries2 = new XYSeries("2. davka vakciny");
+        for (int i = 0; i < hodnotyZaockovanych.size(); i++) {
+            oSeries2.add(i + 1, hodnotyZaockovanych.get(i));
+        }
+        
+        XYSeries oSeries = new XYSeries("1. davka vakciny");
+        for (int i = 0; i < hodnotyPrvoZaockovanych.size(); i++) {
+            oSeries.add(i + 1, hodnotyPrvoZaockovanych.get(i));
+        }
+        
+        XYSeriesCollection oDatabase = new XYSeriesCollection();
+        oDatabase.addSeries(oSeries);
+        oDatabase.addSeries(oSeries2);
+        
+        JFreeChart oChart = ChartFactory.createXYLineChart("", "", "", oDatabase, PlotOrientation.VERTICAL, true, true, false);
+        oChart.setBackgroundPaint(null);
+        ChartPanel oPanel = new ChartPanel(oChart);
+        
+        XYPlot plot = oChart.getXYPlot();
+        
+        var renderer = new XYLineAndShapeRenderer();
+        
+        renderer.setSeriesPaint(0, new ChartColor(22, 173, 225));
+        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
+
+        //plot.setRenderer(renderer);
+        plot.setBackgroundPaint(null);
+        plot.setRangeGridlinesVisible(false);
+        plot.setDomainGridlinesVisible(false);
+        
+        
+        StandardXYItemRenderer renderer2 = new StandardXYItemRenderer();
+        renderer2.setSeriesPaint(0, new Color(22, 173, 225));
+        renderer2.setSeriesPaint(1,new ChartColor(27, 57, 84));
+        plot.setRenderer(renderer2);
+        plot.setOutlinePaint(null);
+        //this.jPanel2.setLayout(new BorderLayout());
+        //this.jPanel2.add(oPanel);
+        //this.jPanel2.validate();
+        this.vakcina_graf_panel.setLayout(new java.awt.BorderLayout());
+        this.vakcina_graf_panel.add(oPanel);
+        this.vakcina_graf_panel.validate();
+        
         ChartPanel localChartPanel = new ChartPanel(oChart, true);
 
         //  this.scrol.add(localChartPanel);
@@ -2669,17 +2729,17 @@ public class HraciPanel extends javax.swing.JFrame {
         this.panel_Graf2_kruhovy.setVisible(viditelnost);
         this.panel_Graf3_vyfarbeny.setVisible(viditelnost);
     }
-
+    
     public void pridajNotifikaciu(String s) {
         zoznamPoloziek.addElement(s);
         List.setModel(zoznamPoloziek);
     }
-
+    
     public void informacieObratislavskomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.BA_pocetNakazenych.setText("" + noviNakazeni);
         this.BA_pocetUmrti.setText("" + pocetUmrti);
         this.BA_pocetZaockovanych.setText("" + zaockovani);
-
+        
         BAnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < BAnakazeni.size(); i++) {
@@ -2698,7 +2758,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BA_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.BA_g_nakazeni.add(oPanel);
         this.BA_g_nakazeni.validate();
-
+        
         BAumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < BAumrtia.size(); i++) {
@@ -2717,7 +2777,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BA_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.BA_g_pocetUmrti.add(oPanel1);
         this.BA_g_pocetUmrti.validate();
-
+        
         BAzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < BAzaockovani.size(); i++) {
@@ -2737,12 +2797,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BA_g_zaockovani.add(oPanel2);
         this.BA_g_zaockovani.validate();
     }
-
+    
     public void informacieOtrnavskonKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.TN_pocetNakazenych1.setText("" + noviNakazeni);
         this.TN_pocetUmrti.setText("" + pocetUmrti);
         this.TN_pocetZaockovanych.setText("" + zaockovani);
-
+        
         TNnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < TNnakazeni.size(); i++) {
@@ -2761,7 +2821,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TN_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.TN_g_nakazeni.add(oPanel);
         this.TN_g_nakazeni.validate();
-
+        
         TNumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < TNumrtia.size(); i++) {
@@ -2780,7 +2840,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TN_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.TN_g_pocetUmrti.add(oPanel1);
         this.TN_g_pocetUmrti.validate();
-
+        
         TNzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < TNzaockovani.size(); i++) {
@@ -2800,12 +2860,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TN_g_zaockovani.add(oPanel2);
         this.TN_g_zaockovani.validate();
     }
-
+    
     public void informacieOtrencianskomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.TR_pocetNakazenych.setText("" + noviNakazeni);
         this.TR_pocetUmrti.setText("" + pocetUmrti);
         this.TR_pocetZaockovanych.setText("" + zaockovani);
-
+        
         TRnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < TRnakazeni.size(); i++) {
@@ -2824,7 +2884,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TR_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.TR_g_nakazeni.add(oPanel);
         this.TR_g_nakazeni.validate();
-
+        
         TRumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < TRumrtia.size(); i++) {
@@ -2843,7 +2903,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TR_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.TR_g_pocetUmrti.add(oPanel1);
         this.TR_g_pocetUmrti.validate();
-
+        
         TRzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < TRzaockovani.size(); i++) {
@@ -2863,12 +2923,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.TR_g_zaockovani.add(oPanel2);
         this.TR_g_zaockovani.validate();
     }
-
+    
     public void informacieOnitrianskomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.NT_pocetNakazenych.setText("" + noviNakazeni);
         this.NT_pocetUmrti.setText("" + pocetUmrti);
         this.NT_pocetZaockovanych.setText("" + zaockovani);
-
+        
         NTnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < NTnakazeni.size(); i++) {
@@ -2887,7 +2947,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.NT_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.NT_g_nakazeni.add(oPanel);
         this.NT_g_nakazeni.validate();
-
+        
         NTumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < NTumrtia.size(); i++) {
@@ -2906,7 +2966,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.NT_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.NT_g_pocetUmrti.add(oPanel1);
         this.NT_g_pocetUmrti.validate();
-
+        
         NTzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < NTzaockovani.size(); i++) {
@@ -2926,12 +2986,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.NT_g_zaockovani.add(oPanel2);
         this.NT_g_zaockovani.validate();
     }
-
+    
     public void informacieOzilinskomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.ZA_pocetNakazenych.setText("" + noviNakazeni);
         this.ZA_pocetUmrti.setText("" + pocetUmrti);
         this.ZA_pocetZaockovanych.setText("" + zaockovani);
-
+        
         ZAnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < ZAnakazeni.size(); i++) {
@@ -2950,7 +3010,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.ZA_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.ZA_g_nakazeni.add(oPanel);
         this.ZA_g_nakazeni.validate();
-
+        
         ZAumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < ZAumrtia.size(); i++) {
@@ -2969,7 +3029,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.ZA_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.ZA_g_pocetUmrti.add(oPanel1);
         this.ZA_g_pocetUmrti.validate();
-
+        
         ZAzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < ZAzaockovani.size(); i++) {
@@ -2989,12 +3049,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.ZA_g_zaockovani.add(oPanel2);
         this.ZA_g_zaockovani.validate();
     }
-
+    
     public void informacieObanskobystrickomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.BB_pocetNakazenych.setText("" + noviNakazeni);
         this.BB_pocetUmrti.setText("" + pocetUmrti);
         this.BB_pocetZaockovanych.setText("" + zaockovani);
-
+        
         BBnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < BBnakazeni.size(); i++) {
@@ -3013,7 +3073,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BB_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.BB_g_nakazeni.add(oPanel);
         this.BB_g_nakazeni.validate();
-
+        
         BBumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < BBumrtia.size(); i++) {
@@ -3032,7 +3092,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BB_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.BB_g_pocetUmrti.add(oPanel1);
         this.BB_g_pocetUmrti.validate();
-
+        
         BBzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < BBzaockovani.size(); i++) {
@@ -3052,12 +3112,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.BB_g_zaockovani.add(oPanel2);
         this.BB_g_zaockovani.validate();
     }
-
+    
     public void informacieOpresovskommKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.PR_pocetNakazenych.setText("" + noviNakazeni);
         this.PR_pocetUmrti.setText("" + pocetUmrti);
         this.PR_pocetZaockovanych.setText("" + zaockovani);
-
+        
         PRnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < PRnakazeni.size(); i++) {
@@ -3076,7 +3136,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.PR_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.PR_g_nakazeni.add(oPanel);
         this.PR_g_nakazeni.validate();
-
+        
         PRumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < PRumrtia.size(); i++) {
@@ -3095,7 +3155,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.PR_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.PR_g_pocetUmrti.add(oPanel1);
         this.PR_g_pocetUmrti.validate();
-
+        
         PRzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < PRzaockovani.size(); i++) {
@@ -3115,12 +3175,12 @@ public class HraciPanel extends javax.swing.JFrame {
         this.PR_g_zaockovani.add(oPanel2);
         this.PR_g_zaockovani.validate();
     }
-
+    
     public void informacieOkosickomKraji(int noviNakazeni, int pocetUmrti, int zaockovani) {
         this.KE_pocetNakazenych.setText("" + noviNakazeni);
         this.KE_pocetUmrti.setText("" + pocetUmrti);
         this.KE_pocetZaockovanych.setText("" + zaockovani);
-
+        
         KEnakazeni.add(noviNakazeni);
         XYSeries oSeries = new XYSeries("");
         for (int i = 0; i < KEnakazeni.size(); i++) {
@@ -3139,7 +3199,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.KE_g_nakazeni.setLayout(new java.awt.BorderLayout());
         this.KE_g_nakazeni.add(oPanel);
         this.KE_g_nakazeni.validate();
-
+        
         KEumrtia.add(pocetUmrti);
         XYSeries oSeries1 = new XYSeries("");
         for (int i = 0; i < KEumrtia.size(); i++) {
@@ -3158,7 +3218,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.KE_g_pocetUmrti.setLayout(new java.awt.BorderLayout());
         this.KE_g_pocetUmrti.add(oPanel1);
         this.KE_g_pocetUmrti.validate();
-
+        
         KEzaockovani.add(zaockovani);
         XYSeries oSeries12 = new XYSeries("");
         for (int i = 0; i < KEzaockovani.size(); i++) {
@@ -3178,7 +3238,7 @@ public class HraciPanel extends javax.swing.JFrame {
         this.KE_g_zaockovani.add(oPanel2);
         this.KE_g_zaockovani.validate();
     }
-
+    
     public void zobrazVakcinaciu() {
         if (hra.getVakcina().isVakcinacia()) {
             pozadie_vakcina.setVisible(false);
@@ -3190,12 +3250,14 @@ public class HraciPanel extends javax.swing.JFrame {
             pozadie_vakcina_bocne.setVisible(true);
             vakcinaciaPocetPercent.setVisible(true);
             vakcinaciaPocet2Label1.setVisible(true);
-             DecimalFormat df = new DecimalFormat("#.#");
+            vakcina_graf_panel.setVisible(true);
+            vykresliGrafOckovanie(hra.getSlovensko().getPocetPrvoZaockovanych(), hra.getSlovensko().getPocetZaockovanych());
+            DecimalFormat df = new DecimalFormat("#.#");
             vakcinaciaPocetLabel.setText("Počet zaočkovaných 1. dávkou: " + hra.getSlovensko().getPocetPrvoZaockovanych());
             vakcinaciaPocet2Label.setText("Počet zaočkovaných 2. dávkou: " + hra.getSlovensko().getPocetZaockovanych());
             vakcinaciaPocetLabel3.setText("Počet dostupných dávok: " + hra.getVakcina().getPocetDostupnychVakcin());
-            vakcinaciaPocet2Label1.setText("Najbližšia dodávka vakcín:  "+hra.getVakcina().getDatumDodaniaZasielky()+" (pre "+hra.getVakcina().getPocetNajblizsejDodavky()/2+" ľudí)");
-            vakcinaciaPercenta.setText(df.format(hra.getSlovensko().getPocetZaockovanych()/(double)hra.getSlovensko().getPocetObyvatelov()*100)+" %");
+            vakcinaciaPocet2Label1.setText("Najbližšia dodávka vakcín:  " + hra.getVakcina().getDatumDodaniaZasielky() + " (pre " + hra.getVakcina().getPocetNajblizsejDodavky() / 2 + " ľudí)");
+            vakcinaciaPercenta.setText(df.format(hra.getSlovensko().getPocetZaockovanych() / (double) hra.getSlovensko().getPocetObyvatelov() * 100) + " %");
             vakcinaciaPercenta.setHorizontalAlignment(SwingConstants.CENTER);
         } else {
             pozadie_vakcina.setVisible(true);
@@ -3207,9 +3269,10 @@ public class HraciPanel extends javax.swing.JFrame {
             pozadie_vakcina_bocne.setVisible(false);
             vakcinaciaPocetPercent.setVisible(false);
             vakcinaciaPocet2Label1.setVisible(false);
+            vakcina_graf_panel.setVisible(false);
         }
     }
-
+    
 }
 
 enum ESluzby {

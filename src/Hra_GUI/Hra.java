@@ -99,7 +99,7 @@ public class Hra {
                 this.getSlovensko().getKraje().get(6).dajPocetNakazenychVkraji(),
                 this.getSlovensko().getKraje().get(7).dajPocetNakazenychVkraji());
 
-        HP.vykresliGrafImunni(SR.getPocetPrvoZaockovanych(), SR.getPocetZaockovanych());
+        HP.vykresliGrafImunni(SR.getPocetImunnych(), SR.getPocetUmrti());
         
         HP.informacieObratislavskomKraji(this.getSlovensko().getKraje().get(0).dajPocetNakazenychVkraji(),
                 this.getSlovensko().getKraje().get(0).getPocetMrtvych(), this.getSlovensko().getKraje().get(0).getPocetZaockovanych());
