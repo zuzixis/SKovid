@@ -71,7 +71,7 @@ public class Vakcina {
     }
 
     public int getPocetDostupnychVakcin() {
-        return pocetDostupnychVakcin/2;
+        return pocetDostupnychVakcin / 2;
     }
 
     private void ZaockujDruhouDavkou() {
@@ -139,7 +139,10 @@ public class Vakcina {
     }
 
     public int getPocetNajblizsejDodavky() {
-        return dodavkyVakcin.get(0);
+        if (dodavkyVakcin.size() > 0) {
+            return dodavkyVakcin.get(0);
+        }
+        return 0;
     }
 
     public void setDatumDodaniaZasielky(String datumDodaniaZasielky) {

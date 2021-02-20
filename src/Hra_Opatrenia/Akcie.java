@@ -5,6 +5,8 @@
  */
 package Hra_Opatrenia;
 
+import java.util.Random;
+
 /**
  *
  * @author Zuzana Žillová
@@ -21,7 +23,7 @@ public class Akcie implements IOpatrenie {
     public boolean isZapnute() {
         return zapnute;
     }
-    
+
     @Override
     public void zapnutie() {
         zapnute = true;
@@ -34,15 +36,20 @@ public class Akcie implements IOpatrenie {
 
     @Override
     public double getIndex() {
-        if(zapnute){
-            switch(povolenyPocetLudi){
-                case 10: return 0.25; 
-                case 100: return 0.13;
-                case 1000: return 0.1;
-                default: return 0;
+        if (zapnute) {
+            Random r = new Random();
+
+            switch (povolenyPocetLudi) {
+                case 10:
+                    return (double)(r.nextInt(3)+23)/100;
+                case 100:
+                    return  (double)(r.nextInt(5)+16)/100;
+                case 1000:
+                    return  (double)(r.nextInt(3)+8)/100;
+                default:
+                    return 0;
             }
-        }else
-        {
+        } else {
             return 0;
         }
     }

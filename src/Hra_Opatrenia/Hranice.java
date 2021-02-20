@@ -7,6 +7,8 @@
  */
 package Hra_Opatrenia;
 
+import java.util.Random;
+
 /**
  *
  * @author Erik Malina
@@ -32,7 +34,8 @@ public class Hranice implements IOpatrenie{
     @Override
     public double getIndex() {
         if(zapnute){
-            return 0.17; //doplnit index 
+               Random r = new Random();
+            return  (double)(r.nextInt(4)+12)/100;
         } 
         return 0;//doplnit index 
         

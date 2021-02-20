@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @author Zuzana Žillová
  */
 public class Opatrenia {
-    
+
     private double index;
     private Hra hra;
-    
+
     private Akcie akcie = new Akcie();
     private Hranice hranice = new Hranice();
     private RuskaOdstup ruskaOdstup = new RuskaOdstup();
@@ -28,8 +28,8 @@ public class Opatrenia {
     private ZatvorenieKrajov zatvorenieKrajov = new ZatvorenieKrajov();
     private RocneObdobie leto = new RocneObdobie(hra);
     private ArrayList<IOpatrenie> opatrenia = new ArrayList<>();
-    
-    public Opatrenia(Hra hra){
+
+    public Opatrenia(Hra hra) {
         this.hra = hra;
         opatrenia.add(akcie);
         opatrenia.add(hranice);
@@ -38,13 +38,11 @@ public class Opatrenia {
         opatrenia.add(sluzby);
         opatrenia.add(vysokeSkoly);
         opatrenia.add(zakazVychadzania);
-       // opatrenia.add(leto);
-       // opatrenia.add(celoplosneTestovanie);
-       
+        // opatrenia.add(leto);
+        // opatrenia.add(celoplosneTestovanie);
+
     }
 
-   
-    
     public double getIndex() {
         return vypocitajIndex();
     }
@@ -52,12 +50,16 @@ public class Opatrenia {
     public void setIndex(double index) {
         this.index = index;
     }
-    
-    private double vypocitajIndex(){
+
+    private double vypocitajIndex() {
         index = 0;
         for (int i = 0; i < opatrenia.size(); i++) {
             index += opatrenia.get(i).getIndex();
+
         }
+
+        
+       
         return index;
     }
 
@@ -96,12 +98,12 @@ public class Opatrenia {
     public CeloplosneTestovanie getCeloplosneTestovanie() {
         return celoplosneTestovanie;
     }
-    
-    public double getIndexKraja(){
+
+    public double getIndexKraja() {
         return zatvorenieKrajov.getIndex();
     }
-    
-    public void skontrolujRocneObdobie(String datum){
+
+    public void skontrolujRocneObdobie(String datum) {
         leto.skontrolujDatum(datum);
     }
 }

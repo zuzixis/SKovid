@@ -5,6 +5,8 @@
  */
 package Hra_Opatrenia;
 
+import java.util.Random;
+
 /**
  *
  * @author Erik Malina
@@ -30,7 +32,8 @@ public class RuskaOdstup implements IOpatrenie {
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.13;
+            Random r = new Random();
+            return  (double)(r.nextInt(3)+8)/100;
         }
         return 0;
     }

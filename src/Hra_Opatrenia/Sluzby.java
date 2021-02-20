@@ -5,6 +5,8 @@
  */
 package Hra_Opatrenia;
 
+import java.util.Random;
+
 /**
  *
  * @author Zuzana Žillová
@@ -42,10 +44,12 @@ public class Sluzby implements IOpatrenie {
     @Override
     public double getIndex() {
         if (rizikove == false) {
-            return 0.12;
-                    
+            Random r = new Random();
+            return (r.nextInt(5) + 5) / 100;
+
         } else if (!zakladne) {
-            return 0.2;
+            Random r = new Random();
+            return  (double)(r.nextInt(3) + 12) / 100;
         }
         return 0;
 

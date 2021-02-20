@@ -30,9 +30,9 @@ public class ZatvorenieKrajov implements IOpatrenie{
     @Override
     public double getIndex() {
         if(zapnute){
-            return 0.95;
+            return 0.97;
         } 
-        return 0.85;
+        return 0.87;
         
     }
     

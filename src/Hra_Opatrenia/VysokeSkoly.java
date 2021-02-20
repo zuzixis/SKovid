@@ -5,6 +5,8 @@
  */
 package Hra_Opatrenia;
 
+import java.util.Random;
+
 /**
  *
  * @author Zuzana Žillová
@@ -30,7 +32,8 @@ public class VysokeSkoly implements IOpatrenie{
     @Override
     public double getIndex() {
         if (zapnute) {
-            return 0.1;
+           Random r = new Random();
+            return  (double)(r.nextInt(5)+10)/100;
         }
         return 0;
     }

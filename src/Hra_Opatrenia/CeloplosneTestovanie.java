@@ -45,6 +45,8 @@ public class CeloplosneTestovanie implements IOpatrenie {
                 pocetDniDoTestovania = 7;
             }
             this.pocetDniDoTestovania--;
+        }else{
+            pocetDniDoTestovania =-1;
         }
     }
 
